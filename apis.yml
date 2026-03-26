@@ -1,0 +1,28 @@
+aid: red-hat-openshift
+name: Red Hat OpenShift
+description: >-
+  Red Hat OpenShift is an enterprise Kubernetes platform that provides a consistent hybrid cloud foundation for building and scaling containerized applications.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Containers
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/red-hat-openshift/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: red-hat-openshift:red-hat-openshift
+    name: Red Hat OpenShift
+    description: >-
+      Red Hat OpenShift is an enterprise Kubernetes platform that provides a consistent hybrid cloud foundation for building and scaling containerized applications.
+    humanURL: https://www.redhat.com/
+    tags:
+      - Containers
+    properties: []
+common:
+  - type: Website
+    url: https://www.redhat.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
