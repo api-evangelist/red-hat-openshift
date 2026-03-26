@@ -1,11 +1,20 @@
 aid: red-hat-openshift
 name: Red Hat OpenShift
 description: >-
-  Red Hat OpenShift is an enterprise Kubernetes platform that provides a consistent hybrid cloud foundation for building and scaling containerized applications.
+  Red Hat OpenShift is an enterprise Kubernetes platform that provides a
+  consistent foundation for building, deploying, and scaling containerized
+  applications across hybrid and multi-cloud environments. It includes
+  developer tools, built-in CI/CD, monitoring, and automated operations to
+  streamline the full application lifecycle.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Containers
+  - Kubernetes
+  - Enterprise
+  - Hybrid Cloud
+  - PaaS
+  - Red Hat
 url: >-
   https://raw.githubusercontent.com/api-evangelist/red-hat-openshift/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +24,39 @@ apis:
   - aid: red-hat-openshift:red-hat-openshift
     name: Red Hat OpenShift
     description: >-
-      Red Hat OpenShift is an enterprise Kubernetes platform that provides a consistent hybrid cloud foundation for building and scaling containerized applications.
-    humanURL: https://www.redhat.com/
+      Red Hat OpenShift is an enterprise Kubernetes platform that provides a
+      consistent hybrid cloud foundation for building and scaling containerized
+      applications. It combines Kubernetes orchestration with developer
+      productivity tools, built-in security, and automated cluster management
+      to help organizations deliver applications faster.
+    humanURL: https://www.redhat.com/en/technologies/cloud-computing/openshift
     tags:
       - Containers
-    properties: []
+      - Kubernetes
+      - Enterprise
+      - Hybrid Cloud
+      - PaaS
+      - Red Hat
+    properties:
+      - type: Documentation
+        url: https://docs.openshift.com/
+      - type: Getting Started
+        url: https://developers.redhat.com/products/openshift/getting-started
 common:
   - type: Website
-    url: https://www.redhat.com/
+    url: https://www.redhat.com/en/technologies/cloud-computing/openshift
+  - type: Documentation
+    url: https://docs.openshift.com/
+  - type: Pricing
+    url: https://www.redhat.com/en/technologies/cloud-computing/openshift/pricing
+  - type: Blog
+    url: https://www.redhat.com/en/blog/channel/red-hat-openshift
+  - type: GitHub Organization
+    url: https://github.com/openshift
+  - type: Sign Up
+    url: https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it
+  - type: Status
+    url: https://status.redhat.com/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
