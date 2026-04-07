@@ -10,9 +10,9 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Containers
-  - Kubernetes
   - Enterprise
   - Hybrid Cloud
+  - Kubernetes
   - PaaS
   - Red Hat
 url: >-
@@ -32,9 +32,9 @@ apis:
     humanURL: https://www.redhat.com/en/technologies/cloud-computing/openshift
     tags:
       - Containers
-      - Kubernetes
       - Enterprise
       - Hybrid Cloud
+      - Kubernetes
       - PaaS
       - Red Hat
     properties:
