@@ -1,0 +1,35 @@
+{
+  "name": "Project",
+  "description": "OpenShift Project resource structure",
+  "fields": [
+    { "name": "apiVersion", "type": "string", "const": "project.openshift.io/v1" },
+    { "name": "kind", "type": "string", "const": "Project" },
+    {
+      "name": "metadata",
+      "type": "object",
+      "description": "Standard Kubernetes object metadata",
+      "fields": [
+        { "name": "name", "type": "string", "description": "Project name" },
+        { "name": "uid", "type": "string", "description": "System-generated UUID" },
+        { "name": "resourceVersion", "type": "string", "description": "Optimistic concurrency token" },
+        { "name": "creationTimestamp", "type": "datetime" },
+        { "name": "labels", "type": "map", "description": "Key-value label pairs" },
+        { "name": "annotations", "type": "map", "description": "Non-identifying metadata" }
+      ]
+    },
+    {
+      "name": "spec",
+      "type": "object",
+      "fields": [
+        { "name": "finalizers", "type": "array", "description": "Deletion finalizer list" }
+      ]
+    },
+    {
+      "name": "status",
+      "type": "object",
+      "fields": [
+        { "name": "phase", "type": "string", "enum": ["Active", "Terminating"] }
+      ]
+    }
+  ]
+}

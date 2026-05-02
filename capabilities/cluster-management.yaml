@@ -1,0 +1,289 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Red Hat OpenShift Cluster Management"
+  description: >-
+    Unified capability for managing OpenShift clusters and workloads. Combines
+    the OpenShift Container Platform API for namespace and workload management
+    with the Cluster Manager API for fleet-level cluster lifecycle operations.
+    Used by platform engineers and SRE teams to provision clusters, manage
+    namespaces, deploy routes, and monitor builds.
+  tags:
+    - Cluster Management
+    - Containers
+    - Kubernetes
+    - OpenShift
+    - Red Hat
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      OPENSHIFT_API_TOKEN: OPENSHIFT_API_TOKEN
+      OPENSHIFT_API_URL: OPENSHIFT_API_URL
+      OCM_API_TOKEN: OCM_API_TOKEN
+
+capability:
+  consumes:
+    - import: openshift-api
+      location: ./shared/openshift-api.yaml
+    - import: openshift-cluster-mgr
+      location: ./shared/cluster-manager-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: openshift-cluster-mgmt-rest
+      description: "Unified REST API for OpenShift cluster and workload management."
+      resources:
+        - path: /v1/clusters
+          name: clusters
+          description: "Managed OpenShift cluster fleet"
+          operations:
+            - method: GET
+              name: list-clusters
+              description: "List all managed OpenShift clusters"
+              call: "openshift-cluster-mgr.list-clusters"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-cluster
+              description: "Create a new OpenShift cluster"
+              call: "openshift-cluster-mgr.create-cluster"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/clusters/{id}
+          name: cluster
+          description: "Individual cluster management"
+          operations:
+            - method: GET
+              name: get-cluster
+              description: "Get cluster details and status"
+              call: "openshift-cluster-mgr.get-cluster"
+              with:
+                cluster_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-cluster
+              description: "Delete an OpenShift cluster"
+              call: "openshift-cluster-mgr.delete-cluster"
+              with:
+                cluster_id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects
+          name: projects
+          description: "OpenShift project management"
+          operations:
+            - method: GET
+              name: list-projects
+              description: "List OpenShift projects"
+              call: "openshift-api.list-projects"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-project
+              description: "Create an OpenShift project"
+              call: "openshift-api.create-project"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{name}
+          name: project
+          description: "Individual project management"
+          operations:
+            - method: GET
+              name: get-project
+              description: "Get project details"
+              call: "openshift-api.get-project"
+              with:
+                name: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-project
+              description: "Delete an OpenShift project"
+              call: "openshift-api.delete-project"
+              with:
+                name: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/namespaces/{namespace}/routes
+          name: routes
+          description: "Route management for exposing services"
+          operations:
+            - method: GET
+              name: list-routes
+              description: "List routes in a namespace"
+              call: "openshift-api.list-routes"
+              with:
+                namespace: "rest.namespace"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-route
+              description: "Create a route to expose a service"
+              call: "openshift-api.create-route"
+              with:
+                namespace: "rest.namespace"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/namespaces/{namespace}/builds
+          name: builds
+          description: "Build management"
+          operations:
+            - method: GET
+              name: list-builds
+              description: "List builds in a namespace"
+              call: "openshift-api.list-builds"
+              with:
+                namespace: "rest.namespace"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: openshift-cluster-mgmt-mcp
+      transport: http
+      description: "MCP server for AI-assisted OpenShift cluster and workload management."
+      tools:
+        - name: list-clusters
+          description: "List all managed OpenShift clusters across cloud providers"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-cluster-mgr.list-clusters"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-cluster
+          description: "Get details, status, and API endpoint for an OpenShift cluster"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-cluster-mgr.get-cluster"
+          with:
+            cluster_id: "tools.cluster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-cluster-addons
+          description: "List installed add-ons for an OpenShift cluster"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-cluster-mgr.list-addons"
+          with:
+            cluster_id: "tools.cluster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-machine-pools
+          description: "List compute node machine pools for an OpenShift cluster"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-cluster-mgr.list-machine-pools"
+          with:
+            cluster_id: "tools.cluster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-projects
+          description: "List OpenShift projects (namespaces) the current user can access"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-api.list-projects"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-project
+          description: "Create a new OpenShift project with default RBAC policies"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "openshift-api.create-project"
+          with:
+            project_name: "tools.project_name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-project
+          description: "Get details and status of an OpenShift project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-api.get-project"
+          with:
+            name: "tools.project_name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-project
+          description: "Delete an OpenShift project and all resources within it"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "openshift-api.delete-project"
+          with:
+            name: "tools.project_name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-routes
+          description: "List HTTP/HTTPS routes exposing services in a namespace"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-api.list-routes"
+          with:
+            namespace: "tools.namespace"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-route
+          description: "Create a route to expose a service with a hostname and optional TLS"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "openshift-api.create-route"
+          with:
+            namespace: "tools.namespace"
+            route_name: "tools.route_name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-builds
+          description: "List builds in an OpenShift namespace"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-api.list-builds"
+          with:
+            namespace: "tools.namespace"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-available-versions
+          description: "List available OpenShift versions for cluster creation or upgrade"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-cluster-mgr.list-versions"
+          outputParameters:
+            - type: object
+              mapping: "$."

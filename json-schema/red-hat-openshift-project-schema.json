@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/red-hat-openshift/json-schema/red-hat-openshift-project-schema.json",
+  "title": "Red Hat OpenShift Project",
+  "description": "Schema for an OpenShift Project resource. Projects are OpenShift's tenant wrapper around Kubernetes namespaces with additional RBAC and metadata.",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata"],
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "const": "project.openshift.io/v1",
+      "description": "OpenShift project API version"
+    },
+    "kind": {
+      "type": "string",
+      "const": "Project",
+      "description": "Resource kind"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name (must be unique in the cluster)",
+          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+          "maxLength": 63
+        },
+        "uid": {
+          "type": "string",
+          "description": "System-generated unique identifier"
+        },
+        "resourceVersion": {
+          "type": "string",
+          "description": "Resource version for optimistic concurrency"
+        },
+        "creationTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Project creation timestamp"
+        },
+        "labels": {
+          "type": "object",
+          "description": "Key-value labels for selection and filtering",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Non-identifying metadata annotations",
+          "properties": {
+            "openshift.io/description": {
+              "type": "string",
+              "description": "Human-readable project description"
+            },
+            "openshift.io/display-name": {
+              "type": "string",
+              "description": "Display name for the project in the console"
+            },
+            "openshift.io/requester": {
+              "type": "string",
+              "description": "Username of the project creator"
+            }
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "finalizers": {
+          "type": "array",
+          "description": "Finalizers to run before project deletion",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": ["Active", "Terminating"],
+          "description": "Project lifecycle phase"
+        }
+      }
+    }
+  }
+}

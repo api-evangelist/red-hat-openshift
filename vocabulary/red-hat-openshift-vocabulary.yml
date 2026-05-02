@@ -1,0 +1,144 @@
+name: Red Hat OpenShift Vocabulary
+description: >-
+  Core vocabulary and terminology for Red Hat OpenShift Container Platform including
+  Kubernetes concepts, OpenShift extensions, operators, and platform services.
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: Project
+    definition: >-
+      An OpenShift namespace with additional metadata, RBAC defaults, and multi-tenancy
+      policies. Projects are the primary unit of isolation in OpenShift.
+    tags:
+      - Namespaces
+      - Multi-Tenancy
+
+  - term: Route
+    definition: >-
+      An OpenShift resource that exposes a Kubernetes Service to external traffic
+      via an HTTP or HTTPS hostname. Routes support edge, passthrough, and re-encrypt
+      TLS termination modes.
+    tags:
+      - Networking
+      - Ingress
+
+  - term: DeploymentConfig
+    definition: >-
+      An OpenShift-specific deployment resource that extends Kubernetes Deployments
+      with image change triggers, config change triggers, and lifecycle hooks.
+    tags:
+      - Workloads
+      - Deployment
+
+  - term: BuildConfig
+    definition: >-
+      An OpenShift resource that defines the source-to-image (S2I) or Dockerfile
+      build process for creating container images from source code.
+    tags:
+      - Builds
+      - CI/CD
+
+  - term: ImageStream
+    definition: >-
+      An OpenShift resource that tracks container image versions and provides
+      stable references that can trigger automatic redeployments on image changes.
+    tags:
+      - Container Images
+      - CI/CD
+
+  - term: Source-to-Image (S2I)
+    definition: >-
+      An OpenShift build strategy that automatically creates container images from
+      application source code using a builder image. Eliminates the need for Dockerfiles.
+    tags:
+      - Builds
+      - Developer Experience
+
+  - term: Operator
+    definition: >-
+      A Kubernetes controller that automates the management of a specific application
+      or service using custom CRDs. Operators encode operational knowledge in code.
+    tags:
+      - Automation
+      - Kubernetes
+
+  - term: OperatorHub
+    definition: >-
+      A marketplace of Kubernetes Operators integrated into the OpenShift web console
+      for discovering and installing cluster capabilities.
+    tags:
+      - Marketplace
+      - Operators
+
+  - term: SCC (Security Context Constraint)
+    definition: >-
+      An OpenShift security policy that controls what security context options a pod
+      can request, including running as a specific user, using host networking, and
+      accessing privileged capabilities.
+    tags:
+      - Security
+      - RBAC
+
+  - term: Cluster
+    definition: >-
+      A fully functional OpenShift Container Platform installation comprising control
+      plane nodes (etcd, API server, scheduler) and worker nodes running containerized workloads.
+    tags:
+      - Infrastructure
+
+  - term: OCM (OpenShift Cluster Manager)
+    definition: >-
+      The Red Hat Hybrid Cloud Console service for managing OpenShift clusters at scale,
+      including ROSA, ARO, and self-managed clusters with a unified API.
+    tags:
+      - Cluster Management
+      - SaaS
+
+  - term: ROSA
+    definition: >-
+      Red Hat OpenShift Service on AWS. A fully managed OpenShift service available
+      in the AWS Marketplace, co-managed by Red Hat and AWS.
+    tags:
+      - Cloud
+      - Managed Service
+
+  - term: Machine Pool
+    definition: >-
+      A group of worker nodes in a cluster with the same instance type, labels, and
+      taints. Machine pools support autoscaling in managed OpenShift services.
+    tags:
+      - Infrastructure
+      - Scaling
+
+  - term: Pipeline (Tekton)
+    definition: >-
+      A cloud-native CI/CD pipeline system based on Tekton CRDs. OpenShift Pipelines
+      provides Tasks, Pipelines, PipelineRuns, and event-driven triggering.
+    tags:
+      - CI/CD
+      - Automation
+
+  - term: GitOps (ArgoCD)
+    definition: >-
+      A declarative continuous delivery pattern using Git as the source of truth for
+      cluster state. OpenShift GitOps is based on Argo CD.
+    tags:
+      - CI/CD
+      - GitOps
+
+  - term: Service Mesh (Istio)
+    definition: >-
+      A dedicated infrastructure layer for service-to-service communication,
+      providing traffic management, mutual TLS, observability, and circuit breaking.
+      OpenShift Service Mesh is based on Istio, Kiali, and Jaeger.
+    tags:
+      - Networking
+      - Observability
+
+  - term: Serverless (Knative)
+    definition: >-
+      A platform for deploying event-driven, auto-scaling workloads. OpenShift
+      Serverless is based on Knative Serving and Knative Eventing.
+    tags:
+      - Serverless
+      - Event-Driven

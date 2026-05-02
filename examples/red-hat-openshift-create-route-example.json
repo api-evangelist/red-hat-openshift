@@ -1,0 +1,76 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.cluster.example.com:6443/apis/route.openshift.io/v1/namespaces/my-app/routes",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "apiVersion": "route.openshift.io/v1",
+      "kind": "Route",
+      "metadata": {
+        "name": "my-app-route",
+        "namespace": "my-app"
+      },
+      "spec": {
+        "host": "my-app.apps.cluster.example.com",
+        "to": {
+          "kind": "Service",
+          "name": "my-app-svc",
+          "weight": 100
+        },
+        "port": {
+          "targetPort": "8080-tcp"
+        },
+        "tls": {
+          "termination": "edge",
+          "insecureEdgeTerminationPolicy": "Redirect"
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "apiVersion": "route.openshift.io/v1",
+      "kind": "Route",
+      "metadata": {
+        "name": "my-app-route",
+        "namespace": "my-app",
+        "uid": "9a8b7c6d-4321-8765-dcba-fe9876543210",
+        "creationTimestamp": "2026-05-02T10:05:00Z"
+      },
+      "spec": {
+        "host": "my-app.apps.cluster.example.com",
+        "to": {
+          "kind": "Service",
+          "name": "my-app-svc",
+          "weight": 100
+        },
+        "port": {
+          "targetPort": "8080-tcp"
+        },
+        "tls": {
+          "termination": "edge",
+          "insecureEdgeTerminationPolicy": "Redirect"
+        }
+      },
+      "status": {
+        "ingress": [
+          {
+            "host": "my-app.apps.cluster.example.com",
+            "routerName": "default",
+            "conditions": [
+              {
+                "type": "Admitted",
+                "status": "True",
+                "lastTransitionTime": "2026-05-02T10:05:01Z"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

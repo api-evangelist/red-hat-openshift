@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.cluster.example.com:6443/apis/project.openshift.io/v1/projects",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "apiVersion": "project.openshift.io/v1",
+      "kind": "Project",
+      "metadata": {
+        "name": "my-app",
+        "annotations": {
+          "openshift.io/description": "My application project",
+          "openshift.io/display-name": "My Application"
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "apiVersion": "project.openshift.io/v1",
+      "kind": "Project",
+      "metadata": {
+        "name": "my-app",
+        "uid": "3c4d5e6f-1234-5678-abcd-ef0123456789",
+        "resourceVersion": "12345",
+        "creationTimestamp": "2026-05-02T10:00:00Z",
+        "annotations": {
+          "openshift.io/description": "My application project",
+          "openshift.io/display-name": "My Application",
+          "openshift.io/requester": "admin"
+        }
+      },
+      "spec": {
+        "finalizers": ["kubernetes"]
+      },
+      "status": {
+        "phase": "Active"
+      }
+    }
+  }
+}

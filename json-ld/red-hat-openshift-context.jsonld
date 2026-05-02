@@ -1,0 +1,92 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "k8s": "https://kubernetes.io/docs/reference/kubernetes-api/",
+    "openshift": "https://docs.openshift.com/container-platform/latest/rest_api/",
+    "Cluster": {
+      "@id": "schema:ComputerSystem",
+      "@type": "schema:ComputerSystem"
+    },
+    "Project": {
+      "@id": "schema:Project",
+      "@type": "schema:Project"
+    },
+    "Route": {
+      "@id": "schema:EntryPoint",
+      "@type": "schema:EntryPoint"
+    },
+    "BuildConfig": {
+      "@id": "schema:SoftwareSourceCode",
+      "@type": "schema:SoftwareSourceCode"
+    },
+    "ImageStream": {
+      "@id": "schema:SoftwareApplication",
+      "@type": "schema:SoftwareApplication"
+    },
+    "DeploymentConfig": {
+      "@id": "schema:SoftwareApplication",
+      "@type": "schema:SoftwareApplication"
+    },
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "namespace": {
+      "@id": "schema:containedInPlace",
+      "@type": "xsd:string"
+    },
+    "uid": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "creationTimestamp": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "labels": {
+      "@id": "schema:keywords",
+      "@type": "xsd:string"
+    },
+    "apiVersion": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "kind": {
+      "@id": "schema:additionalType",
+      "@type": "xsd:string"
+    },
+    "phase": {
+      "@id": "schema:actionStatus",
+      "@type": "xsd:string"
+    },
+    "host": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "replicas": {
+      "@id": "schema:numberOfItems",
+      "@type": "xsd:integer"
+    },
+    "cloudProvider": {
+      "@id": "schema:provider",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "schema:contentLocation",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "schema:actionStatus",
+      "@type": "xsd:string"
+    },
+    "apiUrl": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "consoleUrl": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    }
+  }
+}

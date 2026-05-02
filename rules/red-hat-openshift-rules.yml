@@ -1,0 +1,152 @@
+extends: spectral:oas
+rules:
+  # OpenShift resources must include apiVersion and kind
+  openshift-api-version-required:
+    description: >-
+      All OpenShift resource schemas must include apiVersion and kind fields
+      to follow the Kubernetes object model conventions.
+    severity: error
+    given: $.components.schemas[*].properties
+    then:
+      field: apiVersion
+      function: defined
+
+  # Bearer token authentication required
+  openshift-bearer-auth:
+    description: >-
+      OpenShift API requires Bearer token authentication. Security schemes
+      must define bearerAuth using HTTP bearer scheme.
+    severity: error
+    given: $.components.securitySchemes.bearerAuth
+    then:
+      field: scheme
+      function: pattern
+      functionOptions:
+        match: "^bearer$"
+
+  # Operations require operation IDs
+  openshift-operation-id-required:
+    description: >-
+      All OpenShift API operations must have an operationId for SDK
+      generation, client library support, and documentation.
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: operationId
+      function: truthy
+
+  # Path parameters must be defined in parameters
+  openshift-path-params-defined:
+    description: >-
+      All path template parameters (e.g., {namespace}, {name}) must be
+      defined in the parameters array with required: true.
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].parameters[?(@.in === 'path')]
+    then:
+      field: required
+      function: pattern
+      functionOptions:
+        match: "^true$"
+
+  # Namespace parameter type
+  openshift-namespace-param-type:
+    description: >-
+      The namespace path parameter must be of type string in all
+      namespaced OpenShift resource paths.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].parameters[?(@.name === 'namespace')].schema
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        match: "^string$"
+
+  # Name parameter type
+  openshift-name-param-string:
+    description: >-
+      The name path parameter must be of type string in all OpenShift
+      resource paths following Kubernetes naming conventions.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].parameters[?(@.name === 'name')].schema
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        match: "^string$"
+
+  # List operations should support labelSelector
+  openshift-list-label-selector:
+    description: >-
+      List operations should support the labelSelector query parameter
+      for filtering resources by labels, following Kubernetes conventions.
+    severity: info
+    given: $.paths[*][get]
+    then:
+      function: truthy
+
+  # Response schemas for resource lists
+  openshift-list-response-items:
+    description: >-
+      List response schemas must include an items array to hold the collection
+      of returned resources.
+    severity: error
+    given: $.components.schemas[?@property.endsWith('List')].properties
+    then:
+      field: items
+      function: truthy
+
+  # ObjectMeta should be referenced
+  openshift-object-meta-used:
+    description: >-
+      OpenShift resource schemas should reference ObjectMeta for consistent
+      metadata handling across resource types.
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: metadata
+      function: defined
+
+  # Operations must have descriptions
+  openshift-operation-description:
+    description: >-
+      All operations must include a description explaining the resource
+      type, available parameters, and expected behavior.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: description
+      function: truthy
+
+  # API versions should use /v1 or versioned format
+  openshift-api-versioned-paths:
+    description: >-
+      All OpenShift API paths must include version segments following
+      the /apis/{group}/{version}/ pattern.
+    severity: error
+    given: $.paths[*~]
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api(s)?(/[a-z][a-z0-9.-]*)?/v[0-9]+"
+
+  # Server URL format
+  openshift-server-url:
+    description: >-
+      OpenShift API servers must use HTTPS and include the standard port 6443
+      for API server communication.
+    severity: info
+    given: $.servers[*]
+    then:
+      field: url
+      function: truthy
+
+  # 401 responses for all protected endpoints
+  openshift-401-response:
+    description: >-
+      All protected OpenShift API endpoints must define a 401 Unauthorized
+      response for unauthenticated access attempts.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].responses
+    then:
+      field: '401'
+      function: truthy

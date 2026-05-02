@@ -1,0 +1,528 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Cluster Manager API
+  description: >-
+    The OpenShift Cluster Manager (OCM) API provides programmatic access to the
+    Red Hat Hybrid Cloud Console for managing OpenShift clusters at scale. It
+    supports creating, updating, and deleting clusters; managing cluster add-ons;
+    configuring identity providers and role bindings; monitoring cluster health
+    and metrics; and managing subscriptions and quotas. Used by the OCM CLI,
+    the Hybrid Cloud Console web UI, and partners building cluster management
+    automation.
+  version: '1'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+externalDocs:
+  description: OpenShift Cluster Manager API Documentation
+  url: https://api.openshift.com/
+servers:
+  - url: https://api.openshift.com
+    description: OpenShift Cluster Manager API
+tags:
+  - name: Clusters
+    description: Manage OpenShift clusters across cloud providers
+  - name: Add-ons
+    description: Manage cluster add-on installations
+  - name: Identity Providers
+    description: Configure authentication providers for clusters
+  - name: Machine Pools
+    description: Manage compute node pools for clusters
+  - name: Versions
+    description: Query available OpenShift versions
+security:
+  - bearerAuth: []
+paths:
+  /api/clusters_mgmt/v1/clusters:
+    get:
+      operationId: listClusters
+      summary: List Clusters
+      description: >-
+        Returns a list of OpenShift clusters registered with the Cluster
+        Manager. Supports filtering by cloud provider, region, version,
+        and state. Results are paginated.
+      tags:
+        - Clusters
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination (1-indexed)
+          schema:
+            type: integer
+            default: 1
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            default: 100
+        - name: search
+          in: query
+          description: SQL-like search expression for filtering
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: SQL-like ORDER BY clause
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of clusters returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCluster
+      summary: Create Cluster
+      description: >-
+        Creates a new OpenShift cluster on the specified cloud provider and
+        region. Supports ROSA (AWS), ARO (Azure), and other OpenShift flavors.
+      tags:
+        - Clusters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '201':
+          description: Cluster creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '400':
+          description: Invalid cluster configuration
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/clusters_mgmt/v1/clusters/{cluster_id}:
+    get:
+      operationId: getCluster
+      summary: Get Cluster
+      description: Returns detailed information about a specific OpenShift cluster.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: Cluster details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateCluster
+      summary: Update Cluster
+      description: Updates an existing cluster configuration (partial update).
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterPatch'
+      responses:
+        '200':
+          description: Cluster updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+    delete:
+      operationId: deleteCluster
+      summary: Delete Cluster
+      description: Deletes an OpenShift cluster. This operation is irreversible.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      responses:
+        '204':
+          description: Cluster deletion initiated
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/addons:
+    get:
+      operationId: listClusterAddons
+      summary: List Cluster Add-ons
+      description: Returns a list of add-ons installed on the specified cluster.
+      tags:
+        - Add-ons
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: List of installed add-ons returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddOnInstallationList'
+    post:
+      operationId: installClusterAddon
+      summary: Install Cluster Add-on
+      description: Installs a new add-on on the specified cluster.
+      tags:
+        - Add-ons
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddOnInstallation'
+      responses:
+        '201':
+          description: Add-on installation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddOnInstallation'
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers:
+    get:
+      operationId: listIdentityProviders
+      summary: List Identity Providers
+      description: Returns the identity providers configured for cluster authentication.
+      tags:
+        - Identity Providers
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: List of identity providers returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityProviderList'
+    post:
+      operationId: createIdentityProvider
+      summary: Create Identity Provider
+      description: Adds an identity provider to the cluster for user authentication.
+      tags:
+        - Identity Providers
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityProvider'
+      responses:
+        '201':
+          description: Identity provider created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityProvider'
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools:
+    get:
+      operationId: listMachinePools
+      summary: List Machine Pools
+      description: Returns the machine pools (node groups) configured for the cluster.
+      tags:
+        - Machine Pools
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: List of machine pools returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePoolList'
+    post:
+      operationId: createMachinePool
+      summary: Create Machine Pool
+      description: Creates a new machine pool for the cluster.
+      tags:
+        - Machine Pools
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachinePool'
+      responses:
+        '201':
+          description: Machine pool created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePool'
+  /api/clusters_mgmt/v1/versions:
+    get:
+      operationId: listVersions
+      summary: List OpenShift Versions
+      description: Returns the list of available OpenShift versions for cluster creation.
+      tags:
+        - Versions
+      parameters:
+        - name: search
+          in: query
+          description: Filter versions by search expression
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of available versions returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionList'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    clusterId:
+      name: cluster_id
+      in: path
+      required: true
+      description: The cluster identifier
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        href:
+          type: string
+        code:
+          type: string
+        reason:
+          type: string
+    ClusterList:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: ClusterList
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
+    Cluster:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: Cluster
+        id:
+          type: string
+        href:
+          type: string
+        name:
+          type: string
+        display_name:
+          type: string
+        cloud_provider:
+          type: object
+          properties:
+            id:
+              type: string
+        region:
+          type: object
+          properties:
+            id:
+              type: string
+        version:
+          type: object
+          properties:
+            id:
+              type: string
+            raw_id:
+              type: string
+        state:
+          type: string
+          enum:
+            - ready
+            - installing
+            - uninstalling
+            - error
+            - hibernating
+        creation_timestamp:
+          type: string
+          format: date-time
+        managed:
+          type: boolean
+        multi_az:
+          type: boolean
+        nodes:
+          type: object
+          properties:
+            compute:
+              type: integer
+            infra:
+              type: integer
+            master:
+              type: integer
+        api:
+          type: object
+          properties:
+            url:
+              type: string
+        console:
+          type: object
+          properties:
+            url:
+              type: string
+    ClusterPatch:
+      type: object
+      properties:
+        display_name:
+          type: string
+        nodes:
+          type: object
+          properties:
+            compute:
+              type: integer
+    AddOnInstallationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddOnInstallation'
+    AddOnInstallation:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        addon:
+          type: object
+          properties:
+            id:
+              type: string
+        state:
+          type: string
+          enum:
+            - ready
+            - installing
+            - deleting
+            - failed
+    IdentityProviderList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProvider'
+    IdentityProvider:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - GithubIdentityProvider
+            - GitlabIdentityProvider
+            - GoogleIdentityProvider
+            - HTPasswdIdentityProvider
+            - LDAPIdentityProvider
+            - OpenIDIdentityProvider
+    MachinePoolList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachinePool'
+    MachinePool:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        replicas:
+          type: integer
+        instance_type:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        taints:
+          type: array
+          items:
+            type: object
+        autoscaling:
+          type: object
+          properties:
+            min_replicas:
+              type: integer
+            max_replicas:
+              type: integer
+    VersionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+              id:
+                type: string
+              raw_id:
+                type: string
+              enabled:
+                type: boolean
+              default:
+                type: boolean
+              channel_groups:
+                type: array
+                items:
+                  type: string
