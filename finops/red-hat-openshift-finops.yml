@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,184 +9,93 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Red Hat OpenShift
 providerId: red-hat-openshift
-publisherName: Red Hat OpenShift
-serviceCategory: API
+publisherName: Red Hat, Inc.
+serviceCategory: Container Platform
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Containers
-  - Enterprise
-  - Hybrid Cloud
   - Kubernetes
-  - PaaS
-  - Red Hat
+  - Containers
+  - Cloud
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Red Hat OpenShift API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned FinOps shape for Red Hat OpenShift. Two billing surfaces coexist —
+  managed cloud services billed hourly through the cloud provider's invoice (AWS, Azure, IBM,
+  GCP) with reserved-instance / committed-use discount, and self-managed annual subscriptions
+  billed by Red Hat. Reserved-instance ROSA at 4vCPU/3yr starts at $0.076/hour.
+sources:
+  - https://www.redhat.com/en/technologies/cloud-computing/openshift/pricing
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Pay-As-You-Go + Committed Use
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Red Hat OpenShift
-  ServiceCategory: Developer Tools / API
-  ProviderName: Red Hat OpenShift
-  PublisherName: Red Hat OpenShift
-  InvoiceIssuerName: Red Hat OpenShift
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Container Platform
+  ProviderName: Red Hat
+  PublisherName: Red Hat, Inc.
+  InvoiceIssuerName: 'Red Hat, Inc. (self-managed); cloud provider (managed services)'
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: rosa_instance_hours
+    description: Hourly billed Red Hat OpenShift Service on AWS instance hours; on-demand or
+      reserved (1yr / 3yr).
+    unit: instance-hour
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - aws_region
+      - instance_type
+      - commitment_term
+  - name: aro_instance_hours
+    description: Hourly billed Microsoft Azure Red Hat OpenShift instance hours.
+    unit: instance-hour
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - azure_region
+      - instance_type
+  - name: dedicated_subscription
+    description: Annual Red Hat OpenShift Dedicated subscription on AWS or Google Cloud.
+    unit: contract
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Red Hat OpenShift Container Platform API
-    baseURL: https://api.cluster.example.com:6443
-    tags:
-      - Builds
-      - Cluster Management
-      - Containers
-      - Kubernetes
-      - Networking
-      - Workloads
-    serviceName: Red Hat OpenShift Container Platform API
-    serviceCategory: API
-  - name: Red Hat OpenShift Cluster Manager API
-    baseURL: https://api.openshift.com
-    tags:
-      - Cluster Management
-      - Cloud
-      - Hybrid Cloud
-      - Multi-Cluster
-      - Subscriptions
-    serviceName: Red Hat OpenShift Cluster Manager API
-    serviceCategory: API
-  - name: Red Hat OpenShift Pipelines (Tekton) API
-    baseURL: https://api.cluster.example.com:6443/apis/tekton.dev/v1
-    tags:
-      - CI/CD
-      - Kubernetes
-      - Pipelines
-      - Tekton
-    serviceName: Red Hat OpenShift Pipelines (Tekton) API
-    serviceCategory: API
-  - name: Red Hat OpenShift GitOps (ArgoCD) API
-    baseURL: https://api.cluster.example.com:6443/apis/argoproj.io/v1alpha1
-    tags:
-      - ArgoCD
-      - CI/CD
-      - GitOps
-      - Kubernetes
-    serviceName: Red Hat OpenShift GitOps (ArgoCD) API
-    serviceCategory: API
-  - name: Red Hat OpenShift Service Mesh API
-    baseURL: https://api.cluster.example.com:6443/apis/networking.istio.io/v1beta1
-    tags:
-      - Istio
-      - Kubernetes
-      - Service Mesh
-      - Traffic Management
-    serviceName: Red Hat OpenShift Service Mesh API
-    serviceCategory: API
-  - name: Red Hat OpenShift Serverless (Knative) API
-    baseURL: https://api.cluster.example.com:6443/apis/serving.knative.dev/v1
-    tags:
-      - Event-Driven
-      - Knative
-      - Kubernetes
-      - Serverless
-    serviceName: Red Hat OpenShift Serverless (Knative) API
-    serviceCategory: API
-  - name: Red Hat OpenShift Service on AWS (ROSA) API
-    baseURL: https://api.openshift.com/api/clusters_mgmt/v1
-    tags:
-      - AWS
-      - Cloud
-      - Managed Service
-      - OpenShift
-    serviceName: Red Hat OpenShift Service on AWS (ROSA) API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - underlying_cloud
+      - support_level
+  - name: ibm_instance_hours
+    description: Hourly billed Red Hat OpenShift on IBM Cloud instance hours.
+    unit: instance-hour
+    aggregation: sum
+    dimensions:
+      - ibm_region
+      - instance_type
+  - name: self_managed_subscription
+    description: Annual self-managed OpenShift subscription (Platform Plus, Container Platform,
+      Kubernetes Engine, Virtualization Engine).
+    unit: contract
+    aggregation: sum
+    dimensions:
+      - edition
+      - core_count
+      - support_level
+principles:
+  - name: Visibility
+    description: For managed services, ingest the cloud provider's CUR/billing export (AWS CUR,
+      Azure Cost Mgmt, IBM Cloud billing) filtered to the OpenShift line items. For self-managed,
+      use Red Hat Subscription Watch and OpenShift Cost Management Operator to attribute cluster
+      spend to namespaces.
+  - name: Allocation
+    description: Tag clusters and namespaces; use the OpenShift Cost Management Operator to
+      attribute compute, memory, and storage to teams and projects.
+  - name: Optimization
+    description: Move steady-state ROSA workloads to reserved instances ($0.076/hr at 4vCPU
+      3yr starting rate); consolidate self-managed editions onto Platform Plus where ACM/ACS
+      are needed; right-size cluster autoscaler aggressively in non-prod.
+  - name: Accountability
+    description: Platform team owns cluster-level spend; product teams own namespace-level
+      consumption attributed via Cost Management Operator.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

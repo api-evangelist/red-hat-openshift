@@ -4,117 +4,40 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Red Hat OpenShift
 providerId: red-hat-openshift
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Containers
-  - Enterprise
-  - Hybrid Cloud
   - Kubernetes
-  - PaaS
-  - Red Hat
+  - Containers
+  - Cloud
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Red Hat OpenShift API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: OpenShift's user-facing surfaces (Kubernetes API, oc CLI, console) inherit upstream
+  Kubernetes APIServer flow control rather than enforcing a Red Hat-published rate ceiling. The
+  managed cloud services (ROSA, ARO, OpenShift Dedicated, OpenShift on IBM Cloud) carry SLAs
+  of 99.95–99.99% but no public per-second request ceiling.
+sources:
+  - https://www.redhat.com/en/technologies/cloud-computing/openshift/pricing
+notes: OpenShift inherits Kubernetes APIServer Priority and Fairness throttling; Red Hat does
+  not publish a single rate-limit value.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Red Hat OpenShift Container Platform API
-      - Red Hat OpenShift Cluster Manager API
-      - Red Hat OpenShift Pipelines (Tekton) API
-      - Red Hat OpenShift GitOps (ArgoCD) API
-      - Red Hat OpenShift Service Mesh API
-      - Red Hat OpenShift Serverless (Knative) API
-      - Red Hat OpenShift Service on AWS (ROSA) API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Red Hat OpenShift Container Platform API
-      - Red Hat OpenShift Cluster Manager API
-      - Red Hat OpenShift Pipelines (Tekton) API
-      - Red Hat OpenShift GitOps (ArgoCD) API
-      - Red Hat OpenShift Service Mesh API
-      - Red Hat OpenShift Serverless (Knative) API
-      - Red Hat OpenShift Service on AWS (ROSA) API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Red Hat OpenShift Container Platform API
-      - Red Hat OpenShift Cluster Manager API
-      - Red Hat OpenShift Pipelines (Tekton) API
-      - Red Hat OpenShift GitOps (ArgoCD) API
-      - Red Hat OpenShift Service Mesh API
-      - Red Hat OpenShift Serverless (Knative) API
-      - Red Hat OpenShift Service on AWS (ROSA) API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Red Hat OpenShift Container Platform API
-      - Red Hat OpenShift Cluster Manager API
-      - Red Hat OpenShift Pipelines (Tekton) API
-      - Red Hat OpenShift GitOps (ArgoCD) API
-      - Red Hat OpenShift Service Mesh API
-      - Red Hat OpenShift Serverless (Knative) API
-      - Red Hat OpenShift Service on AWS (ROSA) API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Red Hat OpenShift Container Platform API
-      - Red Hat OpenShift Cluster Manager API
-      - Red Hat OpenShift Pipelines (Tekton) API
-      - Red Hat OpenShift GitOps (ArgoCD) API
-      - Red Hat OpenShift Service Mesh API
-      - Red Hat OpenShift Serverless (Knative) API
-      - Red Hat OpenShift Service on AWS (ROSA) API
+  - name: Kubernetes APIServer flow control
+    scope: account
+    metric: varies
+    limit: 'governed by Kubernetes APIServer Priority and Fairness; no Red Hat-published ceiling'
+  - name: Managed-service SLA (ROSA / ARO / Dedicated / IBM)
+    scope: cluster
+    metric: varies
+    limit: '99.95-99.99% uptime SLA per managed service tier'
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: APIServer Priority and Fairness
+    description: OpenShift inherits Kubernetes APF, which prioritizes essential controllers
+      and throttles excessive client traffic with 429 responses; consumers should honor Retry-After
+      and use informers/watch instead of polling.
+  - name: SLA-backed Availability
+    description: Managed OpenShift services target 99.95-99.99% monthly uptime; cluster-control-plane
+      throttling and resilience are managed by Red Hat / cloud provider, not the customer.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
