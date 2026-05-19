@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat OpenShift Container Platform API — Security Context Constraints
+  description: 'Red Hat OpenShift Container Platform API — Security Context Constraints. 1 operations. Lead operation: List
+    Security Context Constraints. Self-contained Naftiko capability covering one Red Hat Openshift business surface.'
+  tags:
+  - Red Hat Openshift
+  - Security Context Constraints
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_OPENSHIFT_API_KEY: RED_HAT_OPENSHIFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: red-hat-openshift-security-context-constraints
+    baseUri: https://api.{cluster}:6443
+    description: Red Hat OpenShift Container Platform API — Security Context Constraints business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: apis-security.openshift.io-v1-securitycontextconstraints
+      path: /apis/security.openshift.io/v1/securitycontextconstraints
+      operations:
+      - name: listsecuritycontextconstraints
+        method: GET
+        description: List Security Context Constraints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_OPENSHIFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: red-hat-openshift-security-context-constraints-rest
+    port: 8080
+    description: REST adapter for Red Hat OpenShift Container Platform API — Security Context Constraints. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/apis/security-openshift-io/v1/securitycontextconstraints
+      name: apis-security-openshift-io-v1-securitycontextconstraints
+      description: REST surface for apis-security.openshift.io-v1-securitycontextconstraints.
+      operations:
+      - method: GET
+        name: listsecuritycontextconstraints
+        description: List Security Context Constraints
+        call: red-hat-openshift-security-context-constraints.listsecuritycontextconstraints
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: red-hat-openshift-security-context-constraints-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat OpenShift Container Platform API — Security Context Constraints. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-security-context-constraints
+      description: List Security Context Constraints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: red-hat-openshift-security-context-constraints.listsecuritycontextconstraints
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat OpenShift Container Platform API — Projects
+  description: 'Red Hat OpenShift Container Platform API — Projects. 5 operations. Lead operation: List Projects. Self-contained
+    Naftiko capability covering one Red Hat Openshift business surface.'
+  tags:
+  - Red Hat Openshift
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_OPENSHIFT_API_KEY: RED_HAT_OPENSHIFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: red-hat-openshift-projects
+    baseUri: https://api.{cluster}:6443
+    description: Red Hat OpenShift Container Platform API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: apis-project.openshift.io-v1-projects
+      path: /apis/project.openshift.io/v1/projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: List Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproject
+        method: POST
+        description: Create Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: apis-project.openshift.io-v1-projects-name
+      path: /apis/project.openshift.io/v1/projects/{name}
+      operations:
+      - name: getproject
+        method: GET
+        description: Get Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateproject
+        method: PUT
+        description: Update Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteproject
+        method: DELETE
+        description: Delete Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_OPENSHIFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: red-hat-openshift-projects-rest
+    port: 8080
+    description: REST adapter for Red Hat OpenShift Container Platform API — Projects. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/apis/project-openshift-io/v1/projects
+      name: apis-project-openshift-io-v1-projects
+      description: REST surface for apis-project.openshift.io-v1-projects.
+      operations:
+      - method: GET
+        name: listprojects
+        description: List Projects
+        call: red-hat-openshift-projects.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproject
+        description: Create Project
+        call: red-hat-openshift-projects.createproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/project-openshift-io/v1/projects/{name}
+      name: apis-project-openshift-io-v1-projects-name
+      description: REST surface for apis-project.openshift.io-v1-projects-name.
+      operations:
+      - method: GET
+        name: getproject
+        description: Get Project
+        call: red-hat-openshift-projects.getproject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateproject
+        description: Update Project
+        call: red-hat-openshift-projects.updateproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproject
+        description: Delete Project
+        call: red-hat-openshift-projects.deleteproject
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: red-hat-openshift-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat OpenShift Container Platform API — Projects. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-projects
+      description: List Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: red-hat-openshift-projects.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-project
+      description: Create Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: red-hat-openshift-projects.createproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-project
+      description: Get Project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: red-hat-openshift-projects.getproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-project
+      description: Update Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: red-hat-openshift-projects.updateproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-project
+      description: Delete Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: red-hat-openshift-projects.deleteproject
+      outputParameters:
+      - type: object
+        mapping: $.
