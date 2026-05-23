@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClusterList",
+  "title": "ClusterList",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "default": "ClusterList"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Cluster"
+      }
+    }
+  }
+}

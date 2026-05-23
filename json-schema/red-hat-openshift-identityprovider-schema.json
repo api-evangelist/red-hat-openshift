@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IdentityProvider",
+  "title": "IdentityProvider",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "GithubIdentityProvider",
+        "GitlabIdentityProvider",
+        "GoogleIdentityProvider",
+        "HTPasswdIdentityProvider",
+        "LDAPIdentityProvider",
+        "OpenIDIdentityProvider"
+      ]
+    }
+  }
+}

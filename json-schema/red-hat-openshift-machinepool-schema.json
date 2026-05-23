@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MachinePool",
+  "title": "MachinePool",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "replicas": {
+      "type": "integer"
+    },
+    "instance_type": {
+      "type": "string"
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "taints": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "autoscaling": {
+      "type": "object",
+      "properties": {
+        "min_replicas": {
+          "type": "integer"
+        },
+        "max_replicas": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Cluster",
+  "title": "Cluster",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "default": "Cluster"
+    },
+    "id": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "cloud_provider": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "region": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "raw_id": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "installing",
+        "uninstalling",
+        "error",
+        "hibernating"
+      ]
+    },
+    "creation_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "managed": {
+      "type": "boolean"
+    },
+    "multi_az": {
+      "type": "boolean"
+    },
+    "nodes": {
+      "type": "object",
+      "properties": {
+        "compute": {
+          "type": "integer"
+        },
+        "infra": {
+          "type": "integer"
+        },
+        "master": {
+          "type": "integer"
+        }
+      }
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "console": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

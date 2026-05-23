@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Build",
+  "title": "Build",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "default": "build.openshift.io/v1"
+    },
+    "kind": {
+      "type": "string",
+      "default": "Build"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/ObjectMeta"
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "New",
+            "Pending",
+            "Running",
+            "Complete",
+            "Failed",
+            "Error",
+            "Cancelled"
+          ]
+        },
+        "startTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completionTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

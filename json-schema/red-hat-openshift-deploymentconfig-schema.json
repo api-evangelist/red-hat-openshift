@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeploymentConfig",
+  "title": "DeploymentConfig",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "default": "apps.openshift.io/v1"
+    },
+    "kind": {
+      "type": "string",
+      "default": "DeploymentConfig"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/ObjectMeta"
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "replicas": {
+          "type": "integer"
+        },
+        "selector": {
+          "type": "object"
+        },
+        "template": {
+          "type": "object"
+        },
+        "triggers": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "replicas": {
+          "type": "integer"
+        },
+        "readyReplicas": {
+          "type": "integer"
+        },
+        "availableReplicas": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
