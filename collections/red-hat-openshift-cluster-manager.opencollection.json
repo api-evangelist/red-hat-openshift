@@ -1,0 +1,314 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Cluster Manager API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (1-indexed)"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like search expression for filtering"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like ORDER BY clause"
+              }
+            ]
+          },
+          "docs": "Returns a list of OpenShift clusters registered with the Cluster Manager. Supports filtering by cloud provider, region, version, and state. Results are paginated."
+        },
+        {
+          "info": {
+            "name": "Create Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new OpenShift cluster on the specified cloud provider and region. Supports ROSA (AWS), ARO (Azure), and other OpenShift flavors."
+        },
+        {
+          "info": {
+            "name": "Get Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific OpenShift cluster."
+        },
+        {
+          "info": {
+            "name": "Update Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing cluster configuration (partial update)."
+        },
+        {
+          "info": {
+            "name": "Delete Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Deletes an OpenShift cluster. This operation is irreversible."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Add-ons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cluster Add-ons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Returns a list of add-ons installed on the specified cluster."
+        },
+        {
+          "info": {
+            "name": "Install Cluster Add-on",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Installs a new add-on on the specified cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Identity Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Returns the identity providers configured for cluster authentication."
+        },
+        {
+          "info": {
+            "name": "Create Identity Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds an identity provider to the cluster for user authentication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machine Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Machine Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Returns the machine pools (node groups) configured for the cluster."
+        },
+        {
+          "info": {
+            "name": "Create Machine Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new machine pool for the cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OpenShift Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/versions",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter versions by search expression"
+              }
+            ]
+          },
+          "docs": "Returns the list of available OpenShift versions for cluster creation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

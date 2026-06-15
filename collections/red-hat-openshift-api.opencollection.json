@@ -1,0 +1,498 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Container Platform API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/project.openshift.io/v1/projects",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "continue",
+                "value": "",
+                "type": "query",
+                "description": "Pagination continue token"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              },
+              {
+                "name": "fieldSelector",
+                "value": "",
+                "type": "query",
+                "description": "Field selector to filter resources"
+              }
+            ]
+          },
+          "docs": "Returns a list of OpenShift projects that the authenticated user has access to. Projects are OpenShift's tenant wrapper around Kubernetes namespaces."
+        },
+        {
+          "info": {
+            "name": "Create Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/apis/project.openshift.io/v1/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new OpenShift project. Projects are automatically provisioned with default RBAC policies and network policies based on the cluster configuration."
+        },
+        {
+          "info": {
+            "name": "Get Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/project.openshift.io/v1/projects/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Resource name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific OpenShift project."
+        },
+        {
+          "info": {
+            "name": "Update Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.{cluster}:6443/apis/project.openshift.io/v1/projects/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces an existing OpenShift project."
+        },
+        {
+          "info": {
+            "name": "Delete Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{cluster}:6443/apis/project.openshift.io/v1/projects/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Resource name"
+              }
+            ]
+          },
+          "docs": "Deletes an OpenShift project and all resources within it."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/route.openshift.io/v1/namespaces/:namespace/routes",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of resources to return"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of Routes in the specified namespace. Routes expose services to external traffic via HTTP/HTTPS hostnames with optional TLS termination."
+        },
+        {
+          "info": {
+            "name": "Create Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/apis/route.openshift.io/v1/namespaces/:namespace/routes",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Route to expose a service with an HTTP or HTTPS hostname."
+        },
+        {
+          "info": {
+            "name": "Get Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Resource name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific Route."
+        },
+        {
+          "info": {
+            "name": "Update Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.{cluster}:6443/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Resource name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces an existing Route configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{cluster}:6443/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Resource name"
+              }
+            ]
+          },
+          "docs": "Deletes a specific Route."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Builds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Build Configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/build.openshift.io/v1/namespaces/:namespace/buildconfigs",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of BuildConfigs in the specified namespace. BuildConfigs define the source-to-image or Dockerfile build process for generating container images."
+        },
+        {
+          "info": {
+            "name": "Create Build Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/apis/build.openshift.io/v1/namespaces/:namespace/buildconfigs",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new BuildConfig defining the build process."
+        },
+        {
+          "info": {
+            "name": "List Builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/build.openshift.io/v1/namespaces/:namespace/builds",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of Build instances in the specified namespace."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Image Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Image Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of ImageStreams in the specified namespace. ImageStreams provide an abstraction for container image versioning and reference management."
+        },
+        {
+          "info": {
+            "name": "Create Image Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ImageStream for tracking container image versions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security Context Constraints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Security Context Constraints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/security.openshift.io/v1/securitycontextconstraints",
+            "params": [
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of SecurityContextConstraints (SCCs) which control the security context under which pods run on the cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deployment Configs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Deployment Configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of DeploymentConfigs in the namespace. DeploymentConfigs are OpenShift's extended deployment resource with triggers, hooks, and lifecycle management."
+        },
+        {
+          "info": {
+            "name": "Create Deployment Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new DeploymentConfig in the specified namespace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
