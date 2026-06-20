@@ -9,7 +9,7 @@ description: >-
   resource types organized into API groups for workload management, networking, storage, security, builds, pipelines,
   and cluster configuration.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Containers
   - Enterprise
