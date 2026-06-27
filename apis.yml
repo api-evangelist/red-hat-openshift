@@ -172,7 +172,7 @@ common:
     url: https://www.redhat.com/en/blog/channel/red-hat-openshift
   - type: GitHubOrganization
     url: https://github.com/openshift
-  - type: SignUp
+  - type: Signup
     url: https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it
   - type: StatusPage
     url: https://status.redhat.com/

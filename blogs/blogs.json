@@ -2,11 +2,11 @@
   "repo": "red-hat-openshift",
   "feeds": [
     {
-      "source": "https://www.redhat.com/en/blog/channel/red-hat-openshift",
-      "feed_url": "https://www.redhat.com/en/blog/channel/red-hat-openshift",
+      "source": "https://www.redhat.com/en/rss/blog/channel/red-hat-openshift",
+      "feed_url": "https://www.redhat.com/en/rss/blog/channel/red-hat-openshift",
       "title": "",
-      "saved": 0,
-      "method": "none"
+      "saved": 2,
+      "method": "feed"
     },
     {
       "source": "https://www.redhat.com/en/technologies/cloud-computing/openshift/pricing",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 14,
+  "fetched": "2026-06-27T12:03:07Z"
 }
