@@ -162,6 +162,12 @@ apis:
       - type: GettingStarted
         url: https://docs.openshift.com/rosa/rosa_getting_started/rosa-getting-started-iam-prerequisites.html
 common:
+  - type: VulnerabilityDisclosure
+    url: security/red-hat-openshift-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/red-hat-openshift-domain-security.yml
+  - type: Authentication
+    url: authentication/red-hat-openshift-authentication.yml
   - type: Website
     url: https://www.redhat.com/en/technologies/cloud-computing/openshift
   - type: Documentation
