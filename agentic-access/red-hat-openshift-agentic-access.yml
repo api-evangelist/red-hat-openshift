@@ -1,0 +1,409 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/red-hat-openshift-api-openapi.yml, openapi/red-hat-openshift-cluster-manager-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 30
+  by_action_class:
+    connected: 15
+    acting: 15
+  by_consequence:
+    read: 15
+    write: 14
+    physical: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /apis/project.openshift.io/v1/projects
+  method: get
+  operationId: listProjects
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/project.openshift.io/v1/projects
+  method: post
+  operationId: createProject
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/project.openshift.io/v1/projects/{name}
+  method: get
+  operationId: getProject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/project.openshift.io/v1/projects/{name}
+  method: put
+  operationId: updateProject
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/project.openshift.io/v1/projects/{name}
+  method: delete
+  operationId: deleteProject
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/route.openshift.io/v1/namespaces/{namespace}/routes
+  method: get
+  operationId: listRoutes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/route.openshift.io/v1/namespaces/{namespace}/routes
+  method: post
+  operationId: createRoute
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/route.openshift.io/v1/namespaces/{namespace}/routes/{name}
+  method: get
+  operationId: getRoute
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/route.openshift.io/v1/namespaces/{namespace}/routes/{name}
+  method: put
+  operationId: updateRoute
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/route.openshift.io/v1/namespaces/{namespace}/routes/{name}
+  method: delete
+  operationId: deleteRoute
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs
+  method: get
+  operationId: listBuildConfigs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs
+  method: post
+  operationId: createBuildConfig
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/build.openshift.io/v1/namespaces/{namespace}/builds
+  method: get
+  operationId: listBuilds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams
+  method: get
+  operationId: listImageStreams
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams
+  method: post
+  operationId: createImageStream
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /apis/security.openshift.io/v1/securitycontextconstraints
+  method: get
+  operationId: listSecurityContextConstraints
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs
+  method: get
+  operationId: listDeploymentConfigs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs
+  method: post
+  operationId: createDeploymentConfig
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/clusters_mgmt/v1/clusters
+  method: get
+  operationId: listClusters
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/clusters_mgmt/v1/clusters
+  method: post
+  operationId: createCluster
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}
+  method: get
+  operationId: getCluster
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}
+  method: patch
+  operationId: updateCluster
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}
+  method: delete
+  operationId: deleteCluster
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}/addons
+  method: get
+  operationId: listClusterAddons
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}/addons
+  method: post
+  operationId: installClusterAddon
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers
+  method: get
+  operationId: listIdentityProviders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers
+  method: post
+  operationId: createIdentityProvider
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools
+  method: get
+  operationId: listMachinePools
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools
+  method: post
+  operationId: createMachinePool
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/clusters_mgmt/v1/versions
+  method: get
+  operationId: listVersions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
