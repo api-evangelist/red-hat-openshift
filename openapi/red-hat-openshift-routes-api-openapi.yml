@@ -1,0 +1,249 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Container Platform Add-ons Routes API
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  version: '4.0'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+servers:
+- url: https://api.{cluster}:6443
+  description: OpenShift API Server
+  variables:
+    cluster:
+      default: cluster.example.com
+      description: OpenShift cluster API hostname
+security:
+- bearerAuth: []
+tags:
+- name: Routes
+  description: Route resources for exposing services via HTTP/HTTPS hostnames
+paths:
+  /apis/route.openshift.io/v1/namespaces/{namespace}/routes:
+    get:
+      operationId: listRoutes
+      summary: List Routes
+      description: Returns a list of Routes in the specified namespace. Routes expose services to external traffic via HTTP/HTTPS hostnames with optional TLS termination.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of routes returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteList'
+    post:
+      operationId: createRoute
+      summary: Create Route
+      description: Creates a new Route to expose a service with an HTTP or HTTPS hostname.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '201':
+          description: Route created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+  /apis/route.openshift.io/v1/namespaces/{namespace}/routes/{name}:
+    get:
+      operationId: getRoute
+      summary: Get Route
+      description: Returns the details of a specific Route.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Route details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateRoute
+      summary: Update Route
+      description: Replaces an existing Route configuration.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '200':
+          description: Route updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+    delete:
+      operationId: deleteRoute
+      summary: Delete Route
+      description: Deletes a specific Route.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Route deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: Resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Kubernetes namespace
+      schema:
+        type: string
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        uid:
+          type: string
+        resourceVersion:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Route:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: route.openshift.io/v1
+        kind:
+          type: string
+          default: Route
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            host:
+              type: string
+              description: Hostname for the route
+            path:
+              type: string
+            to:
+              type: object
+              properties:
+                kind:
+                  type: string
+                  default: Service
+                name:
+                  type: string
+                weight:
+                  type: integer
+            port:
+              type: object
+              properties:
+                targetPort:
+                  type: string
+            tls:
+              type: object
+              properties:
+                termination:
+                  type: string
+                  enum:
+                  - edge
+                  - passthrough
+                  - reencrypt
+        status:
+          type: object
+    RouteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+    Status:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: OpenShift Container Platform API Reference
+  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html

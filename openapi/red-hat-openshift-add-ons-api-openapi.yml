@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Container Platform Add-ons API
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  version: '4.0'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+servers:
+- url: https://api.{cluster}:6443
+  description: OpenShift API Server
+  variables:
+    cluster:
+      default: cluster.example.com
+      description: OpenShift cluster API hostname
+security:
+- bearerAuth: []
+tags:
+- name: Add-ons
+  description: Manage cluster add-on installations
+paths:
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/addons:
+    get:
+      operationId: listClusterAddons
+      summary: List Cluster Add-ons
+      description: Returns a list of add-ons installed on the specified cluster.
+      tags:
+      - Add-ons
+      parameters:
+      - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: List of installed add-ons returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddOnInstallationList'
+    post:
+      operationId: installClusterAddon
+      summary: Install Cluster Add-on
+      description: Installs a new add-on on the specified cluster.
+      tags:
+      - Add-ons
+      parameters:
+      - $ref: '#/components/parameters/clusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddOnInstallation'
+      responses:
+        '201':
+          description: Add-on installation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddOnInstallation'
+components:
+  schemas:
+    AddOnInstallationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddOnInstallation'
+    AddOnInstallation:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        addon:
+          type: object
+          properties:
+            id:
+              type: string
+        state:
+          type: string
+          enum:
+          - ready
+          - installing
+          - deleting
+          - failed
+  parameters:
+    clusterId:
+      name: cluster_id
+      in: path
+      required: true
+      description: The cluster identifier
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: OpenShift Container Platform API Reference
+  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html

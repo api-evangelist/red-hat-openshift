@@ -1,0 +1,250 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Container Platform Add-ons Projects API
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  version: '4.0'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+servers:
+- url: https://api.{cluster}:6443
+  description: OpenShift API Server
+  variables:
+    cluster:
+      default: cluster.example.com
+      description: OpenShift cluster API hostname
+security:
+- bearerAuth: []
+tags:
+- name: Projects
+  description: OpenShift Project resources for multi-tenant workspace management
+paths:
+  /apis/project.openshift.io/v1/projects:
+    get:
+      operationId: listProjects
+      summary: List Projects
+      description: Returns a list of OpenShift projects that the authenticated user has access to. Projects are OpenShift's tenant wrapper around Kubernetes namespaces.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/continueParam'
+      - $ref: '#/components/parameters/labelSelector'
+      - $ref: '#/components/parameters/fieldSelector'
+      responses:
+        '200':
+          description: List of projects returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProject
+      summary: Create Project
+      description: Creates a new OpenShift project. Projects are automatically provisioned with default RBAC policies and network policies based on the cluster configuration.
+      tags:
+      - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Project already exists
+  /apis/project.openshift.io/v1/projects/{name}:
+    get:
+      operationId: getProject
+      summary: Get Project
+      description: Returns details for a specific OpenShift project.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Project details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProject
+      summary: Update Project
+      description: Replaces an existing OpenShift project.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      operationId: deleteProject
+      summary: Delete Project
+      description: Deletes an OpenShift project and all resources within it.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Project deletion initiated
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    fieldSelector:
+      name: fieldSelector
+      in: query
+      description: Field selector to filter resources
+      schema:
+        type: string
+    continueParam:
+      name: continue
+      in: query
+      description: Pagination continue token
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: Resource name
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+    Unauthorized:
+      description: Authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        uid:
+          type: string
+        resourceVersion:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Status:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    Project:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: project.openshift.io/v1
+        kind:
+          type: string
+          default: Project
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            finalizers:
+              type: array
+              items:
+                type: string
+        status:
+          type: object
+          properties:
+            phase:
+              type: string
+              enum:
+              - Active
+              - Terminating
+    ProjectList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          default: ProjectList
+        metadata:
+          type: object
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: OpenShift Container Platform API Reference
+  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html

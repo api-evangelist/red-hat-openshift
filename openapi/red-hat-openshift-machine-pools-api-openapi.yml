@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Container Platform Add-ons Machine Pools API
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  version: '4.0'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+servers:
+- url: https://api.{cluster}:6443
+  description: OpenShift API Server
+  variables:
+    cluster:
+      default: cluster.example.com
+      description: OpenShift cluster API hostname
+security:
+- bearerAuth: []
+tags:
+- name: Machine Pools
+  description: Manage compute node pools for clusters
+paths:
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools:
+    get:
+      operationId: listMachinePools
+      summary: List Machine Pools
+      description: Returns the machine pools (node groups) configured for the cluster.
+      tags:
+      - Machine Pools
+      parameters:
+      - $ref: '#/components/parameters/clusterId'
+      responses:
+        '200':
+          description: List of machine pools returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePoolList'
+    post:
+      operationId: createMachinePool
+      summary: Create Machine Pool
+      description: Creates a new machine pool for the cluster.
+      tags:
+      - Machine Pools
+      parameters:
+      - $ref: '#/components/parameters/clusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachinePool'
+      responses:
+        '201':
+          description: Machine pool created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePool'
+components:
+  schemas:
+    MachinePool:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        replicas:
+          type: integer
+        instance_type:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        taints:
+          type: array
+          items:
+            type: object
+        autoscaling:
+          type: object
+          properties:
+            min_replicas:
+              type: integer
+            max_replicas:
+              type: integer
+    MachinePoolList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachinePool'
+  parameters:
+    clusterId:
+      name: cluster_id
+      in: path
+      required: true
+      description: The cluster identifier
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: OpenShift Container Platform API Reference
+  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html

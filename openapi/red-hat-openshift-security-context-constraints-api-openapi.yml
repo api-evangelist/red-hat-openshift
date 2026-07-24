@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Container Platform Add-ons Security Context Constraints API
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  version: '4.0'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+servers:
+- url: https://api.{cluster}:6443
+  description: OpenShift API Server
+  variables:
+    cluster:
+      default: cluster.example.com
+      description: OpenShift cluster API hostname
+security:
+- bearerAuth: []
+tags:
+- name: Security Context Constraints
+  description: SCC resources for controlling pod security permissions
+paths:
+  /apis/security.openshift.io/v1/securitycontextconstraints:
+    get:
+      operationId: listSecurityContextConstraints
+      summary: List Security Context Constraints
+      description: Returns a list of SecurityContextConstraints (SCCs) which control the security context under which pods run on the cluster.
+      tags:
+      - Security Context Constraints
+      parameters:
+      - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of SCCs returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityContextConstraintsList'
+components:
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        uid:
+          type: string
+        resourceVersion:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    SecurityContextConstraints:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: security.openshift.io/v1
+        kind:
+          type: string
+          default: SecurityContextConstraints
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        allowPrivilegedContainer:
+          type: boolean
+        allowedCapabilities:
+          type: array
+          items:
+            type: string
+        runAsUser:
+          type: object
+        seLinuxContext:
+          type: object
+    SecurityContextConstraintsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityContextConstraints'
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: OpenShift Container Platform API Reference
+  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html

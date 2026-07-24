@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Container Platform Add-ons Versions API
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  version: '4.0'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+servers:
+- url: https://api.{cluster}:6443
+  description: OpenShift API Server
+  variables:
+    cluster:
+      default: cluster.example.com
+      description: OpenShift cluster API hostname
+security:
+- bearerAuth: []
+tags:
+- name: Versions
+  description: Query available OpenShift versions
+paths:
+  /api/clusters_mgmt/v1/versions:
+    get:
+      operationId: listVersions
+      summary: List OpenShift Versions
+      description: Returns the list of available OpenShift versions for cluster creation.
+      tags:
+      - Versions
+      parameters:
+      - name: search
+        in: query
+        description: Filter versions by search expression
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available versions returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionList'
+components:
+  schemas:
+    VersionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+              id:
+                type: string
+              raw_id:
+                type: string
+              enabled:
+                type: boolean
+              default:
+                type: boolean
+              channel_groups:
+                type: array
+                items:
+                  type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: OpenShift Container Platform API Reference
+  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html
