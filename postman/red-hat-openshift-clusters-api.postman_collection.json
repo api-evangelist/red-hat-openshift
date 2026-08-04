@@ -1,0 +1,990 @@
+{
+  "info": {
+    "_postman_id": "e9de56b0-c8da-4338-b3ae-39bf31a4c55c",
+    "name": "Red Hat OpenShift Container Platform Add-ons Clusters API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:42:57.000Z",
+    "updatedAt": "2026-07-28T02:42:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9de56b0-c8da-4338-b3ae-39bf31a4c55c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "clusters_mgmt",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "clusters",
+                  "item": [
+                    {
+                      "name": "{cluster_id}",
+                      "item": [
+                        {
+                          "name": "Get Cluster",
+                          "id": "b46efd9d-518d-4cdd-8f79-74b868788978",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters",
+                                ":cluster_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2c2e5489-e2a0-481f-bd2e-14fe99158c82",
+                                  "key": "cluster_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The cluster identifier"
+                                }
+                              ]
+                            },
+                            "description": "Returns detailed information about a specific OpenShift cluster."
+                          },
+                          "response": [
+                            {
+                              "id": "04db1426-9e01-472a-bd61-37bf1240fa4e",
+                              "name": "Cluster details returned",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"Cluster\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"state\": \"hibernating\",\n  \"creation_timestamp\": \"<dateTime>\",\n  \"managed\": \"<boolean>\",\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"infra\": \"<integer>\",\n    \"master\": \"<integer>\"\n  },\n  \"api\": {\n    \"url\": \"<string>\"\n  },\n  \"console\": {\n    \"url\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:42:58.000Z",
+                              "updatedAt": "2026-07-28T02:42:58.000Z",
+                              "uid": "35240-04db1426-9e01-472a-bd61-37bf1240fa4e"
+                            },
+                            {
+                              "id": "ae07f20b-5680-4b3b-a738-6da2682d34e9",
+                              "name": "Authentication required or invalid token",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:42:58.000Z",
+                              "updatedAt": "2026-07-28T02:42:58.000Z",
+                              "uid": "35240-ae07f20b-5680-4b3b-a738-6da2682d34e9"
+                            },
+                            {
+                              "id": "a0c7b275-1fee-4039-bc78-ef9f562414b2",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:42:58.000Z",
+                              "updatedAt": "2026-07-28T02:42:58.000Z",
+                              "uid": "35240-a0c7b275-1fee-4039-bc78-ef9f562414b2"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-b46efd9d-518d-4cdd-8f79-74b868788978"
+                        },
+                        {
+                          "name": "Update Cluster",
+                          "id": "7a0dc7c8-cb9e-44f8-845c-cc2880204fb0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"display_name\": \"<string>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters",
+                                ":cluster_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1e64d6a5-56de-468c-bd08-16581f669191",
+                                  "key": "cluster_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The cluster identifier"
+                                }
+                              ]
+                            },
+                            "description": "Updates an existing cluster configuration (partial update)."
+                          },
+                          "response": [
+                            {
+                              "id": "4295c8fc-47f4-4ac0-80dd-5891e1de440f",
+                              "name": "Cluster updated",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"Cluster\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"state\": \"hibernating\",\n  \"creation_timestamp\": \"<dateTime>\",\n  \"managed\": \"<boolean>\",\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"infra\": \"<integer>\",\n    \"master\": \"<integer>\"\n  },\n  \"api\": {\n    \"url\": \"<string>\"\n  },\n  \"console\": {\n    \"url\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:42:58.000Z",
+                              "updatedAt": "2026-07-28T02:42:58.000Z",
+                              "uid": "35240-4295c8fc-47f4-4ac0-80dd-5891e1de440f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-7a0dc7c8-cb9e-44f8-845c-cc2880204fb0"
+                        },
+                        {
+                          "name": "Delete Cluster",
+                          "id": "b1b870cb-39af-46cc-835a-89eafc144e78",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters",
+                                ":cluster_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4b1f58c3-03b9-4a4a-b1be-6fd0539c8467",
+                                  "key": "cluster_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The cluster identifier"
+                                }
+                              ]
+                            },
+                            "description": "Deletes an OpenShift cluster. This operation is irreversible."
+                          },
+                          "response": [
+                            {
+                              "id": "a55b6882-6e34-48ed-8ca6-16f7942bbb6b",
+                              "name": "Cluster deletion initiated",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:42:58.000Z",
+                              "updatedAt": "2026-07-28T02:42:58.000Z",
+                              "uid": "35240-a55b6882-6e34-48ed-8ca6-16f7942bbb6b"
+                            },
+                            {
+                              "id": "92940ed0-cc09-49be-9178-6eb8f7d96602",
+                              "name": "Authentication required or invalid token",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:42:58.000Z",
+                              "updatedAt": "2026-07-28T02:42:58.000Z",
+                              "uid": "35240-92940ed0-cc09-49be-9178-6eb8f7d96602"
+                            },
+                            {
+                              "id": "fd3b6d1e-8c15-44dc-adfe-504ffb1a5838",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:42:58.000Z",
+                              "updatedAt": "2026-07-28T02:42:58.000Z",
+                              "uid": "35240-fd3b6d1e-8c15-44dc-adfe-504ffb1a5838"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-b1b870cb-39af-46cc-835a-89eafc144e78"
+                        }
+                      ],
+                      "id": "3a000a04-01ba-4265-8d2a-83d2e44400fa",
+                      "createdAt": "2026-07-28T02:42:58.000Z",
+                      "updatedAt": "2026-07-28T02:42:58.000Z",
+                      "uid": "35240-3a000a04-01ba-4265-8d2a-83d2e44400fa"
+                    },
+                    {
+                      "name": "List Clusters",
+                      "id": "b9444340-bc08-4e12-9ac6-ba36a5358cac",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters?page=1&size=100&search=<string>&order=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "clusters"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination (1-indexed)",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of results per page",
+                              "key": "size",
+                              "value": "100"
+                            },
+                            {
+                              "description": "SQL-like search expression for filtering",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "SQL-like ORDER BY clause",
+                              "key": "order",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of OpenShift clusters registered with the Cluster Manager. Supports filtering by cloud provider, region, version, and state. Results are paginated."
+                      },
+                      "response": [
+                        {
+                          "id": "95239be9-b55b-4012-b4e9-6a4b937f2087",
+                          "name": "List of clusters returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters?page=1&size=100&search=<string>&order=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-indexed)",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of results per page",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "SQL-like search expression for filtering",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "SQL-like ORDER BY clause",
+                                  "key": "order",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"ClusterList\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"kind\": \"Cluster\",\n      \"id\": \"<string>\",\n      \"href\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"cloud_provider\": {\n        \"id\": \"<string>\"\n      },\n      \"region\": {\n        \"id\": \"<string>\"\n      },\n      \"version\": {\n        \"id\": \"<string>\",\n        \"raw_id\": \"<string>\"\n      },\n      \"state\": \"installing\",\n      \"creation_timestamp\": \"<dateTime>\",\n      \"managed\": \"<boolean>\",\n      \"multi_az\": \"<boolean>\",\n      \"nodes\": {\n        \"compute\": \"<integer>\",\n        \"infra\": \"<integer>\",\n        \"master\": \"<integer>\"\n      },\n      \"api\": {\n        \"url\": \"<string>\"\n      },\n      \"console\": {\n        \"url\": \"<string>\"\n      }\n    },\n    {\n      \"kind\": \"Cluster\",\n      \"id\": \"<string>\",\n      \"href\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"cloud_provider\": {\n        \"id\": \"<string>\"\n      },\n      \"region\": {\n        \"id\": \"<string>\"\n      },\n      \"version\": {\n        \"id\": \"<string>\",\n        \"raw_id\": \"<string>\"\n      },\n      \"state\": \"hibernating\",\n      \"creation_timestamp\": \"<dateTime>\",\n      \"managed\": \"<boolean>\",\n      \"multi_az\": \"<boolean>\",\n      \"nodes\": {\n        \"compute\": \"<integer>\",\n        \"infra\": \"<integer>\",\n        \"master\": \"<integer>\"\n      },\n      \"api\": {\n        \"url\": \"<string>\"\n      },\n      \"console\": {\n        \"url\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-95239be9-b55b-4012-b4e9-6a4b937f2087"
+                        },
+                        {
+                          "id": "e03689e6-888c-414d-9672-f744c0ea9cdf",
+                          "name": "Authentication required or invalid token",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters?page=1&size=100&search=<string>&order=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-indexed)",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of results per page",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "SQL-like search expression for filtering",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "SQL-like ORDER BY clause",
+                                  "key": "order",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-e03689e6-888c-414d-9672-f744c0ea9cdf"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:42:58.000Z",
+                      "updatedAt": "2026-07-28T02:42:58.000Z",
+                      "uid": "35240-b9444340-bc08-4e12-9ac6-ba36a5358cac"
+                    },
+                    {
+                      "name": "Create Cluster",
+                      "id": "6ac34e31-5a02-4239-9d0b-16aeb3b2da92",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"kind\": \"Cluster\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"state\": \"hibernating\",\n  \"creation_timestamp\": \"<dateTime>\",\n  \"managed\": \"<boolean>\",\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"infra\": \"<integer>\",\n    \"master\": \"<integer>\"\n  },\n  \"api\": {\n    \"url\": \"<string>\"\n  },\n  \"console\": {\n    \"url\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "clusters"
+                          ]
+                        },
+                        "description": "Creates a new OpenShift cluster on the specified cloud provider and region. Supports ROSA (AWS), ARO (Azure), and other OpenShift flavors."
+                      },
+                      "response": [
+                        {
+                          "id": "00c88fbd-2e15-40e9-a8f8-0fc0badd0d1e",
+                          "name": "Cluster creation initiated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"kind\": \"Cluster\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"state\": \"hibernating\",\n  \"creation_timestamp\": \"<dateTime>\",\n  \"managed\": \"<boolean>\",\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"infra\": \"<integer>\",\n    \"master\": \"<integer>\"\n  },\n  \"api\": {\n    \"url\": \"<string>\"\n  },\n  \"console\": {\n    \"url\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"Cluster\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"state\": \"hibernating\",\n  \"creation_timestamp\": \"<dateTime>\",\n  \"managed\": \"<boolean>\",\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"infra\": \"<integer>\",\n    \"master\": \"<integer>\"\n  },\n  \"api\": {\n    \"url\": \"<string>\"\n  },\n  \"console\": {\n    \"url\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-00c88fbd-2e15-40e9-a8f8-0fc0badd0d1e"
+                        },
+                        {
+                          "id": "e0f0471c-d440-4e1a-a674-659c1d416eb7",
+                          "name": "Invalid cluster configuration",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"kind\": \"Cluster\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"state\": \"hibernating\",\n  \"creation_timestamp\": \"<dateTime>\",\n  \"managed\": \"<boolean>\",\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"infra\": \"<integer>\",\n    \"master\": \"<integer>\"\n  },\n  \"api\": {\n    \"url\": \"<string>\"\n  },\n  \"console\": {\n    \"url\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-e0f0471c-d440-4e1a-a674-659c1d416eb7"
+                        },
+                        {
+                          "id": "f7f6688c-4ed0-4dc8-9dec-18f0cbb3fa08",
+                          "name": "Authentication required or invalid token",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"kind\": \"Cluster\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"state\": \"hibernating\",\n  \"creation_timestamp\": \"<dateTime>\",\n  \"managed\": \"<boolean>\",\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"infra\": \"<integer>\",\n    \"master\": \"<integer>\"\n  },\n  \"api\": {\n    \"url\": \"<string>\"\n  },\n  \"console\": {\n    \"url\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"href\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:42:58.000Z",
+                          "updatedAt": "2026-07-28T02:42:58.000Z",
+                          "uid": "35240-f7f6688c-4ed0-4dc8-9dec-18f0cbb3fa08"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:42:58.000Z",
+                      "updatedAt": "2026-07-28T02:42:58.000Z",
+                      "uid": "35240-6ac34e31-5a02-4239-9d0b-16aeb3b2da92"
+                    }
+                  ],
+                  "id": "d8393015-2b58-435b-a93f-74abd5969d69",
+                  "createdAt": "2026-07-28T02:42:58.000Z",
+                  "updatedAt": "2026-07-28T02:42:58.000Z",
+                  "uid": "35240-d8393015-2b58-435b-a93f-74abd5969d69"
+                }
+              ],
+              "id": "68bc976b-752c-4d17-a678-c04ae7b96b36",
+              "createdAt": "2026-07-28T02:42:58.000Z",
+              "updatedAt": "2026-07-28T02:42:58.000Z",
+              "uid": "35240-68bc976b-752c-4d17-a678-c04ae7b96b36"
+            }
+          ],
+          "id": "1ad0a283-347a-4c89-b7a8-86c711672011",
+          "createdAt": "2026-07-28T02:42:58.000Z",
+          "updatedAt": "2026-07-28T02:42:58.000Z",
+          "uid": "35240-1ad0a283-347a-4c89-b7a8-86c711672011"
+        }
+      ],
+      "id": "d8a6c066-080a-491b-bec2-50aaa99e4fdc",
+      "createdAt": "2026-07-28T02:42:58.000Z",
+      "updatedAt": "2026-07-28T02:42:58.000Z",
+      "uid": "35240-d8a6c066-080a-491b-bec2-50aaa99e4fdc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

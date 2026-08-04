@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "a16e8fd4-0b45-4487-846b-ea64cb19626d",
+    "name": "Red Hat OpenShift Container Platform Add-ons Deployment Configs API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:42:58.000Z",
+    "updatedAt": "2026-07-28T02:42:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a16e8fd4-0b45-4487-846b-ea64cb19626d"
+  },
+  "item": [
+    {
+      "name": "apis",
+      "item": [
+        {
+          "name": "apps.openshift.io",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "namespaces",
+                  "item": [
+                    {
+                      "name": "{namespace}",
+                      "item": [
+                        {
+                          "name": "deploymentconfigs",
+                          "item": [
+                            {
+                              "name": "List Deployment Configs",
+                              "id": "bc6ee63a-1c2a-4b1d-ad00-58b66f34e422",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs?labelSelector=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "apps.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "deploymentconfigs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Label selector to filter resources (e.g., app=myapp)",
+                                      "key": "labelSelector",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "01df10e2-4426-402a-8edc-af42f1a6070c",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of DeploymentConfigs in the namespace. DeploymentConfigs are OpenShift's extended deployment resource with triggers, hooks, and lifecycle management."
+                              },
+                              "response": [
+                                {
+                                  "id": "df30e217-feb1-4b11-b5f2-c454f3eeb941",
+                                  "name": "List of deployment configs returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs?labelSelector=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "apps.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "deploymentconfigs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Label selector to filter resources (e.g., app=myapp)",
+                                          "key": "labelSelector",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"apps.openshift.io/v1\",\n      \"kind\": \"DeploymentConfig\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"essed6\": \"<string>\",\n          \"mollitb2\": \"<string>\"\n        },\n        \"annotations\": {\n          \"labore7\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"replicas\": \"<integer>\",\n        \"selector\": {},\n        \"template\": {}\n      },\n      \"status\": {\n        \"replicas\": \"<integer>\",\n        \"readyReplicas\": \"<integer>\",\n        \"availableReplicas\": \"<integer>\"\n      }\n    },\n    {\n      \"apiVersion\": \"apps.openshift.io/v1\",\n      \"kind\": \"DeploymentConfig\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"id_3d\": \"<string>\",\n          \"eiusmod_6\": \"<string>\",\n          \"ex_649\": \"<string>\"\n        },\n        \"annotations\": {\n          \"culpa_4\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"replicas\": \"<integer>\",\n        \"selector\": {},\n        \"template\": {}\n      },\n      \"status\": {\n        \"replicas\": \"<integer>\",\n        \"readyReplicas\": \"<integer>\",\n        \"availableReplicas\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:42:59.000Z",
+                                  "updatedAt": "2026-07-28T02:42:59.000Z",
+                                  "uid": "35240-df30e217-feb1-4b11-b5f2-c454f3eeb941"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:42:59.000Z",
+                              "updatedAt": "2026-07-28T02:42:59.000Z",
+                              "uid": "35240-bc6ee63a-1c2a-4b1d-ad00-58b66f34e422"
+                            },
+                            {
+                              "name": "Create Deployment Config",
+                              "id": "372ff39b-d383-47e2-bb00-531f78049833",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiVersion\": \"apps.openshift.io/v1\",\n  \"kind\": \"DeploymentConfig\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"sed01\": \"<string>\"\n    },\n    \"annotations\": {\n      \"nostrud92\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"replicas\": \"<integer>\",\n    \"selector\": {},\n    \"template\": {}\n  },\n  \"status\": {\n    \"replicas\": \"<integer>\",\n    \"readyReplicas\": \"<integer>\",\n    \"availableReplicas\": \"<integer>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "apps.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "deploymentconfigs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b6cf0634-3748-4393-8708-ddb05ae36723",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new DeploymentConfig in the specified namespace."
+                              },
+                              "response": [
+                                {
+                                  "id": "337128fc-1346-49b7-a4a9-32afe52d7a40",
+                                  "name": "DeploymentConfig created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"apiVersion\": \"apps.openshift.io/v1\",\n  \"kind\": \"DeploymentConfig\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"sed01\": \"<string>\"\n    },\n    \"annotations\": {\n      \"nostrud92\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"replicas\": \"<integer>\",\n    \"selector\": {},\n    \"template\": {}\n  },\n  \"status\": {\n    \"replicas\": \"<integer>\",\n    \"readyReplicas\": \"<integer>\",\n    \"availableReplicas\": \"<integer>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "apps.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "deploymentconfigs"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"apiVersion\": \"apps.openshift.io/v1\",\n  \"kind\": \"DeploymentConfig\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"sed01\": \"<string>\"\n    },\n    \"annotations\": {\n      \"nostrud92\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"replicas\": \"<integer>\",\n    \"selector\": {},\n    \"template\": {}\n  },\n  \"status\": {\n    \"replicas\": \"<integer>\",\n    \"readyReplicas\": \"<integer>\",\n    \"availableReplicas\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:42:59.000Z",
+                                  "updatedAt": "2026-07-28T02:42:59.000Z",
+                                  "uid": "35240-337128fc-1346-49b7-a4a9-32afe52d7a40"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:42:59.000Z",
+                              "updatedAt": "2026-07-28T02:42:59.000Z",
+                              "uid": "35240-372ff39b-d383-47e2-bb00-531f78049833"
+                            }
+                          ],
+                          "id": "c1879b1e-d270-46da-aa20-c7689491320e",
+                          "createdAt": "2026-07-28T02:42:59.000Z",
+                          "updatedAt": "2026-07-28T02:42:59.000Z",
+                          "uid": "35240-c1879b1e-d270-46da-aa20-c7689491320e"
+                        }
+                      ],
+                      "id": "932606e2-7b47-491a-80c8-de2fb7bfab3f",
+                      "createdAt": "2026-07-28T02:42:59.000Z",
+                      "updatedAt": "2026-07-28T02:42:59.000Z",
+                      "uid": "35240-932606e2-7b47-491a-80c8-de2fb7bfab3f"
+                    }
+                  ],
+                  "id": "a3127558-5a73-4731-be2c-8882d5c5903a",
+                  "createdAt": "2026-07-28T02:42:59.000Z",
+                  "updatedAt": "2026-07-28T02:42:59.000Z",
+                  "uid": "35240-a3127558-5a73-4731-be2c-8882d5c5903a"
+                }
+              ],
+              "id": "cd2f5c7c-807a-4268-b387-87063a920bcf",
+              "createdAt": "2026-07-28T02:42:59.000Z",
+              "updatedAt": "2026-07-28T02:42:59.000Z",
+              "uid": "35240-cd2f5c7c-807a-4268-b387-87063a920bcf"
+            }
+          ],
+          "id": "15c25764-82c6-439e-8095-5876d99d1403",
+          "createdAt": "2026-07-28T02:42:59.000Z",
+          "updatedAt": "2026-07-28T02:42:59.000Z",
+          "uid": "35240-15c25764-82c6-439e-8095-5876d99d1403"
+        }
+      ],
+      "id": "47b27209-9ba4-4bf1-9678-d909b88b625b",
+      "createdAt": "2026-07-28T02:42:59.000Z",
+      "updatedAt": "2026-07-28T02:42:59.000Z",
+      "uid": "35240-47b27209-9ba4-4bf1-9678-d909b88b625b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

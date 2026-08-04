@@ -1,0 +1,888 @@
+{
+  "info": {
+    "_postman_id": "f955e4fa-e66b-4a1f-94a3-2039094e6042",
+    "name": "Red Hat OpenShift Container Platform Add-ons Projects API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:31.000Z",
+    "updatedAt": "2026-07-28T02:43:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f955e4fa-e66b-4a1f-94a3-2039094e6042"
+  },
+  "item": [
+    {
+      "name": "apis",
+      "item": [
+        {
+          "name": "project.openshift.io",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "projects",
+                  "item": [
+                    {
+                      "name": "{name}",
+                      "item": [
+                        {
+                          "name": "Get Project",
+                          "id": "11f8c357-83ff-4d67-9f81-4fde85117321",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "89f028ab-6eeb-4c16-a2f5-676f1d58fccf",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Resource name"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific OpenShift project."
+                          },
+                          "response": [
+                            {
+                              "id": "09f66afd-6f8a-47cc-8f8a-7aa3e0f5b78c",
+                              "name": "Project details returned",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "project.openshift.io",
+                                    "v1",
+                                    "projects",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:43:32.000Z",
+                              "updatedAt": "2026-07-28T02:43:32.000Z",
+                              "uid": "35240-09f66afd-6f8a-47cc-8f8a-7aa3e0f5b78c"
+                            },
+                            {
+                              "id": "146c0739-55ed-4c8f-aef5-36a964ea8a9f",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "project.openshift.io",
+                                    "v1",
+                                    "projects",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:43:32.000Z",
+                              "updatedAt": "2026-07-28T02:43:32.000Z",
+                              "uid": "35240-146c0739-55ed-4c8f-aef5-36a964ea8a9f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:43:31.000Z",
+                          "updatedAt": "2026-07-28T02:43:31.000Z",
+                          "uid": "35240-11f8c357-83ff-4d67-9f81-4fde85117321"
+                        },
+                        {
+                          "name": "Update Project",
+                          "id": "fac1caee-1089-409c-a7b5-6b0403d438f6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "510a5bd8-f136-4cbe-9b0b-c99d32cca15c",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Resource name"
+                                }
+                              ]
+                            },
+                            "description": "Replaces an existing OpenShift project."
+                          },
+                          "response": [
+                            {
+                              "id": "f3b2da6b-20d9-4511-ae7d-bf92450ca424",
+                              "name": "Project updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "project.openshift.io",
+                                    "v1",
+                                    "projects",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:43:32.000Z",
+                              "updatedAt": "2026-07-28T02:43:32.000Z",
+                              "uid": "35240-f3b2da6b-20d9-4511-ae7d-bf92450ca424"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:43:31.000Z",
+                          "updatedAt": "2026-07-28T02:43:31.000Z",
+                          "uid": "35240-fac1caee-1089-409c-a7b5-6b0403d438f6"
+                        },
+                        {
+                          "name": "Delete Project",
+                          "id": "bd273e7f-6da6-47e8-9a77-61d8a1e98b43",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "dec64aee-0515-416c-8db5-9210a4b61ad5",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Resource name"
+                                }
+                              ]
+                            },
+                            "description": "Deletes an OpenShift project and all resources within it."
+                          },
+                          "response": [
+                            {
+                              "id": "94bf3c0f-72db-4e12-8055-9741e59873fa",
+                              "name": "Project deletion initiated",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "project.openshift.io",
+                                    "v1",
+                                    "projects",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:43:32.000Z",
+                              "updatedAt": "2026-07-28T02:43:32.000Z",
+                              "uid": "35240-94bf3c0f-72db-4e12-8055-9741e59873fa"
+                            },
+                            {
+                              "id": "6233df0d-dcc4-4607-b434-f6830c57002a",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects/:name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "project.openshift.io",
+                                    "v1",
+                                    "projects",
+                                    ":name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:43:32.000Z",
+                              "updatedAt": "2026-07-28T02:43:32.000Z",
+                              "uid": "35240-6233df0d-dcc4-4607-b434-f6830c57002a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:43:31.000Z",
+                          "updatedAt": "2026-07-28T02:43:31.000Z",
+                          "uid": "35240-bd273e7f-6da6-47e8-9a77-61d8a1e98b43"
+                        }
+                      ],
+                      "id": "c92943e8-ac8a-4bdf-b9c0-d9598388acb1",
+                      "createdAt": "2026-07-28T02:43:31.000Z",
+                      "updatedAt": "2026-07-28T02:43:31.000Z",
+                      "uid": "35240-c92943e8-ac8a-4bdf-b9c0-d9598388acb1"
+                    },
+                    {
+                      "name": "List Projects",
+                      "id": "893578a6-7837-4b97-83e1-0b88d48802e5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects?limit=<integer>&continue=<string>&labelSelector=<string>&fieldSelector=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            "project.openshift.io",
+                            "v1",
+                            "projects"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of resources to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination continue token",
+                              "key": "continue",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Label selector to filter resources (e.g., app=myapp)",
+                              "key": "labelSelector",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field selector to filter resources",
+                              "key": "fieldSelector",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of OpenShift projects that the authenticated user has access to. Projects are OpenShift's tenant wrapper around Kubernetes namespaces."
+                      },
+                      "response": [
+                        {
+                          "id": "bb284f48-7e6f-442b-bead-135083902618",
+                          "name": "List of projects returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects?limit=<integer>&continue=<string>&labelSelector=<string>&fieldSelector=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of resources to return",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Pagination continue token",
+                                  "key": "continue",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Label selector to filter resources (e.g., app=myapp)",
+                                  "key": "labelSelector",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field selector to filter resources",
+                                  "key": "fieldSelector",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"ProjectList\",\n  \"metadata\": {},\n  \"items\": [\n    {\n      \"apiVersion\": \"project.openshift.io/v1\",\n      \"kind\": \"Project\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"nullac2\": \"<string>\"\n        },\n        \"annotations\": {\n          \"labore6a\": \"<string>\",\n          \"tempor_d_\": \"<string>\",\n          \"commodo_a\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"finalizers\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"status\": {\n        \"phase\": \"Active\"\n      }\n    },\n    {\n      \"apiVersion\": \"project.openshift.io/v1\",\n      \"kind\": \"Project\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"dolor_336\": \"<string>\",\n          \"enim_e\": \"<string>\"\n        },\n        \"annotations\": {\n          \"esseaa4\": \"<string>\",\n          \"Excepteur4\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"finalizers\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"status\": {\n        \"phase\": \"Active\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:43:32.000Z",
+                          "updatedAt": "2026-07-28T02:43:32.000Z",
+                          "uid": "35240-bb284f48-7e6f-442b-bead-135083902618"
+                        },
+                        {
+                          "id": "e6c3001f-d767-4856-8eba-a0d707399e3c",
+                          "name": "Authentication required or token invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects?limit=<integer>&continue=<string>&labelSelector=<string>&fieldSelector=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of resources to return",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Pagination continue token",
+                                  "key": "continue",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Label selector to filter resources (e.g., app=myapp)",
+                                  "key": "labelSelector",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Field selector to filter resources",
+                                  "key": "fieldSelector",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:43:32.000Z",
+                          "updatedAt": "2026-07-28T02:43:32.000Z",
+                          "uid": "35240-e6c3001f-d767-4856-8eba-a0d707399e3c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:43:31.000Z",
+                      "updatedAt": "2026-07-28T02:43:31.000Z",
+                      "uid": "35240-893578a6-7837-4b97-83e1-0b88d48802e5"
+                    },
+                    {
+                      "name": "Create Project",
+                      "id": "407c9bcc-cf50-48c1-a749-8fbf97702c52",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            "project.openshift.io",
+                            "v1",
+                            "projects"
+                          ]
+                        },
+                        "description": "Creates a new OpenShift project. Projects are automatically provisioned with default RBAC policies and network policies based on the cluster configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "f806597a-33f8-4e46-8cc4-a1d64b3d8179",
+                          "name": "Project created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:43:32.000Z",
+                          "updatedAt": "2026-07-28T02:43:32.000Z",
+                          "uid": "35240-f806597a-33f8-4e46-8cc4-a1d64b3d8179"
+                        },
+                        {
+                          "id": "0b8245ee-870e-47a0-b6e6-0905941337bd",
+                          "name": "Authentication required or token invalid",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:43:32.000Z",
+                          "updatedAt": "2026-07-28T02:43:32.000Z",
+                          "uid": "35240-0b8245ee-870e-47a0-b6e6-0905941337bd"
+                        },
+                        {
+                          "id": "739f0a0a-0855-4280-8c54-1ff187db7b50",
+                          "name": "Project already exists",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"apiVersion\": \"project.openshift.io/v1\",\n  \"kind\": \"Project\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"animf5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"voluptatea4\": \"<string>\",\n      \"temporf6d\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"finalizers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": {\n    \"phase\": \"Terminating\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/project.openshift.io/v1/projects",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "project.openshift.io",
+                                "v1",
+                                "projects"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:43:32.000Z",
+                          "updatedAt": "2026-07-28T02:43:32.000Z",
+                          "uid": "35240-739f0a0a-0855-4280-8c54-1ff187db7b50"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:43:31.000Z",
+                      "updatedAt": "2026-07-28T02:43:31.000Z",
+                      "uid": "35240-407c9bcc-cf50-48c1-a749-8fbf97702c52"
+                    }
+                  ],
+                  "id": "73a827b4-0d07-4d78-92f3-eef2ae5e5a36",
+                  "createdAt": "2026-07-28T02:43:31.000Z",
+                  "updatedAt": "2026-07-28T02:43:31.000Z",
+                  "uid": "35240-73a827b4-0d07-4d78-92f3-eef2ae5e5a36"
+                }
+              ],
+              "id": "549c0b71-0364-42ca-9d40-25f1f8d8f757",
+              "createdAt": "2026-07-28T02:43:31.000Z",
+              "updatedAt": "2026-07-28T02:43:31.000Z",
+              "uid": "35240-549c0b71-0364-42ca-9d40-25f1f8d8f757"
+            }
+          ],
+          "id": "6cd3b7bd-1249-43b6-a96b-eab84d3cc8b8",
+          "createdAt": "2026-07-28T02:43:31.000Z",
+          "updatedAt": "2026-07-28T02:43:31.000Z",
+          "uid": "35240-6cd3b7bd-1249-43b6-a96b-eab84d3cc8b8"
+        }
+      ],
+      "id": "c79d651a-9a69-491b-9ca3-aa84cea8436f",
+      "createdAt": "2026-07-28T02:43:31.000Z",
+      "updatedAt": "2026-07-28T02:43:31.000Z",
+      "uid": "35240-c79d651a-9a69-491b-9ca3-aa84cea8436f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

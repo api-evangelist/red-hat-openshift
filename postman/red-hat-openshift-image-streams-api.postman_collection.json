@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "dfb7a080-3bba-481c-b05b-b492d6e2f7cd",
+    "name": "Red Hat OpenShift Container Platform Add-ons Image Streams API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:29.000Z",
+    "updatedAt": "2026-07-28T02:43:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dfb7a080-3bba-481c-b05b-b492d6e2f7cd"
+  },
+  "item": [
+    {
+      "name": "apis",
+      "item": [
+        {
+          "name": "image.openshift.io",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "namespaces",
+                  "item": [
+                    {
+                      "name": "{namespace}",
+                      "item": [
+                        {
+                          "name": "imagestreams",
+                          "item": [
+                            {
+                              "name": "List Image Streams",
+                              "id": "0da5bc89-46a6-40d0-aa7f-6af4887d04d8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams?labelSelector=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "image.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "imagestreams"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Label selector to filter resources (e.g., app=myapp)",
+                                      "key": "labelSelector",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0df6d7c3-2f8b-406e-86a3-83a8f800fb68",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of ImageStreams in the specified namespace. ImageStreams provide an abstraction for container image versioning and reference management."
+                              },
+                              "response": [
+                                {
+                                  "id": "4f43a518-2998-4df3-a0e3-479094b5af37",
+                                  "name": "List of image streams returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams?labelSelector=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "image.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "imagestreams"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Label selector to filter resources (e.g., app=myapp)",
+                                          "key": "labelSelector",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"image.openshift.io/v1\",\n      \"kind\": \"ImageStream\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"magna_028\": \"<string>\",\n          \"voluptate_4_\": \"<string>\",\n          \"Lorem_e7\": \"<string>\"\n        },\n        \"annotations\": {\n          \"ut_322\": \"<string>\"\n        }\n      },\n      \"spec\": {},\n      \"status\": {}\n    },\n    {\n      \"apiVersion\": \"image.openshift.io/v1\",\n      \"kind\": \"ImageStream\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"minimc84\": \"<string>\"\n        },\n        \"annotations\": {\n          \"incididunt18\": \"<string>\",\n          \"esse_96\": \"<string>\"\n        }\n      },\n      \"spec\": {},\n      \"status\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:43:30.000Z",
+                                  "updatedAt": "2026-07-28T02:43:30.000Z",
+                                  "uid": "35240-4f43a518-2998-4df3-a0e3-479094b5af37"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:30.000Z",
+                              "updatedAt": "2026-07-28T02:43:30.000Z",
+                              "uid": "35240-0da5bc89-46a6-40d0-aa7f-6af4887d04d8"
+                            },
+                            {
+                              "name": "Create Image Stream",
+                              "id": "9216234f-0fda-4ef8-9fc5-f760acfdfdc6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiVersion\": \"image.openshift.io/v1\",\n  \"kind\": \"ImageStream\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"dolored_\": \"<string>\",\n      \"Excepteurff_\": \"<string>\",\n      \"ea_72\": \"<string>\",\n      \"do5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"ex07d\": \"<string>\",\n      \"dolore_f40\": \"<string>\"\n    }\n  },\n  \"spec\": {},\n  \"status\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "image.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "imagestreams"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bf0b4d68-a463-43e6-8f62-d7b6c2655ab7",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new ImageStream for tracking container image versions."
+                              },
+                              "response": [
+                                {
+                                  "id": "1a54bc8a-3f57-462d-bec7-82a31fb9fcf1",
+                                  "name": "ImageStream created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"apiVersion\": \"image.openshift.io/v1\",\n  \"kind\": \"ImageStream\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"dolored_\": \"<string>\",\n      \"Excepteurff_\": \"<string>\",\n      \"ea_72\": \"<string>\",\n      \"do5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"ex07d\": \"<string>\",\n      \"dolore_f40\": \"<string>\"\n    }\n  },\n  \"spec\": {},\n  \"status\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "image.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "imagestreams"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"apiVersion\": \"image.openshift.io/v1\",\n  \"kind\": \"ImageStream\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"dolored_\": \"<string>\",\n      \"Excepteurff_\": \"<string>\",\n      \"ea_72\": \"<string>\",\n      \"do5\": \"<string>\"\n    },\n    \"annotations\": {\n      \"ex07d\": \"<string>\",\n      \"dolore_f40\": \"<string>\"\n    }\n  },\n  \"spec\": {},\n  \"status\": {}\n}",
+                                  "createdAt": "2026-07-28T02:43:30.000Z",
+                                  "updatedAt": "2026-07-28T02:43:30.000Z",
+                                  "uid": "35240-1a54bc8a-3f57-462d-bec7-82a31fb9fcf1"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:30.000Z",
+                              "updatedAt": "2026-07-28T02:43:30.000Z",
+                              "uid": "35240-9216234f-0fda-4ef8-9fc5-f760acfdfdc6"
+                            }
+                          ],
+                          "id": "8e1bd9af-cf5b-4521-a190-f2041ccb9a92",
+                          "createdAt": "2026-07-28T02:43:30.000Z",
+                          "updatedAt": "2026-07-28T02:43:30.000Z",
+                          "uid": "35240-8e1bd9af-cf5b-4521-a190-f2041ccb9a92"
+                        }
+                      ],
+                      "id": "b26727ed-8943-4332-a20d-625835e4d7a9",
+                      "createdAt": "2026-07-28T02:43:30.000Z",
+                      "updatedAt": "2026-07-28T02:43:30.000Z",
+                      "uid": "35240-b26727ed-8943-4332-a20d-625835e4d7a9"
+                    }
+                  ],
+                  "id": "ed198788-65ba-4d08-99be-a18043148e9e",
+                  "createdAt": "2026-07-28T02:43:30.000Z",
+                  "updatedAt": "2026-07-28T02:43:30.000Z",
+                  "uid": "35240-ed198788-65ba-4d08-99be-a18043148e9e"
+                }
+              ],
+              "id": "9e78a6e2-1de4-4d3c-b90f-9145c09ba1fc",
+              "createdAt": "2026-07-28T02:43:30.000Z",
+              "updatedAt": "2026-07-28T02:43:30.000Z",
+              "uid": "35240-9e78a6e2-1de4-4d3c-b90f-9145c09ba1fc"
+            }
+          ],
+          "id": "92fcb350-9df8-490b-81b4-e7427b71c9fb",
+          "createdAt": "2026-07-28T02:43:30.000Z",
+          "updatedAt": "2026-07-28T02:43:30.000Z",
+          "uid": "35240-92fcb350-9df8-490b-81b4-e7427b71c9fb"
+        }
+      ],
+      "id": "a3156e21-6413-400a-9b94-4b6cd03c99cf",
+      "createdAt": "2026-07-28T02:43:30.000Z",
+      "updatedAt": "2026-07-28T02:43:30.000Z",
+      "uid": "35240-a3156e21-6413-400a-9b94-4b6cd03c99cf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

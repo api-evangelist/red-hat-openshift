@@ -1,0 +1,744 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Container Platform API
+  description: >-
+    The OpenShift Container Platform REST API extends the Kubernetes API with
+    OpenShift-specific resources for builds, image streams, routes, deployment
+    configs, and project management. The API is organized into groups served
+    at /apis/{group}/{version}. All operations require authentication via
+    Bearer token obtained from the OAuth server. This specification covers
+    the core OpenShift-specific API groups including apps.openshift.io,
+    build.openshift.io, image.openshift.io, route.openshift.io,
+    project.openshift.io, and security.openshift.io.
+  version: '4.0'
+  contact:
+    name: Red Hat OpenShift Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/agreements
+externalDocs:
+  description: OpenShift Container Platform API Reference
+  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html
+servers:
+  - url: https://api.{cluster}:6443
+    description: OpenShift API Server
+    variables:
+      cluster:
+        default: cluster.example.com
+        description: OpenShift cluster API hostname
+tags:
+  - name: Builds
+    description: Build and BuildConfig resources for source-to-image and Dockerfile builds
+  - name: Deployment Configs
+    description: DeploymentConfig resources for OpenShift-native deployment management
+  - name: Image Streams
+    description: ImageStream and ImageStreamTag resources for container image management
+  - name: Namespaces
+    description: Kubernetes Namespace resources
+  - name: Projects
+    description: OpenShift Project resources for multi-tenant workspace management
+  - name: Routes
+    description: Route resources for exposing services via HTTP/HTTPS hostnames
+  - name: Security Context Constraints
+    description: SCC resources for controlling pod security permissions
+security:
+  - bearerAuth: []
+paths:
+  /apis/project.openshift.io/v1/projects:
+    get:
+      operationId: listProjects
+      summary: List Projects
+      description: >-
+        Returns a list of OpenShift projects that the authenticated user has
+        access to. Projects are OpenShift's tenant wrapper around Kubernetes
+        namespaces.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/continueParam'
+        - $ref: '#/components/parameters/labelSelector'
+        - $ref: '#/components/parameters/fieldSelector'
+      responses:
+        '200':
+          description: List of projects returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProject
+      summary: Create Project
+      description: >-
+        Creates a new OpenShift project. Projects are automatically provisioned
+        with default RBAC policies and network policies based on the cluster
+        configuration.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Project already exists
+  /apis/project.openshift.io/v1/projects/{name}:
+    get:
+      operationId: getProject
+      summary: Get Project
+      description: Returns details for a specific OpenShift project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Project details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProject
+      summary: Update Project
+      description: Replaces an existing OpenShift project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      operationId: deleteProject
+      summary: Delete Project
+      description: Deletes an OpenShift project and all resources within it.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Project deletion initiated
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apis/route.openshift.io/v1/namespaces/{namespace}/routes:
+    get:
+      operationId: listRoutes
+      summary: List Routes
+      description: >-
+        Returns a list of Routes in the specified namespace. Routes expose
+        services to external traffic via HTTP/HTTPS hostnames with optional
+        TLS termination.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of routes returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteList'
+    post:
+      operationId: createRoute
+      summary: Create Route
+      description: Creates a new Route to expose a service with an HTTP or HTTPS hostname.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '201':
+          description: Route created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+  /apis/route.openshift.io/v1/namespaces/{namespace}/routes/{name}:
+    get:
+      operationId: getRoute
+      summary: Get Route
+      description: Returns the details of a specific Route.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Route details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateRoute
+      summary: Update Route
+      description: Replaces an existing Route configuration.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '200':
+          description: Route updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+    delete:
+      operationId: deleteRoute
+      summary: Delete Route
+      description: Deletes a specific Route.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: Route deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs:
+    get:
+      operationId: listBuildConfigs
+      summary: List Build Configs
+      description: >-
+        Returns a list of BuildConfigs in the specified namespace. BuildConfigs
+        define the source-to-image or Dockerfile build process for generating
+        container images.
+      tags:
+        - Builds
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of build configs returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildConfigList'
+    post:
+      operationId: createBuildConfig
+      summary: Create Build Config
+      description: Creates a new BuildConfig defining the build process.
+      tags:
+        - Builds
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildConfig'
+      responses:
+        '201':
+          description: BuildConfig created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildConfig'
+  /apis/build.openshift.io/v1/namespaces/{namespace}/builds:
+    get:
+      operationId: listBuilds
+      summary: List Builds
+      description: Returns a list of Build instances in the specified namespace.
+      tags:
+        - Builds
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of builds returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildList'
+  /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams:
+    get:
+      operationId: listImageStreams
+      summary: List Image Streams
+      description: >-
+        Returns a list of ImageStreams in the specified namespace. ImageStreams
+        provide an abstraction for container image versioning and reference
+        management.
+      tags:
+        - Image Streams
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of image streams returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageStreamList'
+    post:
+      operationId: createImageStream
+      summary: Create Image Stream
+      description: Creates a new ImageStream for tracking container image versions.
+      tags:
+        - Image Streams
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageStream'
+      responses:
+        '201':
+          description: ImageStream created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageStream'
+  /apis/security.openshift.io/v1/securitycontextconstraints:
+    get:
+      operationId: listSecurityContextConstraints
+      summary: List Security Context Constraints
+      description: >-
+        Returns a list of SecurityContextConstraints (SCCs) which control
+        the security context under which pods run on the cluster.
+      tags:
+        - Security Context Constraints
+      parameters:
+        - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of SCCs returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityContextConstraintsList'
+  /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs:
+    get:
+      operationId: listDeploymentConfigs
+      summary: List Deployment Configs
+      description: >-
+        Returns a list of DeploymentConfigs in the namespace. DeploymentConfigs
+        are OpenShift's extended deployment resource with triggers, hooks,
+        and lifecycle management.
+      tags:
+        - Deployment Configs
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/labelSelector'
+      responses:
+        '200':
+          description: List of deployment configs returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentConfigList'
+    post:
+      operationId: createDeploymentConfig
+      summary: Create Deployment Config
+      description: Creates a new DeploymentConfig in the specified namespace.
+      tags:
+        - Deployment Configs
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentConfig'
+      responses:
+        '201':
+          description: DeploymentConfig created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentConfig'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    name:
+      name: name
+      in: path
+      required: true
+      description: Resource name
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continueParam:
+      name: continue
+      in: query
+      description: Pagination continue token
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+    fieldSelector:
+      name: fieldSelector
+      in: query
+      description: Field selector to filter resources
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+  schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        uid:
+          type: string
+        resourceVersion:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Status:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+    Project:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: project.openshift.io/v1
+        kind:
+          type: string
+          default: Project
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            finalizers:
+              type: array
+              items:
+                type: string
+        status:
+          type: object
+          properties:
+            phase:
+              type: string
+              enum:
+                - Active
+                - Terminating
+    ProjectList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          default: ProjectList
+        metadata:
+          type: object
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    Route:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: route.openshift.io/v1
+        kind:
+          type: string
+          default: Route
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            host:
+              type: string
+              description: Hostname for the route
+            path:
+              type: string
+            to:
+              type: object
+              properties:
+                kind:
+                  type: string
+                  default: Service
+                name:
+                  type: string
+                weight:
+                  type: integer
+            port:
+              type: object
+              properties:
+                targetPort:
+                  type: string
+            tls:
+              type: object
+              properties:
+                termination:
+                  type: string
+                  enum:
+                    - edge
+                    - passthrough
+                    - reencrypt
+        status:
+          type: object
+    RouteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+    BuildConfig:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: build.openshift.io/v1
+        kind:
+          type: string
+          default: BuildConfig
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            source:
+              type: object
+            strategy:
+              type: object
+            output:
+              type: object
+    BuildConfigList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildConfig'
+    Build:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: build.openshift.io/v1
+        kind:
+          type: string
+          default: Build
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        status:
+          type: object
+          properties:
+            phase:
+              type: string
+              enum:
+                - New
+                - Pending
+                - Running
+                - Complete
+                - Failed
+                - Error
+                - Cancelled
+            startTimestamp:
+              type: string
+              format: date-time
+            completionTimestamp:
+              type: string
+              format: date-time
+    BuildList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Build'
+    ImageStream:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: image.openshift.io/v1
+        kind:
+          type: string
+          default: ImageStream
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+        status:
+          type: object
+    ImageStreamList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageStream'
+    DeploymentConfig:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: apps.openshift.io/v1
+        kind:
+          type: string
+          default: DeploymentConfig
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            replicas:
+              type: integer
+            selector:
+              type: object
+            template:
+              type: object
+            triggers:
+              type: array
+              items:
+                type: object
+        status:
+          type: object
+          properties:
+            replicas:
+              type: integer
+            readyReplicas:
+              type: integer
+            availableReplicas:
+              type: integer
+    DeploymentConfigList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentConfig'
+    SecurityContextConstraints:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: security.openshift.io/v1
+        kind:
+          type: string
+          default: SecurityContextConstraints
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        allowPrivilegedContainer:
+          type: boolean
+        allowedCapabilities:
+          type: array
+          items:
+            type: string
+        runAsUser:
+          type: object
+        seLinuxContext:
+          type: object
+    SecurityContextConstraintsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityContextConstraints'

@@ -1,0 +1,793 @@
+{
+  "info": {
+    "_postman_id": "c81a6c3c-4223-423c-b145-a16527566d70",
+    "name": "Red Hat OpenShift Container Platform Add-ons Routes API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:32.000Z",
+    "updatedAt": "2026-07-28T02:43:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c81a6c3c-4223-423c-b145-a16527566d70"
+  },
+  "item": [
+    {
+      "name": "apis",
+      "item": [
+        {
+          "name": "route.openshift.io",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "namespaces",
+                  "item": [
+                    {
+                      "name": "{namespace}",
+                      "item": [
+                        {
+                          "name": "routes",
+                          "item": [
+                            {
+                              "name": "{name}",
+                              "item": [
+                                {
+                                  "name": "Get Route",
+                                  "id": "71764a03-22a3-4150-b155-26110ad08610",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "route.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "routes",
+                                        ":name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "03687518-fb7c-4b08-b75c-abf9d0c689e5",
+                                          "key": "namespace",
+                                          "value": "<string>",
+                                          "description": "(Required) Kubernetes namespace"
+                                        },
+                                        {
+                                          "id": "da03bcde-3676-4e0d-a3ab-f4bd5479de94",
+                                          "key": "name",
+                                          "value": "<string>",
+                                          "description": "(Required) Resource name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns the details of a specific Route."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "30f7ea69-b765-4be8-b87c-b161c05fc508",
+                                      "name": "Route details returned",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "apis",
+                                            "route.openshift.io",
+                                            "v1",
+                                            "namespaces",
+                                            ":namespace",
+                                            "routes",
+                                            ":name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "namespace"
+                                            },
+                                            {
+                                              "key": "name"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"apiVersion\": \"route.openshift.io/v1\",\n  \"kind\": \"Route\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"incididuntf4\": \"<string>\",\n      \"dolord38\": \"<string>\"\n    },\n    \"annotations\": {\n      \"aliquip_be7\": \"<string>\",\n      \"consectetur382\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"host\": \"<string>\",\n    \"path\": \"<string>\",\n    \"to\": {\n      \"kind\": \"Service\",\n      \"name\": \"<string>\",\n      \"weight\": \"<integer>\"\n    },\n    \"port\": {\n      \"targetPort\": \"<string>\"\n    },\n    \"tls\": {\n      \"termination\": \"passthrough\"\n    }\n  },\n  \"status\": {}\n}",
+                                      "createdAt": "2026-07-28T02:43:33.000Z",
+                                      "updatedAt": "2026-07-28T02:43:33.000Z",
+                                      "uid": "35240-30f7ea69-b765-4be8-b87c-b161c05fc508"
+                                    },
+                                    {
+                                      "id": "98922828-0335-4432-9533-c91a2ca87504",
+                                      "name": "Resource not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "apis",
+                                            "route.openshift.io",
+                                            "v1",
+                                            "namespaces",
+                                            ":namespace",
+                                            "routes",
+                                            ":name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "namespace"
+                                            },
+                                            {
+                                              "key": "name"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T02:43:33.000Z",
+                                      "updatedAt": "2026-07-28T02:43:33.000Z",
+                                      "uid": "35240-98922828-0335-4432-9533-c91a2ca87504"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:43:33.000Z",
+                                  "updatedAt": "2026-07-28T02:43:33.000Z",
+                                  "uid": "35240-71764a03-22a3-4150-b155-26110ad08610"
+                                },
+                                {
+                                  "name": "Update Route",
+                                  "id": "3e8d3866-ea5c-4c5b-8a61-47f2556fd39c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"apiVersion\": \"route.openshift.io/v1\",\n  \"kind\": \"Route\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"incididuntf4\": \"<string>\",\n      \"dolord38\": \"<string>\"\n    },\n    \"annotations\": {\n      \"aliquip_be7\": \"<string>\",\n      \"consectetur382\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"host\": \"<string>\",\n    \"path\": \"<string>\",\n    \"to\": {\n      \"kind\": \"Service\",\n      \"name\": \"<string>\",\n      \"weight\": \"<integer>\"\n    },\n    \"port\": {\n      \"targetPort\": \"<string>\"\n    },\n    \"tls\": {\n      \"termination\": \"passthrough\"\n    }\n  },\n  \"status\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "route.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "routes",
+                                        ":name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "0d33c4fa-e55e-484a-8cf7-0bf87694993b",
+                                          "key": "namespace",
+                                          "value": "<string>",
+                                          "description": "(Required) Kubernetes namespace"
+                                        },
+                                        {
+                                          "id": "b20c3bfd-c76f-4694-9e73-9b68be55c32b",
+                                          "key": "name",
+                                          "value": "<string>",
+                                          "description": "(Required) Resource name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Replaces an existing Route configuration."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "9cc13475-8a55-4df9-8b36-2eedf5f24494",
+                                      "name": "Route updated",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"apiVersion\": \"route.openshift.io/v1\",\n  \"kind\": \"Route\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"incididuntf4\": \"<string>\",\n      \"dolord38\": \"<string>\"\n    },\n    \"annotations\": {\n      \"aliquip_be7\": \"<string>\",\n      \"consectetur382\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"host\": \"<string>\",\n    \"path\": \"<string>\",\n    \"to\": {\n      \"kind\": \"Service\",\n      \"name\": \"<string>\",\n      \"weight\": \"<integer>\"\n    },\n    \"port\": {\n      \"targetPort\": \"<string>\"\n    },\n    \"tls\": {\n      \"termination\": \"passthrough\"\n    }\n  },\n  \"status\": {}\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "apis",
+                                            "route.openshift.io",
+                                            "v1",
+                                            "namespaces",
+                                            ":namespace",
+                                            "routes",
+                                            ":name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "namespace"
+                                            },
+                                            {
+                                              "key": "name"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"apiVersion\": \"route.openshift.io/v1\",\n  \"kind\": \"Route\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"incididuntf4\": \"<string>\",\n      \"dolord38\": \"<string>\"\n    },\n    \"annotations\": {\n      \"aliquip_be7\": \"<string>\",\n      \"consectetur382\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"host\": \"<string>\",\n    \"path\": \"<string>\",\n    \"to\": {\n      \"kind\": \"Service\",\n      \"name\": \"<string>\",\n      \"weight\": \"<integer>\"\n    },\n    \"port\": {\n      \"targetPort\": \"<string>\"\n    },\n    \"tls\": {\n      \"termination\": \"passthrough\"\n    }\n  },\n  \"status\": {}\n}",
+                                      "createdAt": "2026-07-28T02:43:33.000Z",
+                                      "updatedAt": "2026-07-28T02:43:33.000Z",
+                                      "uid": "35240-9cc13475-8a55-4df9-8b36-2eedf5f24494"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:43:33.000Z",
+                                  "updatedAt": "2026-07-28T02:43:33.000Z",
+                                  "uid": "35240-3e8d3866-ea5c-4c5b-8a61-47f2556fd39c"
+                                },
+                                {
+                                  "name": "Delete Route",
+                                  "id": "e5ae9586-11bf-4ff4-97a3-d8de631cacd8",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "route.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "routes",
+                                        ":name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "81b46b7d-8edc-47ea-826e-a19c475394dc",
+                                          "key": "namespace",
+                                          "value": "<string>",
+                                          "description": "(Required) Kubernetes namespace"
+                                        },
+                                        {
+                                          "id": "897d141e-9403-446d-b9cd-e238a5b22f27",
+                                          "key": "name",
+                                          "value": "<string>",
+                                          "description": "(Required) Resource name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Deletes a specific Route."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a201117f-f258-4174-a85b-b36ce261c405",
+                                      "name": "Route deleted",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "apis",
+                                            "route.openshift.io",
+                                            "v1",
+                                            "namespaces",
+                                            ":namespace",
+                                            "routes",
+                                            ":name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "namespace"
+                                            },
+                                            {
+                                              "key": "name"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T02:43:33.000Z",
+                                      "updatedAt": "2026-07-28T02:43:33.000Z",
+                                      "uid": "35240-a201117f-f258-4174-a85b-b36ce261c405"
+                                    },
+                                    {
+                                      "id": "73a05d1a-af76-4943-b466-8bb1e23dd326",
+                                      "name": "Resource not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes/:name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "apis",
+                                            "route.openshift.io",
+                                            "v1",
+                                            "namespaces",
+                                            ":namespace",
+                                            "routes",
+                                            ":name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "namespace"
+                                            },
+                                            {
+                                              "key": "name"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T02:43:33.000Z",
+                                      "updatedAt": "2026-07-28T02:43:33.000Z",
+                                      "uid": "35240-73a05d1a-af76-4943-b466-8bb1e23dd326"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:43:33.000Z",
+                                  "updatedAt": "2026-07-28T02:43:33.000Z",
+                                  "uid": "35240-e5ae9586-11bf-4ff4-97a3-d8de631cacd8"
+                                }
+                              ],
+                              "id": "a015f877-c659-4172-9846-520646d64159",
+                              "createdAt": "2026-07-28T02:43:32.000Z",
+                              "updatedAt": "2026-07-28T02:43:32.000Z",
+                              "uid": "35240-a015f877-c659-4172-9846-520646d64159"
+                            },
+                            {
+                              "name": "List Routes",
+                              "id": "b96c5b6f-94bb-4f39-8639-9ed0bf07ac30",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes?limit=<integer>&labelSelector=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "route.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "routes"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Maximum number of resources to return",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Label selector to filter resources (e.g., app=myapp)",
+                                      "key": "labelSelector",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "599182e2-a9e5-4cab-89da-e7e862d33d46",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of Routes in the specified namespace. Routes expose services to external traffic via HTTP/HTTPS hostnames with optional TLS termination."
+                              },
+                              "response": [
+                                {
+                                  "id": "51e3dfd2-d2d4-4f67-adce-17e69fa016f5",
+                                  "name": "List of routes returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes?limit=<integer>&labelSelector=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "route.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "routes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Maximum number of resources to return",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Label selector to filter resources (e.g., app=myapp)",
+                                          "key": "labelSelector",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"route.openshift.io/v1\",\n      \"kind\": \"Route\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"dolorf\": \"<string>\"\n        },\n        \"annotations\": {\n          \"officiad\": \"<string>\",\n          \"reprehenderit__3\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"host\": \"<string>\",\n        \"path\": \"<string>\",\n        \"to\": {\n          \"kind\": \"Service\",\n          \"name\": \"<string>\",\n          \"weight\": \"<integer>\"\n        },\n        \"port\": {\n          \"targetPort\": \"<string>\"\n        },\n        \"tls\": {\n          \"termination\": \"edge\"\n        }\n      },\n      \"status\": {}\n    },\n    {\n      \"apiVersion\": \"route.openshift.io/v1\",\n      \"kind\": \"Route\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"euec9\": \"<string>\",\n          \"in4\": \"<string>\",\n          \"ullamcoc\": \"<string>\",\n          \"adipisicing_14\": \"<string>\"\n        },\n        \"annotations\": {\n          \"irure_e\": \"<string>\",\n          \"Duis160\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"host\": \"<string>\",\n        \"path\": \"<string>\",\n        \"to\": {\n          \"kind\": \"Service\",\n          \"name\": \"<string>\",\n          \"weight\": \"<integer>\"\n        },\n        \"port\": {\n          \"targetPort\": \"<string>\"\n        },\n        \"tls\": {\n          \"termination\": \"reencrypt\"\n        }\n      },\n      \"status\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:43:33.000Z",
+                                  "updatedAt": "2026-07-28T02:43:33.000Z",
+                                  "uid": "35240-51e3dfd2-d2d4-4f67-adce-17e69fa016f5"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:33.000Z",
+                              "updatedAt": "2026-07-28T02:43:33.000Z",
+                              "uid": "35240-b96c5b6f-94bb-4f39-8639-9ed0bf07ac30"
+                            },
+                            {
+                              "name": "Create Route",
+                              "id": "d2086ce4-5a12-49d4-9e66-d40491f0e94e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiVersion\": \"route.openshift.io/v1\",\n  \"kind\": \"Route\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"incididuntf4\": \"<string>\",\n      \"dolord38\": \"<string>\"\n    },\n    \"annotations\": {\n      \"aliquip_be7\": \"<string>\",\n      \"consectetur382\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"host\": \"<string>\",\n    \"path\": \"<string>\",\n    \"to\": {\n      \"kind\": \"Service\",\n      \"name\": \"<string>\",\n      \"weight\": \"<integer>\"\n    },\n    \"port\": {\n      \"targetPort\": \"<string>\"\n    },\n    \"tls\": {\n      \"termination\": \"passthrough\"\n    }\n  },\n  \"status\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "route.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "routes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ece301c8-2d35-4d66-ad36-ac3801634072",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new Route to expose a service with an HTTP or HTTPS hostname."
+                              },
+                              "response": [
+                                {
+                                  "id": "b6241671-1125-4e68-acf8-a268a81c07fe",
+                                  "name": "Route created successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"apiVersion\": \"route.openshift.io/v1\",\n  \"kind\": \"Route\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"incididuntf4\": \"<string>\",\n      \"dolord38\": \"<string>\"\n    },\n    \"annotations\": {\n      \"aliquip_be7\": \"<string>\",\n      \"consectetur382\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"host\": \"<string>\",\n    \"path\": \"<string>\",\n    \"to\": {\n      \"kind\": \"Service\",\n      \"name\": \"<string>\",\n      \"weight\": \"<integer>\"\n    },\n    \"port\": {\n      \"targetPort\": \"<string>\"\n    },\n    \"tls\": {\n      \"termination\": \"passthrough\"\n    }\n  },\n  \"status\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/route.openshift.io/v1/namespaces/:namespace/routes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "route.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "routes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"apiVersion\": \"route.openshift.io/v1\",\n  \"kind\": \"Route\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"incididuntf4\": \"<string>\",\n      \"dolord38\": \"<string>\"\n    },\n    \"annotations\": {\n      \"aliquip_be7\": \"<string>\",\n      \"consectetur382\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"host\": \"<string>\",\n    \"path\": \"<string>\",\n    \"to\": {\n      \"kind\": \"Service\",\n      \"name\": \"<string>\",\n      \"weight\": \"<integer>\"\n    },\n    \"port\": {\n      \"targetPort\": \"<string>\"\n    },\n    \"tls\": {\n      \"termination\": \"passthrough\"\n    }\n  },\n  \"status\": {}\n}",
+                                  "createdAt": "2026-07-28T02:43:33.000Z",
+                                  "updatedAt": "2026-07-28T02:43:33.000Z",
+                                  "uid": "35240-b6241671-1125-4e68-acf8-a268a81c07fe"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:33.000Z",
+                              "updatedAt": "2026-07-28T02:43:33.000Z",
+                              "uid": "35240-d2086ce4-5a12-49d4-9e66-d40491f0e94e"
+                            }
+                          ],
+                          "id": "ea48c292-d882-4672-b8b0-d3fe565cbbd4",
+                          "createdAt": "2026-07-28T02:43:32.000Z",
+                          "updatedAt": "2026-07-28T02:43:32.000Z",
+                          "uid": "35240-ea48c292-d882-4672-b8b0-d3fe565cbbd4"
+                        }
+                      ],
+                      "id": "9167ace7-c635-43f3-b70b-76881b6da1b5",
+                      "createdAt": "2026-07-28T02:43:32.000Z",
+                      "updatedAt": "2026-07-28T02:43:32.000Z",
+                      "uid": "35240-9167ace7-c635-43f3-b70b-76881b6da1b5"
+                    }
+                  ],
+                  "id": "7ed0710e-aa52-44a6-a1a4-2c92cd2a2c02",
+                  "createdAt": "2026-07-28T02:43:32.000Z",
+                  "updatedAt": "2026-07-28T02:43:32.000Z",
+                  "uid": "35240-7ed0710e-aa52-44a6-a1a4-2c92cd2a2c02"
+                }
+              ],
+              "id": "b5c195b7-d606-4fe2-9d57-35c67d378305",
+              "createdAt": "2026-07-28T02:43:32.000Z",
+              "updatedAt": "2026-07-28T02:43:32.000Z",
+              "uid": "35240-b5c195b7-d606-4fe2-9d57-35c67d378305"
+            }
+          ],
+          "id": "a21cd4a4-ef8b-4164-af58-92689d1552e4",
+          "createdAt": "2026-07-28T02:43:32.000Z",
+          "updatedAt": "2026-07-28T02:43:32.000Z",
+          "uid": "35240-a21cd4a4-ef8b-4164-af58-92689d1552e4"
+        }
+      ],
+      "id": "26023bbc-d56d-4c22-b8e2-714e085ef101",
+      "createdAt": "2026-07-28T02:43:32.000Z",
+      "updatedAt": "2026-07-28T02:43:32.000Z",
+      "uid": "35240-26023bbc-d56d-4c22-b8e2-714e085ef101"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "info": {
+    "_postman_id": "ce83ce11-44a6-4ac9-ba24-4973a1e84d74",
+    "name": "Red Hat OpenShift Container Platform Add-ons Identity Providers API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:21.000Z",
+    "updatedAt": "2026-07-28T02:43:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ce83ce11-44a6-4ac9-ba24-4973a1e84d74"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "clusters_mgmt",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "clusters",
+                  "item": [
+                    {
+                      "name": "{cluster_id}",
+                      "item": [
+                        {
+                          "name": "identity_providers",
+                          "item": [
+                            {
+                              "name": "List Identity Providers",
+                              "id": "c755c3da-7013-401a-898b-715c2b74fea7",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "identity_providers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b8fa3aab-f6f6-40c0-94e0-7b04a5e9b577",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The cluster identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the identity providers configured for cluster authentication."
+                              },
+                              "response": [
+                                {
+                                  "id": "7867667c-fc7c-4368-a97c-418c07cfb36d",
+                                  "name": "List of identity providers returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"OpenIDIdentityProvider\"\n    },\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"GoogleIdentityProvider\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:43:21.000Z",
+                                  "updatedAt": "2026-07-28T02:43:21.000Z",
+                                  "uid": "35240-7867667c-fc7c-4368-a97c-418c07cfb36d"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:21.000Z",
+                              "updatedAt": "2026-07-28T02:43:21.000Z",
+                              "uid": "35240-c755c3da-7013-401a-898b-715c2b74fea7"
+                            },
+                            {
+                              "name": "Create Identity Provider",
+                              "id": "90a8c4aa-80a0-4fed-9856-302cc4133060",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"HTPasswdIdentityProvider\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "identity_providers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ab79d749-bbdc-4e44-94ac-742182f707d7",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The cluster identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Adds an identity provider to the cluster for user authentication."
+                              },
+                              "response": [
+                                {
+                                  "id": "96a8c6ab-af3b-4a48-96c1-821392f8a30c",
+                                  "name": "Identity provider created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"HTPasswdIdentityProvider\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"HTPasswdIdentityProvider\"\n}",
+                                  "createdAt": "2026-07-28T02:43:21.000Z",
+                                  "updatedAt": "2026-07-28T02:43:21.000Z",
+                                  "uid": "35240-96a8c6ab-af3b-4a48-96c1-821392f8a30c"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:21.000Z",
+                              "updatedAt": "2026-07-28T02:43:21.000Z",
+                              "uid": "35240-90a8c4aa-80a0-4fed-9856-302cc4133060"
+                            }
+                          ],
+                          "id": "07898239-a6d7-4b99-9afe-db1acac44525",
+                          "createdAt": "2026-07-28T02:43:21.000Z",
+                          "updatedAt": "2026-07-28T02:43:21.000Z",
+                          "uid": "35240-07898239-a6d7-4b99-9afe-db1acac44525"
+                        }
+                      ],
+                      "id": "7734d6f3-0d29-42fd-9390-66d99bd34ea6",
+                      "createdAt": "2026-07-28T02:43:21.000Z",
+                      "updatedAt": "2026-07-28T02:43:21.000Z",
+                      "uid": "35240-7734d6f3-0d29-42fd-9390-66d99bd34ea6"
+                    }
+                  ],
+                  "id": "ed8a1276-b4e2-4a14-9962-1e064118e0f9",
+                  "createdAt": "2026-07-28T02:43:21.000Z",
+                  "updatedAt": "2026-07-28T02:43:21.000Z",
+                  "uid": "35240-ed8a1276-b4e2-4a14-9962-1e064118e0f9"
+                }
+              ],
+              "id": "839d56ee-c6e5-4f41-b137-bee04edac10a",
+              "createdAt": "2026-07-28T02:43:21.000Z",
+              "updatedAt": "2026-07-28T02:43:21.000Z",
+              "uid": "35240-839d56ee-c6e5-4f41-b137-bee04edac10a"
+            }
+          ],
+          "id": "3356ecc7-9c20-478d-8bda-998be154a847",
+          "createdAt": "2026-07-28T02:43:21.000Z",
+          "updatedAt": "2026-07-28T02:43:21.000Z",
+          "uid": "35240-3356ecc7-9c20-478d-8bda-998be154a847"
+        }
+      ],
+      "id": "569a58ef-d043-433a-b7f2-05ada11d612a",
+      "createdAt": "2026-07-28T02:43:21.000Z",
+      "updatedAt": "2026-07-28T02:43:21.000Z",
+      "uid": "35240-569a58ef-d043-433a-b7f2-05ada11d612a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

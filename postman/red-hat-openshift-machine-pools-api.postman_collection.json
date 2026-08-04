@@ -1,0 +1,308 @@
+{
+  "info": {
+    "_postman_id": "d25c5fa8-af01-4e7c-8dbd-81285181872b",
+    "name": "Red Hat OpenShift Container Platform Add-ons Machine Pools API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:30.000Z",
+    "updatedAt": "2026-07-28T02:43:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d25c5fa8-af01-4e7c-8dbd-81285181872b"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "clusters_mgmt",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "clusters",
+                  "item": [
+                    {
+                      "name": "{cluster_id}",
+                      "item": [
+                        {
+                          "name": "machine_pools",
+                          "item": [
+                            {
+                              "name": "List Machine Pools",
+                              "id": "c9677b5b-66e6-4929-99cb-3aa12d14045a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "machine_pools"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "741bf465-9e8c-40af-96b4-dc0ee91f638d",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The cluster identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the machine pools (node groups) configured for the cluster."
+                              },
+                              "response": [
+                                {
+                                  "id": "bad79e85-6ad0-46bc-ba27-e109e15566c2",
+                                  "name": "List of machine pools returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"replicas\": \"<integer>\",\n      \"instance_type\": \"<string>\",\n      \"labels\": {\n        \"et_6b9\": \"<string>\"\n      },\n      \"autoscaling\": {\n        \"min_replicas\": \"<integer>\",\n        \"max_replicas\": \"<integer>\"\n      }\n    },\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"replicas\": \"<integer>\",\n      \"instance_type\": \"<string>\",\n      \"labels\": {\n        \"mollit_ec\": \"<string>\"\n      },\n      \"autoscaling\": {\n        \"min_replicas\": \"<integer>\",\n        \"max_replicas\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:43:30.000Z",
+                                  "updatedAt": "2026-07-28T02:43:30.000Z",
+                                  "uid": "35240-bad79e85-6ad0-46bc-ba27-e109e15566c2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:30.000Z",
+                              "updatedAt": "2026-07-28T02:43:30.000Z",
+                              "uid": "35240-c9677b5b-66e6-4929-99cb-3aa12d14045a"
+                            },
+                            {
+                              "name": "Create Machine Pool",
+                              "id": "1207c207-750f-476d-96dd-72cac42a06f4",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"instance_type\": \"<string>\",\n  \"labels\": {\n    \"dolora6\": \"<string>\"\n  },\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "machine_pools"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "999bf7c3-9310-4a92-baed-6e928e25f470",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The cluster identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new machine pool for the cluster."
+                              },
+                              "response": [
+                                {
+                                  "id": "589848bf-efbb-4b88-9937-c679c05e5f7a",
+                                  "name": "Machine pool created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"instance_type\": \"<string>\",\n  \"labels\": {\n    \"dolora6\": \"<string>\"\n  },\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"instance_type\": \"<string>\",\n  \"labels\": {\n    \"dolora6\": \"<string>\"\n  },\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:43:30.000Z",
+                                  "updatedAt": "2026-07-28T02:43:30.000Z",
+                                  "uid": "35240-589848bf-efbb-4b88-9937-c679c05e5f7a"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:30.000Z",
+                              "updatedAt": "2026-07-28T02:43:30.000Z",
+                              "uid": "35240-1207c207-750f-476d-96dd-72cac42a06f4"
+                            }
+                          ],
+                          "id": "5204f7e1-bcce-4ab8-8210-d23c9145e19c",
+                          "createdAt": "2026-07-28T02:43:30.000Z",
+                          "updatedAt": "2026-07-28T02:43:30.000Z",
+                          "uid": "35240-5204f7e1-bcce-4ab8-8210-d23c9145e19c"
+                        }
+                      ],
+                      "id": "d291dd15-19eb-494f-b061-4c5e8d771830",
+                      "createdAt": "2026-07-28T02:43:30.000Z",
+                      "updatedAt": "2026-07-28T02:43:30.000Z",
+                      "uid": "35240-d291dd15-19eb-494f-b061-4c5e8d771830"
+                    }
+                  ],
+                  "id": "a6b19697-154e-4b4e-ac00-7ef67d3f46c7",
+                  "createdAt": "2026-07-28T02:43:30.000Z",
+                  "updatedAt": "2026-07-28T02:43:30.000Z",
+                  "uid": "35240-a6b19697-154e-4b4e-ac00-7ef67d3f46c7"
+                }
+              ],
+              "id": "14cb33a7-ee3a-41de-9da1-6353005c5126",
+              "createdAt": "2026-07-28T02:43:30.000Z",
+              "updatedAt": "2026-07-28T02:43:30.000Z",
+              "uid": "35240-14cb33a7-ee3a-41de-9da1-6353005c5126"
+            }
+          ],
+          "id": "216afc8a-4b67-475c-ad92-7de3254fca5b",
+          "createdAt": "2026-07-28T02:43:30.000Z",
+          "updatedAt": "2026-07-28T02:43:30.000Z",
+          "uid": "35240-216afc8a-4b67-475c-ad92-7de3254fca5b"
+        }
+      ],
+      "id": "4cedc2bd-0955-4f75-b553-488fed52b657",
+      "createdAt": "2026-07-28T02:43:30.000Z",
+      "updatedAt": "2026-07-28T02:43:30.000Z",
+      "uid": "35240-4cedc2bd-0955-4f75-b553-488fed52b657"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

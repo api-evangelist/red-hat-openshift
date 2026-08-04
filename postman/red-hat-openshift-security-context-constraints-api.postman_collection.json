@@ -1,0 +1,163 @@
+{
+  "info": {
+    "_postman_id": "5154a5db-7e5c-4e02-91a6-20018746322f",
+    "name": "Red Hat OpenShift Container Platform Add-ons Security Context Constraints API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:35.000Z",
+    "updatedAt": "2026-07-28T02:43:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5154a5db-7e5c-4e02-91a6-20018746322f"
+  },
+  "item": [
+    {
+      "name": "apis",
+      "item": [
+        {
+          "name": "security.openshift.io",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "securitycontextconstraints",
+                  "item": [
+                    {
+                      "name": "List Security Context Constraints",
+                      "id": "bab5c7c8-524d-480c-964e-2aa09bb9d859",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/security.openshift.io/v1/securitycontextconstraints?labelSelector=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            "security.openshift.io",
+                            "v1",
+                            "securitycontextconstraints"
+                          ],
+                          "query": [
+                            {
+                              "description": "Label selector to filter resources (e.g., app=myapp)",
+                              "key": "labelSelector",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of SecurityContextConstraints (SCCs) which control the security context under which pods run on the cluster."
+                      },
+                      "response": [
+                        {
+                          "id": "4314bad3-5b00-4099-96a0-af9f8d0ce495",
+                          "name": "List of SCCs returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/security.openshift.io/v1/securitycontextconstraints?labelSelector=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                "security.openshift.io",
+                                "v1",
+                                "securitycontextconstraints"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Label selector to filter resources (e.g., app=myapp)",
+                                  "key": "labelSelector",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"security.openshift.io/v1\",\n      \"kind\": \"SecurityContextConstraints\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"Ut_f0d\": \"<string>\"\n        },\n        \"annotations\": {\n          \"id20_\": \"<string>\",\n          \"et_fe1\": \"<string>\"\n        }\n      },\n      \"allowPrivilegedContainer\": \"<boolean>\",\n      \"allowedCapabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"runAsUser\": {},\n      \"seLinuxContext\": {}\n    },\n    {\n      \"apiVersion\": \"security.openshift.io/v1\",\n      \"kind\": \"SecurityContextConstraints\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"veniamd\": \"<string>\"\n        },\n        \"annotations\": {\n          \"velit_9b8\": \"<string>\"\n        }\n      },\n      \"allowPrivilegedContainer\": \"<boolean>\",\n      \"allowedCapabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"runAsUser\": {},\n      \"seLinuxContext\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:43:35.000Z",
+                          "updatedAt": "2026-07-28T02:43:35.000Z",
+                          "uid": "35240-4314bad3-5b00-4099-96a0-af9f8d0ce495"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:43:35.000Z",
+                      "updatedAt": "2026-07-28T02:43:35.000Z",
+                      "uid": "35240-bab5c7c8-524d-480c-964e-2aa09bb9d859"
+                    }
+                  ],
+                  "id": "8e54dac6-48da-43df-8c36-a9c205846fe1",
+                  "createdAt": "2026-07-28T02:43:35.000Z",
+                  "updatedAt": "2026-07-28T02:43:35.000Z",
+                  "uid": "35240-8e54dac6-48da-43df-8c36-a9c205846fe1"
+                }
+              ],
+              "id": "758773c7-02e3-42f5-a504-67ca8057fd83",
+              "createdAt": "2026-07-28T02:43:35.000Z",
+              "updatedAt": "2026-07-28T02:43:35.000Z",
+              "uid": "35240-758773c7-02e3-42f5-a504-67ca8057fd83"
+            }
+          ],
+          "id": "24b67ef0-0a5a-446d-a804-cdea912cc1ab",
+          "createdAt": "2026-07-28T02:43:35.000Z",
+          "updatedAt": "2026-07-28T02:43:35.000Z",
+          "uid": "35240-24b67ef0-0a5a-446d-a804-cdea912cc1ab"
+        }
+      ],
+      "id": "47aa60db-9fac-432b-8b63-e094d98c1e32",
+      "createdAt": "2026-07-28T02:43:35.000Z",
+      "updatedAt": "2026-07-28T02:43:35.000Z",
+      "uid": "35240-47aa60db-9fac-432b-8b63-e094d98c1e32"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

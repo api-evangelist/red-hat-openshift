@@ -1,0 +1,34 @@
+{
+  "provider": "red-hat-openshift",
+  "sources": [
+    "red-hat-openshift-add-ons-api-openapi.yml",
+    "red-hat-openshift-builds-api-openapi.yml",
+    "red-hat-openshift-clusters-api-openapi.yml",
+    "red-hat-openshift-deployment-configs-api-openapi.yml",
+    "red-hat-openshift-identity-providers-api-openapi.yml",
+    "red-hat-openshift-image-streams-api-openapi.yml",
+    "red-hat-openshift-machine-pools-api-openapi.yml",
+    "red-hat-openshift-projects-api-openapi.yml",
+    "red-hat-openshift-routes-api-openapi.yml",
+    "red-hat-openshift-security-context-constraints-api-openapi.yml",
+    "red-hat-openshift-versions-api-openapi.yml"
+  ],
+  "outputs": [
+    "red-hat-openshift-add-ons-api-openapi.yml",
+    "red-hat-openshift-builds-api-openapi.yml",
+    "red-hat-openshift-clusters-api-openapi.yml",
+    "red-hat-openshift-deployment-configs-api-openapi.yml",
+    "red-hat-openshift-identity-providers-api-openapi.yml",
+    "red-hat-openshift-image-streams-api-openapi.yml",
+    "red-hat-openshift-machine-pools-api-openapi.yml",
+    "red-hat-openshift-projects-api-openapi.yml",
+    "red-hat-openshift-routes-api-openapi.yml",
+    "red-hat-openshift-security-context-constraints-api-openapi.yml",
+    "red-hat-openshift-versions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

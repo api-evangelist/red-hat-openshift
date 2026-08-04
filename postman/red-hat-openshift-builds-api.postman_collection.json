@@ -1,0 +1,441 @@
+{
+  "info": {
+    "_postman_id": "a5bab5e8-3781-4167-8290-637c98690ebe",
+    "name": "Red Hat OpenShift Container Platform Add-ons Builds API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:42:56.000Z",
+    "updatedAt": "2026-07-28T02:42:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a5bab5e8-3781-4167-8290-637c98690ebe"
+  },
+  "item": [
+    {
+      "name": "apis",
+      "item": [
+        {
+          "name": "build.openshift.io",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "namespaces",
+                  "item": [
+                    {
+                      "name": "{namespace}",
+                      "item": [
+                        {
+                          "name": "buildconfigs",
+                          "item": [
+                            {
+                              "name": "List Build Configs",
+                              "id": "bf92c336-aec6-45ac-94bc-479036a53b87",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/build.openshift.io/v1/namespaces/:namespace/buildconfigs?labelSelector=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "build.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "buildconfigs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Label selector to filter resources (e.g., app=myapp)",
+                                      "key": "labelSelector",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "45d1dfab-3b3b-4ed3-a941-30019d95a318",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of BuildConfigs in the specified namespace. BuildConfigs define the source-to-image or Dockerfile build process for generating container images."
+                              },
+                              "response": [
+                                {
+                                  "id": "7806625d-aa60-4a19-94b5-8b2c65a6c171",
+                                  "name": "List of build configs returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/build.openshift.io/v1/namespaces/:namespace/buildconfigs?labelSelector=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "build.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "buildconfigs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Label selector to filter resources (e.g., app=myapp)",
+                                          "key": "labelSelector",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"build.openshift.io/v1\",\n      \"kind\": \"BuildConfig\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"dolorb\": \"<string>\",\n          \"nostrud_7e\": \"<string>\"\n        },\n        \"annotations\": {\n          \"id38\": \"<string>\",\n          \"adipisicing_a1\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"source\": {},\n        \"strategy\": {},\n        \"output\": {}\n      }\n    },\n    {\n      \"apiVersion\": \"build.openshift.io/v1\",\n      \"kind\": \"BuildConfig\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"elit_a5e\": \"<string>\"\n        },\n        \"annotations\": {\n          \"Lorem_c\": \"<string>\",\n          \"fugiat_2_\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"source\": {},\n        \"strategy\": {},\n        \"output\": {}\n      }\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:42:56.000Z",
+                                  "updatedAt": "2026-07-28T02:42:56.000Z",
+                                  "uid": "35240-7806625d-aa60-4a19-94b5-8b2c65a6c171"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:42:56.000Z",
+                              "updatedAt": "2026-07-28T02:42:56.000Z",
+                              "uid": "35240-bf92c336-aec6-45ac-94bc-479036a53b87"
+                            },
+                            {
+                              "name": "Create Build Config",
+                              "id": "e770025c-3821-43e4-9135-e1de6eef9ac1",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"apiVersion\": \"build.openshift.io/v1\",\n  \"kind\": \"BuildConfig\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"ut277\": \"<string>\",\n      \"dolore_50f\": \"<string>\"\n    },\n    \"annotations\": {\n      \"ut_9\": \"<string>\",\n      \"exdb8\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"source\": {},\n    \"strategy\": {},\n    \"output\": {}\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/build.openshift.io/v1/namespaces/:namespace/buildconfigs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "build.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "buildconfigs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4d4c6166-74b6-4121-92ce-2f56aa12e8fe",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new BuildConfig defining the build process."
+                              },
+                              "response": [
+                                {
+                                  "id": "a57721a9-1ce6-4a22-916d-084246498d56",
+                                  "name": "BuildConfig created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"apiVersion\": \"build.openshift.io/v1\",\n  \"kind\": \"BuildConfig\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"ut277\": \"<string>\",\n      \"dolore_50f\": \"<string>\"\n    },\n    \"annotations\": {\n      \"ut_9\": \"<string>\",\n      \"exdb8\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"source\": {},\n    \"strategy\": {},\n    \"output\": {}\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/build.openshift.io/v1/namespaces/:namespace/buildconfigs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "build.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "buildconfigs"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"apiVersion\": \"build.openshift.io/v1\",\n  \"kind\": \"BuildConfig\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"uid\": \"<string>\",\n    \"resourceVersion\": \"<string>\",\n    \"creationTimestamp\": \"<dateTime>\",\n    \"labels\": {\n      \"ut277\": \"<string>\",\n      \"dolore_50f\": \"<string>\"\n    },\n    \"annotations\": {\n      \"ut_9\": \"<string>\",\n      \"exdb8\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"source\": {},\n    \"strategy\": {},\n    \"output\": {}\n  }\n}",
+                                  "createdAt": "2026-07-28T02:42:56.000Z",
+                                  "updatedAt": "2026-07-28T02:42:56.000Z",
+                                  "uid": "35240-a57721a9-1ce6-4a22-916d-084246498d56"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:42:56.000Z",
+                              "updatedAt": "2026-07-28T02:42:56.000Z",
+                              "uid": "35240-e770025c-3821-43e4-9135-e1de6eef9ac1"
+                            }
+                          ],
+                          "id": "10f9f913-abdc-41e3-bc34-7a31d40a271f",
+                          "createdAt": "2026-07-28T02:42:56.000Z",
+                          "updatedAt": "2026-07-28T02:42:56.000Z",
+                          "uid": "35240-10f9f913-abdc-41e3-bc34-7a31d40a271f"
+                        },
+                        {
+                          "name": "builds",
+                          "item": [
+                            {
+                              "name": "List Builds",
+                              "id": "0097c73f-adf1-4cd1-ab12-42a66b1132bd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apis/build.openshift.io/v1/namespaces/:namespace/builds?labelSelector=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apis",
+                                    "build.openshift.io",
+                                    "v1",
+                                    "namespaces",
+                                    ":namespace",
+                                    "builds"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Label selector to filter resources (e.g., app=myapp)",
+                                      "key": "labelSelector",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "613151a2-4aa2-45c3-9752-9ea079e914d4",
+                                      "key": "namespace",
+                                      "value": "<string>",
+                                      "description": "(Required) Kubernetes namespace"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of Build instances in the specified namespace."
+                              },
+                              "response": [
+                                {
+                                  "id": "911d4aef-a04e-4785-9df7-51aa07e73570",
+                                  "name": "List of builds returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/apis/build.openshift.io/v1/namespaces/:namespace/builds?labelSelector=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "apis",
+                                        "build.openshift.io",
+                                        "v1",
+                                        "namespaces",
+                                        ":namespace",
+                                        "builds"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Label selector to filter resources (e.g., app=myapp)",
+                                          "key": "labelSelector",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"build.openshift.io/v1\",\n      \"kind\": \"Build\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"velit6e6\": \"<string>\",\n          \"sit_cdb\": \"<string>\"\n        },\n        \"annotations\": {\n          \"cillum16f\": \"<string>\"\n        }\n      },\n      \"status\": {\n        \"phase\": \"New\",\n        \"startTimestamp\": \"<dateTime>\",\n        \"completionTimestamp\": \"<dateTime>\"\n      }\n    },\n    {\n      \"apiVersion\": \"build.openshift.io/v1\",\n      \"kind\": \"Build\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"uid\": \"<string>\",\n        \"resourceVersion\": \"<string>\",\n        \"creationTimestamp\": \"<dateTime>\",\n        \"labels\": {\n          \"Excepteur_1\": \"<string>\"\n        },\n        \"annotations\": {\n          \"aliquip_8\": \"<string>\"\n        }\n      },\n      \"status\": {\n        \"phase\": \"Cancelled\",\n        \"startTimestamp\": \"<dateTime>\",\n        \"completionTimestamp\": \"<dateTime>\"\n      }\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:42:56.000Z",
+                                  "updatedAt": "2026-07-28T02:42:56.000Z",
+                                  "uid": "35240-911d4aef-a04e-4785-9df7-51aa07e73570"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:42:56.000Z",
+                              "updatedAt": "2026-07-28T02:42:56.000Z",
+                              "uid": "35240-0097c73f-adf1-4cd1-ab12-42a66b1132bd"
+                            }
+                          ],
+                          "id": "4513c3da-51fc-44b5-be28-1bdbfe0eb55a",
+                          "createdAt": "2026-07-28T02:42:56.000Z",
+                          "updatedAt": "2026-07-28T02:42:56.000Z",
+                          "uid": "35240-4513c3da-51fc-44b5-be28-1bdbfe0eb55a"
+                        }
+                      ],
+                      "id": "0a166982-ecb0-435d-b22b-e46dd73b3b2b",
+                      "createdAt": "2026-07-28T02:42:56.000Z",
+                      "updatedAt": "2026-07-28T02:42:56.000Z",
+                      "uid": "35240-0a166982-ecb0-435d-b22b-e46dd73b3b2b"
+                    }
+                  ],
+                  "id": "fa56b986-f5a5-46dd-a723-a9586017d5e8",
+                  "createdAt": "2026-07-28T02:42:56.000Z",
+                  "updatedAt": "2026-07-28T02:42:56.000Z",
+                  "uid": "35240-fa56b986-f5a5-46dd-a723-a9586017d5e8"
+                }
+              ],
+              "id": "b9a8d5d2-6e86-4477-8f13-19f124ddcda1",
+              "createdAt": "2026-07-28T02:42:56.000Z",
+              "updatedAt": "2026-07-28T02:42:56.000Z",
+              "uid": "35240-b9a8d5d2-6e86-4477-8f13-19f124ddcda1"
+            }
+          ],
+          "id": "34e61582-8d3f-459c-b388-9a558f1967ba",
+          "createdAt": "2026-07-28T02:42:56.000Z",
+          "updatedAt": "2026-07-28T02:42:56.000Z",
+          "uid": "35240-34e61582-8d3f-459c-b388-9a558f1967ba"
+        }
+      ],
+      "id": "b15fe99b-e984-4fbd-8a4d-c44ede063b51",
+      "createdAt": "2026-07-28T02:42:56.000Z",
+      "updatedAt": "2026-07-28T02:42:56.000Z",
+      "uid": "35240-b15fe99b-e984-4fbd-8a4d-c44ede063b51"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

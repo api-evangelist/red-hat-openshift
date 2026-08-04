@@ -1,0 +1,308 @@
+{
+  "info": {
+    "_postman_id": "8c04b81a-d52e-4e64-a957-185755653ebf",
+    "name": "Red Hat OpenShift Container Platform Add-ons API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:42:55.000Z",
+    "updatedAt": "2026-07-28T02:42:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8c04b81a-d52e-4e64-a957-185755653ebf"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "clusters_mgmt",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "clusters",
+                  "item": [
+                    {
+                      "name": "{cluster_id}",
+                      "item": [
+                        {
+                          "name": "addons",
+                          "item": [
+                            {
+                              "name": "List Cluster Add-ons",
+                              "id": "c7cca20c-6dda-4c02-a0d8-02230dfb07c1",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "addons"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "31db6dfc-6b94-4281-96d1-9f6e510a75e6",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The cluster identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a list of add-ons installed on the specified cluster."
+                              },
+                              "response": [
+                                {
+                                  "id": "8f12cc2a-fe39-45ec-b0c9-b5df80bcfd94",
+                                  "name": "List of installed add-ons returned",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "addons"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"addon\": {\n        \"id\": \"<string>\"\n      },\n      \"state\": \"installing\"\n    },\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"addon\": {\n        \"id\": \"<string>\"\n      },\n      \"state\": \"deleting\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:42:56.000Z",
+                                  "updatedAt": "2026-07-28T02:42:56.000Z",
+                                  "uid": "35240-8f12cc2a-fe39-45ec-b0c9-b5df80bcfd94"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:42:56.000Z",
+                              "updatedAt": "2026-07-28T02:42:56.000Z",
+                              "uid": "35240-c7cca20c-6dda-4c02-a0d8-02230dfb07c1"
+                            },
+                            {
+                              "name": "Install Cluster Add-on",
+                              "id": "02ee8c85-a193-45a7-84c1-46edb1fff620",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"addon\": {\n    \"id\": \"<string>\"\n  },\n  \"state\": \"ready\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "addons"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "acb122c4-d502-4f10-b879-57dbaae19599",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The cluster identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Installs a new add-on on the specified cluster."
+                              },
+                              "response": [
+                                {
+                                  "id": "12fa766f-ff0c-4f6e-bff4-73f42eafb01f",
+                                  "name": "Add-on installation initiated",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"addon\": {\n    \"id\": \"<string>\"\n  },\n  \"state\": \"ready\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "addons"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"addon\": {\n    \"id\": \"<string>\"\n  },\n  \"state\": \"ready\"\n}",
+                                  "createdAt": "2026-07-28T02:42:56.000Z",
+                                  "updatedAt": "2026-07-28T02:42:56.000Z",
+                                  "uid": "35240-12fa766f-ff0c-4f6e-bff4-73f42eafb01f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:42:56.000Z",
+                              "updatedAt": "2026-07-28T02:42:56.000Z",
+                              "uid": "35240-02ee8c85-a193-45a7-84c1-46edb1fff620"
+                            }
+                          ],
+                          "id": "84cc25d1-33ad-4efe-bf28-4e838bc63fc0",
+                          "createdAt": "2026-07-28T02:42:55.000Z",
+                          "updatedAt": "2026-07-28T02:42:55.000Z",
+                          "uid": "35240-84cc25d1-33ad-4efe-bf28-4e838bc63fc0"
+                        }
+                      ],
+                      "id": "ae3c8b80-d439-4fe0-b6ff-4432b92dbd55",
+                      "createdAt": "2026-07-28T02:42:55.000Z",
+                      "updatedAt": "2026-07-28T02:42:55.000Z",
+                      "uid": "35240-ae3c8b80-d439-4fe0-b6ff-4432b92dbd55"
+                    }
+                  ],
+                  "id": "4ea110ac-6178-44bf-9c8a-6050af37047b",
+                  "createdAt": "2026-07-28T02:42:55.000Z",
+                  "updatedAt": "2026-07-28T02:42:55.000Z",
+                  "uid": "35240-4ea110ac-6178-44bf-9c8a-6050af37047b"
+                }
+              ],
+              "id": "fd66e8e9-bf34-45e7-a6a4-7a388ac94d85",
+              "createdAt": "2026-07-28T02:42:55.000Z",
+              "updatedAt": "2026-07-28T02:42:55.000Z",
+              "uid": "35240-fd66e8e9-bf34-45e7-a6a4-7a388ac94d85"
+            }
+          ],
+          "id": "fed4e196-5f60-4537-b398-802bc12e4404",
+          "createdAt": "2026-07-28T02:42:55.000Z",
+          "updatedAt": "2026-07-28T02:42:55.000Z",
+          "uid": "35240-fed4e196-5f60-4537-b398-802bc12e4404"
+        }
+      ],
+      "id": "34e78d0d-78d4-42ef-a95a-dd13b2555a2a",
+      "createdAt": "2026-07-28T02:42:55.000Z",
+      "updatedAt": "2026-07-28T02:42:55.000Z",
+      "uid": "35240-34e78d0d-78d4-42ef-a95a-dd13b2555a2a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}

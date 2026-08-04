@@ -1,0 +1,163 @@
+{
+  "info": {
+    "_postman_id": "1334327c-47bd-4126-b31e-dad3cf6e52dc",
+    "name": "Red Hat OpenShift Container Platform Add-ons Versions API",
+    "description": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:36.000Z",
+    "updatedAt": "2026-07-28T02:43:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1334327c-47bd-4126-b31e-dad3cf6e52dc"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "clusters_mgmt",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "versions",
+                  "item": [
+                    {
+                      "name": "List OpenShift Versions",
+                      "id": "67109afa-c5f3-4ece-a666-50c488dda1df",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/versions?search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter versions by search expression",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns the list of available OpenShift versions for cluster creation."
+                      },
+                      "response": [
+                        {
+                          "id": "72f8e3e9-4273-4c8f-a02d-65481b08016f",
+                          "name": "List of available versions returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/versions?search=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "versions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter versions by search expression",
+                                  "key": "search",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"raw_id\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"default\": \"<boolean>\",\n      \"channel_groups\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"raw_id\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"default\": \"<boolean>\",\n      \"channel_groups\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:43:36.000Z",
+                          "updatedAt": "2026-07-28T02:43:36.000Z",
+                          "uid": "35240-72f8e3e9-4273-4c8f-a02d-65481b08016f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:43:36.000Z",
+                      "updatedAt": "2026-07-28T02:43:36.000Z",
+                      "uid": "35240-67109afa-c5f3-4ece-a666-50c488dda1df"
+                    }
+                  ],
+                  "id": "4864a6c4-7070-44e4-957a-35bd2316ffff",
+                  "createdAt": "2026-07-28T02:43:36.000Z",
+                  "updatedAt": "2026-07-28T02:43:36.000Z",
+                  "uid": "35240-4864a6c4-7070-44e4-957a-35bd2316ffff"
+                }
+              ],
+              "id": "18b22ac9-112a-4ba7-aa12-080679fcfd5f",
+              "createdAt": "2026-07-28T02:43:36.000Z",
+              "updatedAt": "2026-07-28T02:43:36.000Z",
+              "uid": "35240-18b22ac9-112a-4ba7-aa12-080679fcfd5f"
+            }
+          ],
+          "id": "2bf7beb8-8c60-402d-bfc0-627cf15ebd8d",
+          "createdAt": "2026-07-28T02:43:36.000Z",
+          "updatedAt": "2026-07-28T02:43:36.000Z",
+          "uid": "35240-2bf7beb8-8c60-402d-bfc0-627cf15ebd8d"
+        }
+      ],
+      "id": "9d5212dc-fd5d-49b2-9a4f-d35c2ae81200",
+      "createdAt": "2026-07-28T02:43:36.000Z",
+      "updatedAt": "2026-07-28T02:43:36.000Z",
+      "uid": "35240-9d5212dc-fd5d-49b2-9a4f-d35c2ae81200"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster",
+      "value": "cluster.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{cluster}}:6443"
+    }
+  ]
+}
