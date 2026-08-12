@@ -343,9 +343,9 @@ common:
   - type: Training
     url: https://www.redhat.com/en/services/training-and-certification
   - type: OpenAPI
-    url: openapi/red-hat-openshift-api-openapi.yml
+    url: openapi/_original/red-hat-openshift-api-openapi.yml
   - type: OpenAPI
-    url: openapi/red-hat-openshift-cluster-manager-openapi.yml
+    url: openapi/_original/red-hat-openshift-cluster-manager-openapi.yml
   - type: JSONLDContext
     url: json-ld/red-hat-openshift-context.jsonld
   - type: JSONSchema
