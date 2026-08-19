@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Container Platform Add-ons API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Add-ons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cluster Add-ons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Returns a list of add-ons installed on the specified cluster."
+        },
+        {
+          "info": {
+            "name": "Install Cluster Add-on",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters/:cluster_id/addons",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Installs a new add-on on the specified cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

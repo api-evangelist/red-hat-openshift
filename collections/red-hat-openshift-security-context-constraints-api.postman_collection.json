@@ -1,0 +1,160 @@
+{
+  "item": [
+    {
+      "id": "43e39f5c-9ea3-43bf-b805-6bb23a4a3d8f",
+      "name": "Security Context Constraints",
+      "description": {
+        "content": "SCC resources for controlling pod security permissions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9e77bb9-e71a-474f-94af-f52f742a9db9",
+          "name": "List Security Context Constraints",
+          "request": {
+            "name": "List Security Context Constraints",
+            "description": {
+              "content": "Returns a list of SecurityContextConstraints (SCCs) which control the security context under which pods run on the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "apis",
+                "security.openshift.io",
+                "v1",
+                "securitycontextconstraints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "labelSelector",
+                  "value": "<string>",
+                  "description": "Label selector to filter resources (e.g., app=myapp)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OpenShift cluster API hostname",
+                  "type": "any",
+                  "value": "{{cluster}}",
+                  "key": "cluster"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "432fa706-2773-4b10-b573-2eb926787792",
+              "name": "List of SCCs returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apis",
+                    "security.openshift.io",
+                    "v1",
+                    "securitycontextconstraints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "labelSelector",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OpenShift cluster API hostname",
+                      "type": "any",
+                      "value": "{{cluster}}",
+                      "key": "cluster"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"security.openshift.io/v1\",\n      \"kind\": \"SecurityContextConstraints\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"uid\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"creationTimestamp\": \"1962-10-27T05:46:48.404Z\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      },\n      \"allowPrivilegedContainer\": true,\n      \"allowedCapabilities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runAsUser\": {},\n      \"seLinuxContext\": {}\n    },\n    {\n      \"apiVersion\": \"security.openshift.io/v1\",\n      \"kind\": \"SecurityContextConstraints\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"uid\": \"string\",\n        \"resourceVersion\": \"string\",\n        \"creationTimestamp\": \"1975-05-07T02:27:56.109Z\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"allowPrivilegedContainer\": true,\n      \"allowedCapabilities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runAsUser\": {},\n      \"seLinuxContext\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OpenShift cluster API hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cluster.example.com",
+      "key": "cluster"
+    },
+    {
+      "type": "string",
+      "value": "https://api.{{cluster}}:6443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0318f606-00c8-4766-a928-b145269b8a00",
+    "name": "Red Hat OpenShift Container Platform Add-ons Security Context Constraints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.\n\nContact Support:\n Name: Red Hat OpenShift Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Container Platform Add-ons Image Streams API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Image Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of ImageStreams in the specified namespace. ImageStreams provide an abstraction for container image versioning and reference management."
+        },
+        {
+          "info": {
+            "name": "Create Image Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/apis/image.openshift.io/v1/namespaces/:namespace/imagestreams",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ImageStream for tracking container image versions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

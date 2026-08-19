@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Container Platform Add-ons Machine Pools API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Machine Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Machine Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Returns the machine pools (node groups) configured for the cluster."
+        },
+        {
+          "info": {
+            "name": "Create Machine Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new machine pool for the cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

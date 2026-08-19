@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Container Platform Add-ons Clusters API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (1-indexed)"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like search expression for filtering"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like ORDER BY clause"
+              }
+            ]
+          },
+          "docs": "Returns a list of OpenShift clusters registered with the Cluster Manager. Supports filtering by cloud provider, region, version, and state. Results are paginated."
+        },
+        {
+          "info": {
+            "name": "Create Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new OpenShift cluster on the specified cloud provider and region. Supports ROSA (AWS), ARO (Azure), and other OpenShift flavors."
+        },
+        {
+          "info": {
+            "name": "Get Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific OpenShift cluster."
+        },
+        {
+          "info": {
+            "name": "Update Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing cluster configuration (partial update)."
+        },
+        {
+          "info": {
+            "name": "Delete Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{cluster}:6443/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The cluster identifier"
+              }
+            ]
+          },
+          "docs": "Deletes an OpenShift cluster. This operation is irreversible."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

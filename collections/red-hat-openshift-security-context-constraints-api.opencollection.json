@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Container Platform Add-ons Security Context Constraints API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Context Constraints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Security Context Constraints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/security.openshift.io/v1/securitycontextconstraints",
+            "params": [
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of SecurityContextConstraints (SCCs) which control the security context under which pods run on the cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

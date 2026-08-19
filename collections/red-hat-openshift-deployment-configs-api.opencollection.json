@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Container Platform Add-ons Deployment Configs API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployment Configs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Deployment Configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{cluster}:6443/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              },
+              {
+                "name": "labelSelector",
+                "value": "",
+                "type": "query",
+                "description": "Label selector to filter resources (e.g., app=myapp)"
+              }
+            ]
+          },
+          "docs": "Returns a list of DeploymentConfigs in the namespace. DeploymentConfigs are OpenShift's extended deployment resource with triggers, hooks, and lifecycle management."
+        },
+        {
+          "info": {
+            "name": "Create Deployment Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{cluster}:6443/apis/apps.openshift.io/v1/namespaces/:namespace/deploymentconfigs",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Kubernetes namespace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new DeploymentConfig in the specified namespace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
