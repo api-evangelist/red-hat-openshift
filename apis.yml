@@ -33,7 +33,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/red-hat-openshift/refs/heads/main/apis.yml
 created: '2026-03-26'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: red-hat-openshift:openshift-pipelines-api
   name: Red Hat OpenShift Pipelines (Tekton) API
