@@ -28,6 +28,13 @@ tags:
   - Enterprise
   - Hybrid Cloud
   - Kubernetes
+  - Platform-as-a-Service
+  - Red Hat
+tags_raw:
+  - Containers
+  - Enterprise
+  - Hybrid Cloud
+  - Kubernetes
   - PaaS
   - Red Hat
 url: https://raw.githubusercontent.com/api-evangelist/red-hat-openshift/refs/heads/main/apis.yml
@@ -139,6 +146,8 @@ apis:
   humanURL: https://docs.openshift.com/container-platform/latest/rest_api/index.html
   baseURL: https://api.cluster.example.com:6443
   tags:
+  - Addons
+  tags_raw:
   - Add-ons
   properties:
   - type: OpenAPI
@@ -171,6 +180,8 @@ apis:
   humanURL: https://docs.openshift.com/container-platform/latest/rest_api/index.html
   baseURL: https://api.cluster.example.com:6443
   tags:
+  - Cluster
+  tags_raw:
   - Clusters
   properties:
   - type: OpenAPI
@@ -251,6 +262,8 @@ apis:
   humanURL: https://docs.openshift.com/container-platform/latest/rest_api/index.html
   baseURL: https://api.cluster.example.com:6443
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
