@@ -1,19 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat OpenShift Container Platform Add-ons Clusters API
-  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
-  version: '4.0'
+  title: Red Hat OpenShift Cluster Manager Clusters API
+  description: The OpenShift Cluster Manager (OCM) API provides programmatic access to the Red Hat Hybrid Cloud Console for managing OpenShift clusters at scale. It supports creating, updating, and deleting clusters; managing cluster add-ons; configuring identity providers and role bindings; monitoring cluster health and metrics; and managing subscriptions and quotas. Used by the OCM CLI, the Hybrid Cloud Console web UI, and partners building cluster management automation.
+  version: '1'
   contact:
     name: Red Hat OpenShift Support
     url: https://access.redhat.com/support
   termsOfService: https://www.redhat.com/en/about/agreements
 servers:
-- url: https://api.{cluster}:6443
-  description: OpenShift API Server
-  variables:
-    cluster:
-      default: cluster.example.com
-      description: OpenShift cluster API hostname
+- url: https://api.openshift.com
+  description: OpenShift Cluster Manager API
 security:
 - bearerAuth: []
 tags:
@@ -140,16 +136,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ClusterPatch:
-      type: object
-      properties:
-        display_name:
-          type: string
-        nodes:
-          type: object
-          properties:
-            compute:
-              type: integer
     Error:
       type: object
       properties:
@@ -163,22 +149,6 @@ components:
           type: string
         reason:
           type: string
-    ClusterList:
-      type: object
-      properties:
-        kind:
-          type: string
-          default: ClusterList
-        page:
-          type: integer
-        size:
-          type: integer
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cluster'
     Cluster:
       type: object
       properties:
@@ -244,6 +214,32 @@ components:
           properties:
             url:
               type: string
+    ClusterList:
+      type: object
+      properties:
+        kind:
+          type: string
+          default: ClusterList
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
+    ClusterPatch:
+      type: object
+      properties:
+        display_name:
+          type: string
+        nodes:
+          type: object
+          properties:
+            compute:
+              type: integer
   responses:
     NotFound:
       description: Resource not found
@@ -271,5 +267,5 @@ components:
       scheme: bearer
       bearerFormat: JWT
 externalDocs:
-  description: OpenShift Container Platform API Reference
-  url: https://docs.openshift.com/container-platform/latest/rest_api/index.html
+  description: OpenShift Cluster Manager API Documentation
+  url: https://api.openshift.com/

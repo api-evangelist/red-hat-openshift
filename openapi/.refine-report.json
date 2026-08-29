@@ -1,34 +1,41 @@
 {
   "provider": "red-hat-openshift",
   "sources": [
-    "red-hat-openshift-add-ons-api-openapi.yml",
-    "red-hat-openshift-builds-api-openapi.yml",
-    "red-hat-openshift-clusters-api-openapi.yml",
-    "red-hat-openshift-deployment-configs-api-openapi.yml",
-    "red-hat-openshift-identity-providers-api-openapi.yml",
-    "red-hat-openshift-image-streams-api-openapi.yml",
-    "red-hat-openshift-machine-pools-api-openapi.yml",
-    "red-hat-openshift-projects-api-openapi.yml",
-    "red-hat-openshift-routes-api-openapi.yml",
-    "red-hat-openshift-security-context-constraints-api-openapi.yml",
-    "red-hat-openshift-versions-api-openapi.yml"
+    "_original/red-hat-openshift-api-openapi.yml",
+    "_original/red-hat-openshift-cluster-manager-openapi.yml"
   ],
   "outputs": [
-    "red-hat-openshift-add-ons-api-openapi.yml",
     "red-hat-openshift-builds-api-openapi.yml",
-    "red-hat-openshift-clusters-api-openapi.yml",
     "red-hat-openshift-deployment-configs-api-openapi.yml",
-    "red-hat-openshift-identity-providers-api-openapi.yml",
     "red-hat-openshift-image-streams-api-openapi.yml",
-    "red-hat-openshift-machine-pools-api-openapi.yml",
     "red-hat-openshift-projects-api-openapi.yml",
     "red-hat-openshift-routes-api-openapi.yml",
     "red-hat-openshift-security-context-constraints-api-openapi.yml",
+    "red-hat-openshift-add-ons-api-openapi.yml",
+    "red-hat-openshift-clusters-api-openapi.yml",
+    "red-hat-openshift-identity-providers-api-openapi.yml",
+    "red-hat-openshift-machine-pools-api-openapi.yml",
     "red-hat-openshift-versions-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "red-hat-openshift-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "red-hat-openshift-cluster-manager-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "red-hat-openshift-add-ons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-builds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-deployment-configs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-identity-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-image-streams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-machine-pools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-routes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-security-context-constraints-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-openshift-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat OpenShift Container Platform Add-ons Projects API
+  title: Red Hat OpenShift Container Platform Projects API
   description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
   version: '4.0'
   contact:
@@ -117,38 +117,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    fieldSelector:
-      name: fieldSelector
-      in: query
-      description: Field selector to filter resources
-      schema:
-        type: string
-    continueParam:
-      name: continue
-      in: query
-      description: Pagination continue token
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: Label selector to filter resources (e.g., app=myapp)
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: Resource name
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
   responses:
     NotFound:
       description: Resource not found
@@ -163,6 +131,20 @@ components:
           schema:
             $ref: '#/components/schemas/Status'
   schemas:
+    ProjectList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          default: ProjectList
+        metadata:
+          type: object
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     ObjectMeta:
       type: object
       properties:
@@ -185,21 +167,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Status:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
     Project:
       type: object
       properties:
@@ -226,20 +193,53 @@ components:
               enum:
               - Active
               - Terminating
-    ProjectList:
+    Status:
       type: object
       properties:
         apiVersion:
           type: string
         kind:
           type: string
-          default: ProjectList
-        metadata:
-          type: object
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
+  parameters:
+    continueParam:
+      name: continue
+      in: query
+      description: Pagination continue token
+      schema:
+        type: string
+    fieldSelector:
+      name: fieldSelector
+      in: query
+      description: Field selector to filter resources
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    name:
+      name: name
+      in: path
+      required: true
+      description: Resource name
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
