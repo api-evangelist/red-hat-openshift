@@ -56,12 +56,14 @@ specificationVersion: '0.23'
 apis:
 - aid: red-hat-openshift:openshift-pipelines-api
   name: Red Hat OpenShift Pipelines (Tekton) API
-  description: OpenShift Pipelines is a cloud-native CI/CD solution based on Tekton that runs pipelines
-    as Kubernetes-native CRDs. The API provides resources for defining Tasks (individual steps), Pipelines
-    (task graphs), PipelineRuns (pipeline executions), TaskRuns, Workspaces, TriggerTemplates, and EventListeners
-    for event-driven pipeline automation. All pipeline resources are managed through the Kubernetes API
-    server using the tekton.dev API group.
-  humanURL: https://docs.openshift.com/container-platform/latest/cicd/pipelines/understanding-openshift-pipelines.html
+  description: >-
+    OpenShift Pipelines is a cloud-native CI/CD solution based on Tekton that runs pipelines as Kubernetes-native
+    CRDs. The API provides resources for defining Tasks (individual steps), Pipelines (task graphs), PipelineRuns
+    (pipeline executions), TaskRuns, Workspaces, TriggerTemplates, and EventListeners for event-driven
+    pipeline automation. All pipeline resources are managed through the Kubernetes API server using the
+    tekton.dev API group.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/latest/cicd/pipelines/understanding-openshift-pipelines.html
   baseURL: https://api.cluster.example.com:6443/apis/tekton.dev/v1
   tags:
   - CI/CD
@@ -70,16 +72,19 @@ apis:
   - Tekton
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/latest/cicd/pipelines/understanding-openshift-pipelines.html
+    url: >-
+      https://docs.openshift.com/container-platform/latest/cicd/pipelines/understanding-openshift-pipelines.html
   - type: GitHub
     url: https://github.com/openshift/pipelines-as-code
 - aid: red-hat-openshift:openshift-gitops-api
   name: Red Hat OpenShift GitOps (ArgoCD) API
-  description: OpenShift GitOps is built on Argo CD and provides a GitOps continuous delivery solution
-    for OpenShift clusters. The API exposes Application, AppProject, ApplicationSet, and Repository CRD
-    resources for declarative cluster state management from Git repositories. The ArgoCD API also includes
-    a REST gRPC-gateway API for direct interaction with the ArgoCD server.
-  humanURL: https://docs.openshift.com/container-platform/latest/cicd/gitops/understanding-openshift-gitops.html
+  description: >-
+    OpenShift GitOps is built on Argo CD and provides a GitOps continuous delivery solution for OpenShift
+    clusters. The API exposes Application, AppProject, ApplicationSet, and Repository CRD resources for
+    declarative cluster state management from Git repositories. The ArgoCD API also includes a REST gRPC-gateway
+    API for direct interaction with the ArgoCD server.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/latest/cicd/gitops/understanding-openshift-gitops.html
   baseURL: https://api.cluster.example.com:6443/apis/argoproj.io/v1alpha1
   tags:
   - ArgoCD
@@ -88,16 +93,17 @@ apis:
   - Kubernetes
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/latest/cicd/gitops/understanding-openshift-gitops.html
+    url: >-
+      https://docs.openshift.com/container-platform/latest/cicd/gitops/understanding-openshift-gitops.html
   - type: GitHub
     url: https://github.com/openshift/gitops-operator
 - aid: red-hat-openshift:openshift-service-mesh-api
   name: Red Hat OpenShift Service Mesh API
-  description: Red Hat OpenShift Service Mesh, based on Istio, Kiali, Jaeger, and Prometheus, provides
-    traffic management, security, and observability for microservices. The Service Mesh API exposes Istio
-    CRDs including VirtualService, DestinationRule, ServiceEntry, Gateway, PeerAuthentication, AuthorizationPolicy,
-    and Telemetry resources for configuring service-to-service communication, mutual TLS, and distributed
-    tracing policies.
+  description: >-
+    Red Hat OpenShift Service Mesh, based on Istio, Kiali, Jaeger, and Prometheus, provides traffic management,
+    security, and observability for microservices. The Service Mesh API exposes Istio CRDs including VirtualService,
+    DestinationRule, ServiceEntry, Gateway, PeerAuthentication, AuthorizationPolicy, and Telemetry resources
+    for configuring service-to-service communication, mutual TLS, and distributed tracing policies.
   humanURL: https://docs.openshift.com/container-platform/latest/service_mesh/v2x/ossm-about.html
   baseURL: https://api.cluster.example.com:6443/apis/networking.istio.io/v1beta1
   tags:
@@ -110,8 +116,9 @@ apis:
     url: https://docs.openshift.com/container-platform/latest/service_mesh/v2x/ossm-about.html
 - aid: red-hat-openshift:openshift-serverless-api
   name: Red Hat OpenShift Serverless (Knative) API
-  description: OpenShift Serverless, based on Knative, enables deploying and managing event-driven serverless
-    workloads on OpenShift. The Serverless API exposes Knative Serving resources (Service, Route, Configuration,
+  description: >-
+    OpenShift Serverless, based on Knative, enables deploying and managing event-driven serverless workloads
+    on OpenShift. The Serverless API exposes Knative Serving resources (Service, Route, Configuration,
     Revision) for auto-scaling workloads and Knative Eventing resources (Broker, Trigger, Channel, Subscription,
     EventSource) for event-driven architectures. Resources are managed through the serving.knative.dev
     and eventing.knative.dev API groups.
@@ -127,11 +134,11 @@ apis:
     url: https://docs.openshift.com/serverless/latest/about/about-serverless.html
 - aid: red-hat-openshift:rosa-api
   name: Red Hat OpenShift Service on AWS (ROSA) API
-  description: Red Hat OpenShift Service on AWS (ROSA) is a fully managed OpenShift service co-managed
-    by Red Hat and AWS. The ROSA API, exposed through the OCM service, provides operations for creating
-    and managing ROSA clusters, configuring machine pools, managing identity providers, setting up private
-    link connectivity, and monitoring cluster status. ROSA clusters also expose the full OpenShift API
-    endpoint after provisioning.
+  description: >-
+    Red Hat OpenShift Service on AWS (ROSA) is a fully managed OpenShift service co-managed by Red Hat
+    and AWS. The ROSA API, exposed through the OCM service, provides operations for creating and managing
+    ROSA clusters, configuring machine pools, managing identity providers, setting up private link connectivity,
+    and monitoring cluster status. ROSA clusters also expose the full OpenShift API endpoint after provisioning.
   humanURL: https://docs.openshift.com/rosa/rosa_architecture/rosa-understanding.html
   baseURL: https://api.openshift.com/api/clusters_mgmt/v1
   tags:
@@ -143,7 +150,8 @@ apis:
   - type: Documentation
     url: https://docs.openshift.com/rosa/rosa_architecture/rosa-understanding.html
   - type: GettingStarted
-    url: https://docs.openshift.com/rosa/rosa_getting_started/rosa-getting-started-iam-prerequisites.html
+    url: >-
+      https://docs.openshift.com/rosa/rosa_getting_started/rosa-getting-started-iam-prerequisites.html
 - aid: red-hat-openshift:red-hat-openshift-add-ons-api
   name: Red Hat OpenShift Add-ons API
   description: Manage cluster add-on installations
@@ -328,7 +336,8 @@ apis:
     url: https://api.openshift.com/
 - name: OpenShift OAuth API
   description: OAuth authentication and authorization API for OpenShift.
-  humanURL: https://docs.openshift.com/container-platform/latest/authentication/understanding-authentication.html
+  humanURL: >-
+    https://docs.openshift.com/container-platform/latest/authentication/understanding-authentication.html
   baseURL: https://oauth-openshift.apps.openshift.com
   tags:
   - Authentication
@@ -339,10 +348,12 @@ apis:
   - Security
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/latest/authentication/understanding-authentication.html
+    url: >-
+      https://docs.openshift.com/container-platform/latest/authentication/understanding-authentication.html
 - name: OpenShift Build API
   description: API for managing application builds and build configurations.
-  humanURL: https://docs.openshift.com/container-platform/latest/cicd/builds/understanding-builds.html
+  humanURL: >-
+    https://docs.openshift.com/container-platform/latest/cicd/builds/understanding-builds.html
   baseURL: https://api.openshift.com/apis/build.openshift.io/v1
   tags:
   - Builds
@@ -350,7 +361,8 @@ apis:
   - Source-To-Image
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/latest/cicd/builds/understanding-builds.html
+    url: >-
+      https://docs.openshift.com/container-platform/latest/cicd/builds/understanding-builds.html
 - name: OpenShift Image API
   description: API for managing container images and image streams.
   humanURL: https://docs.openshift.com/container-platform/latest/openshift_images/index.html
@@ -368,7 +380,8 @@ apis:
     url: https://docs.openshift.com/container-platform/latest/openshift_images/index.html
 - name: OpenShift Project API
   description: API for managing OpenShift projects (namespace extensions).
-  humanURL: https://docs.openshift.com/container-platform/latest/applications/projects/working-with-projects.html
+  humanURL: >-
+    https://docs.openshift.com/container-platform/latest/applications/projects/working-with-projects.html
   baseURL: https://api.openshift.com/apis/project.openshift.io/v1
   tags:
   - Multi-Tenancy
@@ -380,11 +393,14 @@ apis:
   - Projects
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/latest/applications/projects/working-with-projects.html
+    url: >-
+      https://docs.openshift.com/container-platform/latest/applications/projects/working-with-projects.html
 - name: OpenShift Workloads API
-  description: API for managing workload resources including Pods, Deployments, DeploymentConfigs, StatefulSets,
+  description: >-
+    API for managing workload resources including Pods, Deployments, DeploymentConfigs, StatefulSets,
     Jobs, CronJobs, ReplicaSets, and DaemonSets.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/workloads_apis/workloads-apis
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/workloads_apis/workloads-apis
   baseURL: https://api.openshift.com/apis/apps/v1
   tags:
   - Deployment
@@ -400,11 +416,14 @@ apis:
   - Workloads
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/workloads_apis/workloads-apis
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/workloads_apis/workloads-apis
 - name: OpenShift Network API
-  description: API for managing network configuration including Services, Endpoints, Ingress, NetworkPolicy,
-    and EgressFirewall resources.
-  humanURL: https://docs.openshift.com/container-platform/4.17/rest_api/network_apis/network-apis-index.html
+  description: >-
+    API for managing network configuration including Services, Endpoints, Ingress, NetworkPolicy, and
+    EgressFirewall resources.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.17/rest_api/network_apis/network-apis-index.html
   baseURL: https://api.openshift.com/apis/network.openshift.io/v1
   tags:
   - Ingress
@@ -416,11 +435,14 @@ apis:
   - NetworkPolicy
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.17/rest_api/network_apis/network-apis-index.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.17/rest_api/network_apis/network-apis-index.html
 - name: OpenShift Storage API
-  description: API for managing storage resources including PersistentVolumes, PersistentVolumeClaims,
-    StorageClasses, CSI drivers, and VolumeSnapshots.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/storage_apis/persistentvolume-v1
+  description: >-
+    API for managing storage resources including PersistentVolumes, PersistentVolumeClaims, StorageClasses,
+    CSI drivers, and VolumeSnapshots.
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/storage_apis/persistentvolume-v1
   baseURL: https://api.openshift.com/api/v1
   tags:
   - CSI
@@ -434,11 +456,14 @@ apis:
   - StorageClasses
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/storage_apis/persistentvolume-v1
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/storage_apis/persistentvolume-v1
 - name: OpenShift Authorization API
-  description: API for managing authorization resources including SubjectAccessReview, SelfSubjectAccessReview,
-    LocalSubjectAccessReview, and TokenReview.
-  humanURL: https://docs.openshift.com/container-platform/4.17/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1.html
+  description: >-
+    API for managing authorization resources including SubjectAccessReview, SelfSubjectAccessReview, LocalSubjectAccessReview,
+    and TokenReview.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.17/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1.html
   baseURL: https://api.openshift.com/apis/authorization.k8s.io/v1
   tags:
   - Access Control
@@ -446,11 +471,13 @@ apis:
   - Security
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.17/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.17/rest_api/authorization_apis/selfsubjectreview-authentication-k8s-io-v1.html
 - name: OpenShift Autoscale API
-  description: API for managing autoscaling resources including HorizontalPodAutoscaler, ClusterAutoscaler,
-    and MachineAutoscaler.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/autoscale_apis/horizontalpodautoscaler-autoscaling-v2
+  description: >-
+    API for managing autoscaling resources including HorizontalPodAutoscaler, ClusterAutoscaler, and MachineAutoscaler.
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/autoscale_apis/horizontalpodautoscaler-autoscaling-v2
   baseURL: https://api.openshift.com/apis/autoscaling/v2
   tags:
   - Auto-Scaling
@@ -462,11 +489,14 @@ apis:
   - HPA
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/autoscale_apis/horizontalpodautoscaler-autoscaling-v2
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/autoscale_apis/horizontalpodautoscaler-autoscaling-v2
 - name: OpenShift Config API
-  description: API for managing cluster configuration resources including APIServer, Authentication, Infrastructure,
+  description: >-
+    API for managing cluster configuration resources including APIServer, Authentication, Infrastructure,
     Ingress, Network, OAuth, and Scheduler configuration.
-  humanURL: https://docs.openshift.com/container-platform/4.17/rest_api/config_apis/infrastructure-config-openshift-io-v1.html
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.17/rest_api/config_apis/infrastructure-config-openshift-io-v1.html
   baseURL: https://api.openshift.com/apis/config.openshift.io/v1
   tags:
   - Cluster Settings
@@ -474,11 +504,14 @@ apis:
   - Infrastructure
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.17/rest_api/config_apis/infrastructure-config-openshift-io-v1.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.17/rest_api/config_apis/infrastructure-config-openshift-io-v1.html
 - name: OpenShift Console API
-  description: API for managing OpenShift web console extensions including ConsoleCLIDownload, ConsoleExternalLogLink,
+  description: >-
+    API for managing OpenShift web console extensions including ConsoleCLIDownload, ConsoleExternalLogLink,
     ConsoleLink, ConsoleNotification, and ConsolePlugin.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/console_apis/index
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/console_apis/index
   baseURL: https://api.openshift.com/apis/console.openshift.io/v1
   tags:
   - Console
@@ -487,11 +520,14 @@ apis:
   - Web UI
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/console_apis/index
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/console_apis/index
 - name: OpenShift Cluster API
-  description: API for managing cluster-level resources including ClusterVersion, ClusterOperator, and
-    infrastructure resources.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/cluster_apis/cluster-apis
+  description: >-
+    API for managing cluster-level resources including ClusterVersion, ClusterOperator, and infrastructure
+    resources.
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/cluster_apis/cluster-apis
   baseURL: https://api.openshift.com/apis/config.openshift.io/v1
   tags:
   - Cluster
@@ -499,11 +535,14 @@ apis:
   - Infrastructure
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/cluster_apis/cluster-apis
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/cluster_apis/cluster-apis
 - name: OpenShift Machine API
-  description: API for managing machine resources including Machine, MachineSet, MachineHealthCheck, and
-    MachineAutoscaler for cluster node lifecycle management.
-  humanURL: https://docs.openshift.com/container-platform/4.9/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1.html
+  description: >-
+    API for managing machine resources including Machine, MachineSet, MachineHealthCheck, and MachineAutoscaler
+    for cluster node lifecycle management.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.9/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1.html
   baseURL: https://api.openshift.com/apis/machine.openshift.io/v1beta1
   tags:
   - Auto-Scaling
@@ -517,11 +556,14 @@ apis:
   - Nodes
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.9/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.9/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1.html
 - name: OpenShift Operator API
-  description: API for managing OpenShift operator lifecycle and configuration including Etcd, Console,
-    Network, DNS, IngressController, and other operator resources.
-  humanURL: https://docs.openshift.com/container-platform/4.8/rest_api/operator_apis/operator-apis-index.html
+  description: >-
+    API for managing OpenShift operator lifecycle and configuration including Etcd, Console, Network,
+    DNS, IngressController, and other operator resources.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.8/rest_api/operator_apis/operator-apis-index.html
   baseURL: https://api.openshift.com/apis/operator.openshift.io/v1
   tags:
   - Cluster Services
@@ -529,11 +571,14 @@ apis:
   - Operators
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.8/rest_api/operator_apis/operator-apis-index.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.8/rest_api/operator_apis/operator-apis-index.html
 - name: OpenShift OperatorHub API
-  description: API for managing OperatorHub resources including CatalogSources, Subscriptions, InstallPlans,
-    and ClusterServiceVersions for the Operator Lifecycle Manager.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/operators/index
+  description: >-
+    API for managing OperatorHub resources including CatalogSources, Subscriptions, InstallPlans, and
+    ClusterServiceVersions for the Operator Lifecycle Manager.
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/operators/index
   baseURL: https://api.openshift.com/apis/operators.coreos.com/v1alpha1
   tags:
   - Catalog
@@ -547,11 +592,14 @@ apis:
   - Subscriptions
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/operators/index
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html-single/operators/index
 - name: OpenShift Template API
-  description: API for managing templates that provide parameterized sets of objects for creating applications
-    and services.
-  humanURL: https://docs.openshift.com/container-platform/4.17/rest_api/template_apis/template-template-openshift-io-v1.html
+  description: >-
+    API for managing templates that provide parameterized sets of objects for creating applications and
+    services.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.17/rest_api/template_apis/template-template-openshift-io-v1.html
   baseURL: https://api.openshift.com/apis/template.openshift.io/v1
   tags:
   - Application Deployment
@@ -559,11 +607,14 @@ apis:
   - Templates
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.17/rest_api/template_apis/template-template-openshift-io-v1.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.17/rest_api/template_apis/template-template-openshift-io-v1.html
 - name: OpenShift Security API
-  description: API for managing security resources including SecurityContextConstraints, RangeAllocation,
-    and PodSecurityPolicyReview for controlling pod security.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/authentication_and_authorization/managing-pod-security-policies
+  description: >-
+    API for managing security resources including SecurityContextConstraints, RangeAllocation, and PodSecurityPolicyReview
+    for controlling pod security.
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/authentication_and_authorization/managing-pod-security-policies
   baseURL: https://api.openshift.com/apis/security.openshift.io/v1
   tags:
   - Access Control
@@ -572,9 +623,11 @@ apis:
   - Security
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/authentication_and_authorization/managing-pod-security-policies
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/authentication_and_authorization/managing-pod-security-policies
 - name: OpenShift RBAC API
-  description: API for managing role-based access control resources including Roles, ClusterRoles, RoleBindings,
+  description: >-
+    API for managing role-based access control resources including Roles, ClusterRoles, RoleBindings,
     and ClusterRoleBindings.
   humanURL: https://docs.openshift.com/container-platform/4.8/authentication/using-rbac.html
   baseURL: https://api.openshift.com/apis/rbac.authorization.k8s.io/v1
@@ -587,8 +640,10 @@ apis:
   - type: Documentation
     url: https://docs.openshift.com/container-platform/4.8/authentication/using-rbac.html
 - name: OpenShift Node API
-  description: API for managing node-level resources including Node, RuntimeClass, and node configuration.
-  humanURL: https://docs.openshift.com/container-platform/4.17/rest_api/node_apis/node-apis-index.html
+  description: >-
+    API for managing node-level resources including Node, RuntimeClass, and node configuration.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.17/rest_api/node_apis/node-apis-index.html
   baseURL: https://api.openshift.com/api/v1
   tags:
   - Infrastructure
@@ -596,11 +651,14 @@ apis:
   - Runtime
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.17/rest_api/node_apis/node-apis-index.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.17/rest_api/node_apis/node-apis-index.html
 - name: OpenShift Monitoring API
-  description: API for managing monitoring and observability resources including Prometheus, Alertmanager,
-    ServiceMonitor, and PrometheusRule.
-  humanURL: https://docs.openshift.com/container-platform/4.17/observability/monitoring/accessing-third-party-monitoring-apis.html
+  description: >-
+    API for managing monitoring and observability resources including Prometheus, Alertmanager, ServiceMonitor,
+    and PrometheusRule.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.17/observability/monitoring/accessing-third-party-monitoring-apis.html
   baseURL: https://api.openshift.com/apis/monitoring.coreos.com/v1
   tags:
   - Alerting
@@ -609,11 +667,14 @@ apis:
   - Prometheus
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.17/observability/monitoring/accessing-third-party-monitoring-apis.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.17/observability/monitoring/accessing-third-party-monitoring-apis.html
 - name: OpenShift Provisioning API
-  description: API for managing bare metal and infrastructure provisioning resources including BareMetalHost,
-    Provisioning, and hardware management.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/provisioning_apis/index
+  description: >-
+    API for managing bare metal and infrastructure provisioning resources including BareMetalHost, Provisioning,
+    and hardware management.
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/provisioning_apis/index
   baseURL: https://api.openshift.com/apis/metal3.io/v1alpha1
   tags:
   - Bare Metal
@@ -622,11 +683,14 @@ apis:
   - Provisioning
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/provisioning_apis/index
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/provisioning_apis/index
 - name: OpenShift Schedule and Quota API
-  description: API for managing scheduling and quota resources including ResourceQuota, LimitRange, PriorityClass,
+  description: >-
+    API for managing scheduling and quota resources including ResourceQuota, LimitRange, PriorityClass,
     and ClusterResourceQuota.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/schedule_and_quota_apis/schedule-and-quota-apis
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/schedule_and_quota_apis/schedule-and-quota-apis
   baseURL: https://api.openshift.com/api/v1
   tags:
   - LimitRanges
@@ -635,11 +699,13 @@ apis:
   - Scheduling
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/schedule_and_quota_apis/schedule-and-quota-apis
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/schedule_and_quota_apis/schedule-and-quota-apis
 - name: OpenShift Metadata API
-  description: API for managing metadata resources including ConfigMaps, Secrets, Events, Namespaces,
-    and ServiceAccounts.
-  humanURL: https://docs.openshift.com/container-platform/4.7/rest_api/metadata_apis/metadata-apis-index.html
+  description: >-
+    API for managing metadata resources including ConfigMaps, Secrets, Events, Namespaces, and ServiceAccounts.
+  humanURL: >-
+    https://docs.openshift.com/container-platform/4.7/rest_api/metadata_apis/metadata-apis-index.html
   baseURL: https://api.openshift.com/api/v1
   tags:
   - ConfigMaps
@@ -653,11 +719,14 @@ apis:
   - Secrets
   properties:
   - type: Documentation
-    url: https://docs.openshift.com/container-platform/4.7/rest_api/metadata_apis/metadata-apis-index.html
+    url: >-
+      https://docs.openshift.com/container-platform/4.7/rest_api/metadata_apis/metadata-apis-index.html
 - name: OpenShift Cluster Manager API
-  description: Managed service API for installing, modifying, operating, and upgrading Red Hat OpenShift
-    clusters across cloud providers.
-  humanURL: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+  description: >-
+    Managed service API for installing, modifying, operating, and upgrading Red Hat OpenShift clusters
+    across cloud providers.
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   baseURL: https://api.openshift.com/api/clusters_mgmt/v1
   tags:
   - Cluster Management
@@ -666,61 +735,10 @@ apis:
   - ROSA
   properties:
   - type: Documentation
-    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: >-
+      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GitHubOrganization
     url: https://github.com/openshift-online/ocm-api-model
-- name: OpenShift BuildConfigs API
-  description: Manage build configuration templates that define how to transform source code into container
-    images using Source, Docker, or Custom build strategies with configurable triggers.
-  humanURL: https://docs.openshift.com/
-  baseURL: https://api.openshift.com
-  tags:
-  - BuildConfigs
-  properties:
-  - type: OpenAPI
-    url: openapi/openshift-buildconfigs-api-openapi.yml
-  - type: Documentation
-    url: https://docs.openshift.com/container-platform/latest/rest_api/index.html
-  - type: Authentication
-    url: https://docs.openshift.com/container-platform/latest/authentication/index.html
-  - type: Pricing
-    url: https://www.redhat.com/en/technologies/cloud-computing/openshift/pricing
-  - type: Support
-    url: https://access.redhat.com/support
-  - type: StatusPage
-    url: https://status.openshift.com/
-  - type: SDKs
-    url: https://github.com/openshift/client-go
-  - type: RateLimits
-    url: https://docs.openshift.com/container-platform/latest/rest_api/understanding-api-support-tiers.html
-  - type: GettingStarted
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/release_notes/index
-- name: OpenShift ProjectRequests API
-  description: Request creation of new projects. ProjectRequests are the mechanism through which users
-    provision new projects subject to cluster policy.
-  humanURL: https://docs.openshift.com/
-  baseURL: https://api.openshift.com
-  tags:
-  - ProjectRequests
-  properties:
-  - type: OpenAPI
-    url: openapi/openshift-projectrequests-api-openapi.yml
-  - type: Documentation
-    url: https://docs.openshift.com/container-platform/latest/rest_api/index.html
-  - type: Authentication
-    url: https://docs.openshift.com/container-platform/latest/authentication/index.html
-  - type: Pricing
-    url: https://www.redhat.com/en/technologies/cloud-computing/openshift/pricing
-  - type: Support
-    url: https://access.redhat.com/support
-  - type: StatusPage
-    url: https://status.openshift.com/
-  - type: SDKs
-    url: https://github.com/openshift/client-go
-  - type: RateLimits
-    url: https://docs.openshift.com/container-platform/latest/rest_api/understanding-api-support-tiers.html
-  - type: GettingStarted
-    url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/release_notes/index
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/red-hat-openshift/overview
