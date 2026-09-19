@@ -548,7 +548,7 @@ apis:
   - Auto-Scaling
   - Infrastructure
   - Machines
-  - Nodes
+  - Node
   tags_raw:
   - Autoscaling
   - Infrastructure
@@ -566,6 +566,10 @@ apis:
     https://docs.openshift.com/container-platform/4.8/rest_api/operator_apis/operator-apis-index.html
   baseURL: https://api.openshift.com/apis/operator.openshift.io/v1
   tags:
+  - Cluster Services
+  - Lifecycle Management
+  - Operator
+  tags_raw:
   - Cluster Services
   - Lifecycle Management
   - Operators
@@ -646,6 +650,10 @@ apis:
     https://docs.openshift.com/container-platform/4.17/rest_api/node_apis/node-apis-index.html
   baseURL: https://api.openshift.com/api/v1
   tags:
+  - Infrastructure
+  - Node
+  - Runtime
+  tags_raw:
   - Infrastructure
   - Nodes
   - Runtime
