@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Red Hat OpenShift Container Platform Security Context Constraints API
-  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  title: Red Hat OpenShift Container Platform Security Context…
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management.
   version: '4.0'
   contact:
     name: Red Hat OpenShift Support
@@ -60,13 +60,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    SecurityContextConstraintsList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityContextConstraints'
     SecurityContextConstraints:
       type: object
       properties:
@@ -88,6 +81,13 @@ components:
           type: object
         seLinuxContext:
           type: object
+    SecurityContextConstraintsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityContextConstraints'
   parameters:
     labelSelector:
       name: labelSelector

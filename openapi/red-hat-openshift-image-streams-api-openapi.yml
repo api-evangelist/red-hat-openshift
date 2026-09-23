@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Red Hat OpenShift Container Platform Image Streams API
-  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management. The API is organized into groups served at /apis/{group}/{version}. All operations require authentication via Bearer token obtained from the OAuth server. This specification covers the core OpenShift-specific API groups including apps.openshift.io, build.openshift.io, image.openshift.io, route.openshift.io, project.openshift.io, and security.openshift.io.
+  description: The OpenShift Container Platform REST API extends the Kubernetes API with OpenShift-specific resources for builds, image streams, routes, deployment configs, and project management.
   version: '4.0'
   contact:
     name: Red Hat OpenShift Support
@@ -59,14 +59,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/ImageStream'
 components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Kubernetes namespace
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
   schemas:
-    ImageStreamList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageStream'
     ObjectMeta:
       type: object
       properties:
@@ -89,6 +96,13 @@ components:
           type: object
           additionalProperties:
             type: string
+    ImageStreamList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageStream'
     ImageStream:
       type: object
       properties:
@@ -104,20 +118,6 @@ components:
           type: object
         status:
           type: object
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: Kubernetes namespace
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: Label selector to filter resources (e.g., app=myapp)
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

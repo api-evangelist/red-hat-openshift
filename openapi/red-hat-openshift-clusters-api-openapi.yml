@@ -135,20 +135,36 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    ClusterList:
       type: object
       properties:
         kind:
           type: string
-        id:
-          type: string
-        href:
-          type: string
-        code:
-          type: string
-        reason:
-          type: string
+          default: ClusterList
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
     Cluster:
       type: object
       properties:
@@ -214,22 +230,19 @@ components:
           properties:
             url:
               type: string
-    ClusterList:
+    Error:
       type: object
       properties:
         kind:
           type: string
-          default: ClusterList
-        page:
-          type: integer
-        size:
-          type: integer
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cluster'
+        id:
+          type: string
+        href:
+          type: string
+        code:
+          type: string
+        reason:
+          type: string
     ClusterPatch:
       type: object
       properties:
@@ -240,19 +253,6 @@ components:
           properties:
             compute:
               type: integer
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     clusterId:
       name: cluster_id

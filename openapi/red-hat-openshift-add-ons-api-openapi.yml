@@ -13,7 +13,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Add-ons
+- name: Add Ons
   description: Manage cluster add-on installations
 paths:
   /api/clusters_mgmt/v1/clusters/{cluster_id}/addons:
@@ -22,7 +22,7 @@ paths:
       summary: List Cluster Add-ons
       description: Returns a list of add-ons installed on the specified cluster.
       tags:
-      - Add-ons
+      - Add Ons
       parameters:
       - $ref: '#/components/parameters/clusterId'
       responses:
@@ -37,7 +37,7 @@ paths:
       summary: Install Cluster Add-on
       description: Installs a new add-on on the specified cluster.
       tags:
-      - Add-ons
+      - Add Ons
       parameters:
       - $ref: '#/components/parameters/clusterId'
       requestBody:
@@ -54,6 +54,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/AddOnInstallation'
 components:
+  parameters:
+    clusterId:
+      name: cluster_id
+      in: path
+      required: true
+      description: The cluster identifier
+      schema:
+        type: string
   schemas:
     AddOnInstallation:
       type: object
@@ -81,14 +89,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AddOnInstallation'
-  parameters:
-    clusterId:
-      name: cluster_id
-      in: path
-      required: true
-      description: The cluster identifier
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

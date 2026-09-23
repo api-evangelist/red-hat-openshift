@@ -23,7 +23,8 @@
   "notes": [
     "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "red-hat-openshift-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "red-hat-openshift-cluster-manager-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "red-hat-openshift-cluster-manager-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "red-hat-openshift-add-ons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
