@@ -63,6 +63,13 @@ components:
       schema:
         type: string
   schemas:
+    AddOnInstallationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddOnInstallation'
     AddOnInstallation:
       type: object
       properties:
@@ -82,13 +89,6 @@ components:
           - installing
           - deleting
           - failed
-    AddOnInstallationList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddOnInstallation'
   securitySchemes:
     bearerAuth:
       type: http

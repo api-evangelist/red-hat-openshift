@@ -10,15 +10,20 @@ description: Red Hat OpenShift is an enterprise Kubernetes platform that provide
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - openshift/gitops-operator
+    - openshift/pipelines-as-code
+  open_source: unknown
   commercial: true
-  callable_host: false
+  callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: medium
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid

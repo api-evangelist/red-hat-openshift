@@ -118,6 +118,43 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        uid:
+          type: string
+        resourceVersion:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Status:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
     Project:
       type: object
       properties:
@@ -158,43 +195,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Project'
-    ObjectMeta:
-      type: object
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        uid:
-          type: string
-        resourceVersion:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
-    Status:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
   responses:
     Unauthorized:
       description: Authentication required or token invalid
@@ -209,25 +209,18 @@ components:
           schema:
             $ref: '#/components/schemas/Status'
   parameters:
-    fieldSelector:
-      name: fieldSelector
-      in: query
-      description: Field selector to filter resources
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: Resource name
-      schema:
-        type: string
     limit:
       name: limit
       in: query
       description: Maximum number of resources to return
       schema:
         type: integer
+    fieldSelector:
+      name: fieldSelector
+      in: query
+      description: Field selector to filter resources
+      schema:
+        type: string
     continueParam:
       name: continue
       in: query
@@ -238,6 +231,13 @@ components:
       name: labelSelector
       in: query
       description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: Resource name
       schema:
         type: string
   securitySchemes:

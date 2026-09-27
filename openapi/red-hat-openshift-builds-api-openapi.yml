@@ -77,6 +77,48 @@ paths:
                 $ref: '#/components/schemas/BuildList'
 components:
   schemas:
+    ObjectMeta:
+      type: object
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        uid:
+          type: string
+        resourceVersion:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    BuildConfig:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: build.openshift.io/v1
+        kind:
+          type: string
+          default: BuildConfig
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            source:
+              type: object
+            strategy:
+              type: object
+            output:
+              type: object
     Build:
       type: object
       properties:
@@ -107,33 +149,6 @@ components:
             completionTimestamp:
               type: string
               format: date-time
-    BuildConfigList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BuildConfig'
-    BuildConfig:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          default: build.openshift.io/v1
-        kind:
-          type: string
-          default: BuildConfig
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          type: object
-          properties:
-            source:
-              type: object
-            strategy:
-              type: object
-            output:
-              type: object
     BuildList:
       type: object
       properties:
@@ -141,28 +156,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Build'
-    ObjectMeta:
+    BuildConfigList:
       type: object
       properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        uid:
-          type: string
-        resourceVersion:
-          type: string
-        creationTimestamp:
-          type: string
-          format: date-time
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildConfig'
   parameters:
     namespace:
       name: namespace
