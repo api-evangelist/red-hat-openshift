@@ -59,7 +59,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeploymentConfig'
 components:
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Kubernetes namespace
+      schema:
+        type: string
   schemas:
+    DeploymentConfigList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentConfig'
     ObjectMeta:
       type: object
       properties:
@@ -82,13 +103,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    DeploymentConfigList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeploymentConfig'
     DeploymentConfig:
       type: object
       properties:
@@ -122,20 +136,6 @@ components:
               type: integer
             availableReplicas:
               type: integer
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: Kubernetes namespace
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: Label selector to filter resources (e.g., app=myapp)
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

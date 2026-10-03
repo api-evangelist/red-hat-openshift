@@ -60,6 +60,28 @@ paths:
                 $ref: '#/components/schemas/ImageStream'
 components:
   schemas:
+    ImageStreamList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageStream'
+    ImageStream:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: image.openshift.io/v1
+        kind:
+          type: string
+          default: ImageStream
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+        status:
+          type: object
     ObjectMeta:
       type: object
       properties:
@@ -82,40 +104,18 @@ components:
           type: object
           additionalProperties:
             type: string
-    ImageStream:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          default: image.openshift.io/v1
-        kind:
-          type: string
-          default: ImageStream
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          type: object
-        status:
-          type: object
-    ImageStreamList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageStream'
   parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
     namespace:
       name: namespace
       in: path
       required: true
       description: Kubernetes namespace
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: Label selector to filter resources (e.g., app=myapp)
       schema:
         type: string
   securitySchemes:

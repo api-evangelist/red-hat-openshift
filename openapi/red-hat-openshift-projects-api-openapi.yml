@@ -117,7 +117,66 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    fieldSelector:
+      name: fieldSelector
+      in: query
+      description: Field selector to filter resources
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    continueParam:
+      name: continue
+      in: query
+      description: Pagination continue token
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      required: true
+      description: Resource name
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+    Unauthorized:
+      description: Authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
   schemas:
+    ProjectList:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          default: ProjectList
+        metadata:
+          type: object
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     ObjectMeta:
       type: object
       properties:
@@ -181,65 +240,6 @@ components:
               enum:
               - Active
               - Terminating
-    ProjectList:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-          default: ProjectList
-        metadata:
-          type: object
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-  responses:
-    Unauthorized:
-      description: Authentication required or token invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
-    fieldSelector:
-      name: fieldSelector
-      in: query
-      description: Field selector to filter resources
-      schema:
-        type: string
-    continueParam:
-      name: continue
-      in: query
-      description: Pagination continue token
-      schema:
-        type: string
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: Label selector to filter resources (e.g., app=myapp)
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: Resource name
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

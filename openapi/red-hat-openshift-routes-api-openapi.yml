@@ -115,7 +115,48 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Status'
+  parameters:
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
+      schema:
+        type: string
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Kubernetes namespace
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of resources to return
+      schema:
+        type: integer
+    name:
+      name: name
+      in: path
+      required: true
+      description: Resource name
+      schema:
+        type: string
   schemas:
+    RouteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
     ObjectMeta:
       type: object
       properties:
@@ -138,6 +179,21 @@ components:
           type: object
           additionalProperties:
             type: string
+    Status:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
     Route:
       type: object
       properties:
@@ -183,62 +239,6 @@ components:
                   - reencrypt
         status:
           type: object
-    Status:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
-    RouteList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Route'
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: Kubernetes namespace
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of resources to return
-      schema:
-        type: integer
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: Label selector to filter resources (e.g., app=myapp)
-      schema:
-        type: string
-    name:
-      name: name
-      in: path
-      required: true
-      description: Resource name
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
   securitySchemes:
     bearerAuth:
       type: http

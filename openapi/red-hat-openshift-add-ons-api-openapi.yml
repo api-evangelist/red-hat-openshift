@@ -54,14 +54,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/AddOnInstallation'
 components:
-  parameters:
-    clusterId:
-      name: cluster_id
-      in: path
-      required: true
-      description: The cluster identifier
-      schema:
-        type: string
   schemas:
     AddOnInstallationList:
       type: object
@@ -89,6 +81,14 @@ components:
           - installing
           - deleting
           - failed
+  parameters:
+    clusterId:
+      name: cluster_id
+      in: path
+      required: true
+      description: The cluster identifier
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
