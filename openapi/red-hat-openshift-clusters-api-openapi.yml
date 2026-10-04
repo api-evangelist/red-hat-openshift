@@ -211,19 +211,6 @@ components:
           properties:
             compute:
               type: integer
-    Error:
-      type: object
-      properties:
-        kind:
-          type: string
-        id:
-          type: string
-        href:
-          type: string
-        code:
-          type: string
-        reason:
-          type: string
     ClusterList:
       type: object
       properties:
@@ -240,6 +227,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Cluster'
+    Error:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        href:
+          type: string
+        code:
+          type: string
+        reason:
+          type: string
+  parameters:
+    clusterId:
+      name: cluster_id
+      in: path
+      required: true
+      description: The cluster identifier
+      schema:
+        type: string
   responses:
     NotFound:
       description: Resource not found
@@ -253,14 +261,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    clusterId:
-      name: cluster_id
-      in: path
-      required: true
-      description: The cluster identifier
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

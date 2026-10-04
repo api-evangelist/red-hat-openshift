@@ -55,6 +55,13 @@ paths:
                 $ref: '#/components/schemas/MachinePool'
 components:
   schemas:
+    MachinePoolList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachinePool'
     MachinePool:
       type: object
       properties:
@@ -81,13 +88,6 @@ components:
               type: integer
             max_replicas:
               type: integer
-    MachinePoolList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/MachinePool'
   parameters:
     clusterId:
       name: cluster_id

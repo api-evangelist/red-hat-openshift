@@ -60,13 +60,6 @@ paths:
                 $ref: '#/components/schemas/ImageStream'
 components:
   schemas:
-    ImageStreamList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageStream'
     ImageStream:
       type: object
       properties:
@@ -104,6 +97,13 @@ components:
           type: object
           additionalProperties:
             type: string
+    ImageStreamList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageStream'
   parameters:
     labelSelector:
       name: labelSelector

@@ -38,6 +38,27 @@ paths:
                 $ref: '#/components/schemas/SecurityContextConstraintsList'
 components:
   schemas:
+    SecurityContextConstraints:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          default: security.openshift.io/v1
+        kind:
+          type: string
+          default: SecurityContextConstraints
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        allowPrivilegedContainer:
+          type: boolean
+        allowedCapabilities:
+          type: array
+          items:
+            type: string
+        runAsUser:
+          type: object
+        seLinuxContext:
+          type: object
     ObjectMeta:
       type: object
       properties:
@@ -60,27 +81,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    SecurityContextConstraints:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          default: security.openshift.io/v1
-        kind:
-          type: string
-          default: SecurityContextConstraints
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        allowPrivilegedContainer:
-          type: boolean
-        allowedCapabilities:
-          type: array
-          items:
-            type: string
-        runAsUser:
-          type: object
-        seLinuxContext:
-          type: object
     SecurityContextConstraintsList:
       type: object
       properties:

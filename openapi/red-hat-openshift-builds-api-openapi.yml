@@ -107,26 +107,13 @@ components:
             completionTimestamp:
               type: string
               format: date-time
-    BuildConfig:
+    BuildList:
       type: object
       properties:
-        apiVersion:
-          type: string
-          default: build.openshift.io/v1
-        kind:
-          type: string
-          default: BuildConfig
-        metadata:
-          $ref: '#/components/schemas/ObjectMeta'
-        spec:
-          type: object
-          properties:
-            source:
-              type: object
-            strategy:
-              type: object
-            output:
-              type: object
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Build'
     BuildConfigList:
       type: object
       properties:
@@ -156,13 +143,26 @@ components:
           type: object
           additionalProperties:
             type: string
-    BuildList:
+    BuildConfig:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Build'
+        apiVersion:
+          type: string
+          default: build.openshift.io/v1
+        kind:
+          type: string
+          default: BuildConfig
+        metadata:
+          $ref: '#/components/schemas/ObjectMeta'
+        spec:
+          type: object
+          properties:
+            source:
+              type: object
+            strategy:
+              type: object
+            output:
+              type: object
   parameters:
     labelSelector:
       name: labelSelector
