@@ -753,6 +753,9 @@ apis:
   - type: GitHubOrganization
     url: https://github.com/openshift-online/ocm-api-model
 common:
+- type: CapabilityMap
+  url: capabilities/red-hat-openshift-capability-edges.yml
+  name: Red Hat OpenShift Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/red-hat-openshift/overview
 - type: AgenticAccess

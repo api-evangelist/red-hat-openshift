@@ -1,0 +1,64 @@
+slug: red-hat-openshift
+provider: Red Hat OpenShift
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Clusters
+  spec_file: red-hat-openshift-clusters-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /api/clusters_mgmt/v1/clusters createCluster 'Create Cluster'; 'managing OpenShift clusters
+    at scale'
+  reason: Lifecycle CRUD over Kubernetes clusters is compute/cloud infrastructure provisioning and management.
+- tag: Identity Providers
+  spec_file: red-hat-openshift-identity-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers createIdentityProvider;
+    'configuring identity providers and role bindings'
+  reason: Configuring identity providers for cluster authentication is identity federation and access
+    management.
+- tag: Builds
+  spec_file: red-hat-openshift-builds-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.72
+  evidence: POST .../buildconfigs createBuildConfig 'Create Build Config'; GET .../builds listBuilds,
+    schemas Build, BuildConfig
+  reason: Build configurations and build runs on the OpenShift platform are build-pipeline/artefact production,
+    i.e. continuous integration management.
+- tag: Machine Pools
+  spec_file: red-hat-openshift-machine-pools-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools  createMachinePool  Create
+    Machine Pool
+  reason: Machine pools are the compute node groups backing an OpenShift cluster; creating/listing them
+    is provisioning and stewardship of cloud compute infrastructure, i.e. IT Infrastructure Management.
+    Not a business-domain capability.
+- tag: Routes
+  spec_file: red-hat-openshift-routes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /apis/route.openshift.io/v1/namespaces/{namespace}/routes  createRoute  Create Route
+  reason: Routes expose cluster services via ingress networking; managing them is network/cloud infrastructure
+    configuration, squarely IT Infrastructure Management.
