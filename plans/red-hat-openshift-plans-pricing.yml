@@ -176,3 +176,77 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - compute
+  - negotiated
+  plans:
+  - name: Red Hat OpenShift on AWS — Reserved
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - compute
+    periods:
+    - per-use
+  - name: Microsoft Azure Red Hat OpenShift
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - compute
+    periods:
+    - per-use
+  - name: Red Hat OpenShift Dedicated
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - year
+  - name: Red Hat OpenShift on IBM Cloud
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - compute
+    periods:
+    - per-use
+  - name: Red Hat OpenShift Platform Plus (self-managed)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - year
+  - name: Red Hat OpenShift Container Platform (self-managed)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - year
+  - name: Red Hat OpenShift Kubernetes Engine (self-managed)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - year
+  - name: Red Hat OpenShift Virtualization Engine (self-managed)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - year
