@@ -55,6 +55,13 @@ paths:
                 $ref: '#/components/schemas/IdentityProvider'
 components:
   schemas:
+    IdentityProviderList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProvider'
     IdentityProvider:
       type: object
       properties:
@@ -73,13 +80,6 @@ components:
           - HTPasswdIdentityProvider
           - LDAPIdentityProvider
           - OpenIDIdentityProvider
-    IdentityProviderList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityProvider'
   parameters:
     clusterId:
       name: cluster_id

@@ -116,13 +116,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    RouteList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Route'
     ObjectMeta:
       type: object
       properties:
@@ -145,21 +138,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Status:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-        reason:
-          type: string
-        code:
-          type: integer
     Route:
       type: object
       properties:
@@ -205,18 +183,34 @@ components:
                   - reencrypt
         status:
           type: object
+    RouteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+    Status:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        reason:
+          type: string
+        code:
+          type: integer
   parameters:
-    labelSelector:
-      name: labelSelector
-      in: query
-      description: Label selector to filter resources (e.g., app=myapp)
-      schema:
-        type: string
-    namespace:
-      name: namespace
+    name:
+      name: name
       in: path
       required: true
-      description: Kubernetes namespace
+      description: Resource name
       schema:
         type: string
     limit:
@@ -225,11 +219,17 @@ components:
       description: Maximum number of resources to return
       schema:
         type: integer
-    name:
-      name: name
+    namespace:
+      name: namespace
       in: path
       required: true
-      description: Resource name
+      description: Kubernetes namespace
+      schema:
+        type: string
+    labelSelector:
+      name: labelSelector
+      in: query
+      description: Label selector to filter resources (e.g., app=myapp)
       schema:
         type: string
   responses:
