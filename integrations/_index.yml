@@ -72,3 +72,30 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-openshift-istio-ecosystem
+  label: Istio (ecosystem)
+  partner: istio
+  partner_name: Istio (ecosystem)
+  category: Service mesh ecosystem
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/istio/istio.io/blob/a03df1cfd4fda35a88a37b7a6486141c1c153bea/data/companies.yml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Istio ecosystem (github.com/istio/istio.io data/companies.yml @a03df1cfd4)
+    spec_file: null
+    standard: Istio service mesh
+    role: istio-provider
+    registered_name: Red Hat OpenShift Service Mesh
+    registered_names:
+    - Red Hat OpenShift Service Mesh
+    website: https://www.redhat.com/en/technologies/cloud-computing/openshift/what-is-openshift-service-mesh
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    identity_source: register-url
+    signal_note: 'participation only: the ecosystem lists are context, never read'
+    detected_by: sweep-api-management.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null

@@ -66,6 +66,32 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-mlops.py
   first_seen: '2026-10-15'
+- partner_name: Istio (ecosystem)
+  partner: istio
+  partner_match: register
+  type: register
+  direction: partner-built
+  category: Service mesh ecosystem
+  evidence: https://github.com/istio/istio.io/blob/a03df1cfd4fda35a88a37b7a6486141c1c153bea/data/companies.yml
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: Istio ecosystem (github.com/istio/istio.io data/companies.yml @a03df1cfd4)
+    spec_file: null
+    standard: Istio service mesh
+    role: istio-provider
+    registered_name: Red Hat OpenShift Service Mesh
+    registered_names:
+    - Red Hat OpenShift Service Mesh
+    website: https://www.redhat.com/en/technologies/cloud-computing/openshift/what-is-openshift-service-mesh
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    identity_source: register-url
+    signal_note: 'participation only: the ecosystem lists are context, never read'
+    detected_by: sweep-api-management.py
+    detected: '2026-10-18'
+  detected_by: sweep-api-management.py
+  first_seen: '2026-10-18'
 generated: '2026-10-15'
 method: searched
 source:
@@ -75,6 +101,7 @@ checked:
 - https://focus.finops.org/data-generators/
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
+- https://github.com/istio/istio.io
 - https://github.com/kubeflow/website
 - https://github.com/lfai/landscape
 - https://github.com/mlcommons
