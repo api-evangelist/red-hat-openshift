@@ -99,3 +99,121 @@
     detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-openshift-homebrew
+  label: Homebrew
+  partner: homebrew
+  partner_name: Homebrew
+  category: official CLI (Homebrew)
+  type: register
+  channel: package-registry
+  evidence: https://formulae.brew.sh/formula/backplane-cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Homebrew (public package index)
+    spec_file: null
+    packages:
+    - name: backplane-cli
+      kind: formula
+      version: 1.0.0
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/backplane-cli
+      cli: 'formula desc: CLI for interacting with the OpenShift Backplane API'
+      repo_leg: github-org:openshift
+      publisher_leg: artifact-github-org:openshift
+      matched_by: github-org
+    - name: osdctl
+      kind: formula
+      version: 0.66.0
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/osdctl
+      cli: 'formula desc: CLI tool for managed OpenShift clusters'
+      repo_leg: github-org:openshift
+      publisher_leg: artifact-github-org:openshift
+      matched_by: github-org
+    - name: rosa-cli
+      kind: formula
+      version: 1.2.66
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/rosa-cli
+      cli: 'formula desc: RedHat OpenShift Service on AWS (ROSA) command-line interface'
+      repo_leg: github-org:openshift
+      publisher_leg: artifact-github-org:openshift
+      matched_by: github-org
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-openshift-agent-skills-own-github-org
+  label: Agent Skills (own GitHub org)
+  partner_name: Agent Skills (own GitHub org)
+  category: Agent Skills package
+  type: register
+  channel: provider-built
+  evidence: https://github.com/openshift/hypershift
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: 'provider''s own GitHub org (GitHub REST API: repo + git tree holds SKILL.md)'
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-repo
+    matched_org: openshift
+    matched_by: org-name (profile site openshift.com not in catalog)
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-openshift-claude-plugins-dev
+  label: claude-plugins.dev
+  partner_name: claude-plugins.dev
+  category: Agent Skills register
+  type: register
+  channel: standard-directory
+  evidence: https://claude-plugins.dev/skills/@openshift/hypershift
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: claude-plugins.dev (public sitemap / list)
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-listing
+    matched_org: openshift
+    matched_by: org-name (profile site openshift.com not in catalog)
+    sample_skills:
+    - debug-cluster
+    - effective-go
+    - git-commit-format
+    - openshift-expert
+    - release-workflow
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-openshift-skillsmp-skillsmp-com
+  label: SkillsMP (skillsmp.com)
+  partner_name: SkillsMP (skillsmp.com)
+  category: Agent Skills register
+  type: register
+  channel: standard-directory
+  evidence: https://skillsmp.com/creators/openshift
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: SkillsMP (skillsmp.com) (public sitemap / list)
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-listing
+    matched_org: openshift
+    matched_by: org-name (profile site openshift.com not in catalog)
+    sample_skills: []
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
