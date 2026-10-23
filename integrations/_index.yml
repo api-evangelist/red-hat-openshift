@@ -217,3 +217,63 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-openshift-arch-user-repository-aur
+  label: Arch User Repository (AUR)
+  partner_name: Arch User Repository (AUR)
+  category: official CLI (Arch User Repository (AUR))
+  type: register
+  channel: package-registry
+  evidence: https://aur.archlinux.org/packages/backplane-cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Arch User Repository (AUR) (public package index)
+    spec_file: null
+    packages:
+    - name: backplane-cli
+      kind: aur
+      version: 1.0.0-0
+      released: '2026-10-05'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/backplane-cli
+      upstream: https://github.com/openshift/backplane-cli
+      cli: 'AUR description: backplane-cli is a CLI tool to interact with backplane-api.'
+      repo_leg: github-org:openshift
+      publisher_leg: artifact-github-org:openshift
+      matched_by: github-org
+    - name: osdctl
+      kind: aur
+      version: 0.66.0-0
+      released: '2026-10-05'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/osdctl
+      upstream: https://github.com/openshift/osdctl
+      cli: 'AUR description: CLI for the OSD utilities'
+      repo_leg: github-org:openshift
+      publisher_leg: artifact-github-org:openshift
+      matched_by: github-org
+    - name: osdctl-bin
+      kind: aur
+      version: 0.44.2-1
+      released: '2025-05-23'
+      released_field: AUR LastModified
+      out_of_date: false
+      lapsed: false
+      page: https://aur.archlinux.org/packages/osdctl-bin
+      upstream: https://github.com/openshift/osdctl
+      cli: 'AUR description: CLI for the OSD utilities'
+      repo_leg: github-org:openshift
+      publisher_leg: artifact-github-org:openshift
+      matched_by: github-org
+    current: true
+    signal_note: 'the provider''s own command-line tool packaged for Arch Linux (community-maintained PKGBUILD whose
+      upstream and source artifact are the provider''s): distribution, not an integration; lapsed = flagged out-of-date
+      or not updated in 24 months'
+    detected_by: sweep-aur-vendor-cli-packages.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
